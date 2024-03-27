@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +134,406 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: hero__attackDuble_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 528
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cfc6641e40b5341b3c5bc885e00e0d
+      internalID: -844389286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_1
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 528
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88de6d415ab65af4ebe73ae6af2288c4
+      internalID: 1506324625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_2
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 528
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf18dd330b67e934dade16ea3dbcb1ed
+      internalID: -219008194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 440
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48065b72f918dc84b88c5872afbeb860
+      internalID: 1471509806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_4
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 440
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbe35c018e7b2f24abc2b13b033f8c90
+      internalID: 1944227409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_5
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 440
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 736ee5b20b4fb8749b68bcc53bd13509
+      internalID: -1002246019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8156f6c3fc095a4987dcf2196a77450
+      internalID: -394337717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_7
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 352
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0cf9486cd1959c4b9017894a6cdf33f
+      internalID: 2046640130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_8
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 352
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74d92d5ddcb73c346be888f0abcd41ca
+      internalID: -33006862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 264
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e24bba211d653c44289df45673f36993
+      internalID: 724555954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_10
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 264
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bced52670b5abca47b364d07e0937767
+      internalID: -2075865478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_11
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 265
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277db2aa9ce8d37498f32bdb02a6150a
+      internalID: 92472182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 177
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d95dcd24475af049912c367a939e7e8
+      internalID: 587735794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_13
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 176
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29cd19dd230273409bb2119199239eb
+      internalID: 837990053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_14
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 176
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a697b073a83dd6d489ffed7420c49bac
+      internalID: 889898514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9a06a19fbaea70419fea89edbd71bf2
+      internalID: -1324991488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_16
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 88
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba95e16d8f95a647bf87febe133a056
+      internalID: -1268846269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_17
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 89
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7009aaa66feae5340b01bfdec0508ad6
+      internalID: 2046141865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__attackDuble_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 156
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be04bdf510c23b94eab6b666f8d4be1e
+      internalID: -1015386537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +544,26 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      hero__attackDuble_0: -844389286
+      hero__attackDuble_1: 1506324625
+      hero__attackDuble_10: -2075865478
+      hero__attackDuble_11: 92472182
+      hero__attackDuble_12: 587735794
+      hero__attackDuble_13: 837990053
+      hero__attackDuble_14: 889898514
+      hero__attackDuble_15: -1324991488
+      hero__attackDuble_16: -1268846269
+      hero__attackDuble_17: 2046141865
+      hero__attackDuble_18: -1015386537
+      hero__attackDuble_2: -219008194
+      hero__attackDuble_3: 1471509806
+      hero__attackDuble_4: 1944227409
+      hero__attackDuble_5: -1002246019
+      hero__attackDuble_6: -394337717
+      hero__attackDuble_7: 2046640130
+      hero__attackDuble_8: -33006862
+      hero__attackDuble_9: 724555954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
