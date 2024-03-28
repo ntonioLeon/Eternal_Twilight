@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (Input.GetAxisRaw("Horizontal") != 0)
                 {
+                    AudioManager.instance.PlaySFX(6);
                     rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
                     anim.SetBool("Run", true);
                 } else
