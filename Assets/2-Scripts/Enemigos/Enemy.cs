@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float knockbackForceX;
     public float knockbackForceY;
     public float expToGive;
+    public bool isRanged;
     public bool shouldRespawn;
     private Animator anim;
     private Rigidbody2D rb;

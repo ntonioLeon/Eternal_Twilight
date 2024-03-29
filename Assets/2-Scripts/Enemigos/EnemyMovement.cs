@@ -93,6 +93,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     anim.SetBool("Moverse", true);
                     rb.velocity = new Vector2(speed, rb.velocity.y);
+                    transform.localScale = new Vector3(-1, 1, 1);
                 }
             }
             else
@@ -101,6 +102,7 @@ public class EnemyMovement : MonoBehaviour
                 {
                     anim.SetBool("Moverse", true);
                     rb.velocity = new Vector2(-speed, rb.velocity.y);
+                    transform.localScale = new Vector3(1, 1, 1);
                 }
 
             }

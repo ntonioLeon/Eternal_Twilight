@@ -717,6 +717,7 @@ MonoBehaviour:
   knockbackForceX: 1
   knockbackForceY: 3
   expToGive: 100
+  isRanged: 0
   shouldRespawn: 1
 --- !u!61 &132678857
 BoxCollider2D:
@@ -784,8 +785,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   esEstatico: 0
-  esCaminante: 1
-  patrulla: 0
+  esCaminante: 0
+  patrulla: 1
   puntoA: {fileID: 389266601}
   puntoB: {fileID: 1826340323}
   objetivo: {fileID: 0}
@@ -1529,7 +1530,7 @@ Transform:
   m_GameObject: {fileID: 389266601}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -79.49, y: 110.56, z: -0.6180059}
+  m_LocalPosition: {x: -0.6, y: 4.2, z: -0.6180059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124822,7 +124823,7 @@ Transform:
   m_GameObject: {fileID: 1643266178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0, z: -0.7163136}
+  m_LocalPosition: {x: -1.5, y: -0.5, z: -0.7163136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125094,7 +125095,7 @@ Transform:
   m_GameObject: {fileID: 1826340323}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -87.33, y: 110.59, z: -0.6180059}
+  m_LocalPosition: {x: -27.6, y: 4.3, z: -0.6180059}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125141,7 +125142,7 @@ Transform:
   m_GameObject: {fileID: 1839064598}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -83.42, y: 111.12, z: -0.0026986226}
+  m_LocalPosition: {x: -22.5, y: 2.3, z: -0.0026986226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -125493,7 +125494,7 @@ GameObject:
   - component: {fileID: 1964976674}
   m_Layer: 10
   m_Name: Player
-  m_TagString: Weapon
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
