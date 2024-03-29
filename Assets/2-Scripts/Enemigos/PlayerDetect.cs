@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerDetect : MonoBehaviour
 {
     Enemy enemy;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        enemy = GetComponent<Enemy>();
+        enemy = GetComponentInParent<Enemy>();
     }
 
     // Update is called once per frame
@@ -21,18 +23,38 @@ public class PlayerDetect : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (enemy.isRanged)
+            Debug.Log("Patatas entrando");
+
+            if (!enemy.isRanged)
             {
-               // if (transform.GetComponentInParent<EnemyProyectil>().watcher && transform.GetComponentInParent<EnemyProyectil>().shootCooldown < 0)
-                //{
-                //    transform.GetComponentInParent<EnemyProyectil>().Shoot();
-               // }
-                    
+                GetComponentInParent<EnemyMovement>().esEstatico = false;
+                GetComponentInParent<EnemyMovement>().esCaminante = false;
+                GetComponentInParent<EnemyMovement>().patrulla = false;
+                GetComponentInParent<EnemyMovement>().isChasing = true;
+
+                GetComponentInParent<EnemyMovement>().objetivo = collision.transform;
+            } else
+            {
+                /*if (transform.GetComponentInParent<EnemyProyectil>().watcher && transform.GetComponentInParent<EnemyProyectil>().shootCooldown < 0)
+                {
+                    transform.GetComponentInParent<EnemyProyectil>().Shoot();
+                }*/
             }
-            else
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Patatas saliendo");
+
+            if (!enemy.isRanged)
             {
-                if(GetComponent<EnemyMovement>().patrulla = true)
-                GetComponent<EnemyMovement>().patrulla = true;
+                GetComponentInParent<EnemyMovement>().esEstatico = false;
+                GetComponentInParent<EnemyMovement>().esCaminante = true;
+                GetComponentInParent<EnemyMovement>().patrulla = false;
+                GetComponentInParent<EnemyMovement>().isChasing = false;
             }
         }
     }

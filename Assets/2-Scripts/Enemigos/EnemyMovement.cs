@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -28,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
     public Transform objetivo;
     bool debeEsperar;
     public float tiempoQueEspera;
+
+    //Persigue
+    public bool isChasing;
 
 
     // Start is called before the first frame update
@@ -129,6 +133,24 @@ public class EnemyMovement : MonoBehaviour
                 objetivo = puntoA.transform;
             }
         }
+
+        if (isChasing)
+        {
+            if (isChasing && ((precipicioDetectado || paredDetectada) && sueloDetectado))
+            {
+                StartCoroutine(DejarDeChasear());    
+            } 
+            else
+            {
+                GoToTarget();
+            }
+
+            /*if (((precipicioDetectado || paredDetectada) && sueloDetectado))
+            {
+                esEstatico = true;
+                isChasing = false;
+            }*/
+        }
     }
 
     private void Flip()
@@ -174,5 +196,32 @@ public class EnemyMovement : MonoBehaviour
         estaEsperando = false;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         anim.SetBool("Moverse", true);
+    }
+
+    IEnumerator DejarDeChasear()
+    {
+        GetComponentInChildren<CircleCollider2D>().enabled = false;
+
+        objetivo = null;
+        isChasing = false;
+        esCaminante = true;        
+        yield return new WaitForSeconds(1.5f);
+
+        GetComponentInChildren<CircleCollider2D>().enabled = true;
+    }
+
+    private void GoToTarget()
+    {
+        if (objetivo.position.x < transform.position.x)
+        {
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (objetivo.position.x > transform.position.x)
+        {
+
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }
