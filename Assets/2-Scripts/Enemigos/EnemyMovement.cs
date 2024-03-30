@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class EnemyMovement : MonoBehaviour
-{
+public class EnemyMovement : MonoBehaviour{
+
     [Header("Stats")]
     float speed;
     Rigidbody2D rb;
@@ -30,8 +31,23 @@ public class EnemyMovement : MonoBehaviour
     bool debeEsperar;
     public float tiempoQueEspera;
 
-    //Persigue
+    //Perseguir
     public bool isChasing;
+
+    [Header("Variables de ataque")]
+    public float attackDistance; //Minimum distance for attack
+    public float timer; //Timer for cooldown between attacks
+    [HideInInspector] public Transform target;
+    [HideInInspector] public bool inRange; //Check if Player is in range    
+    public GameObject triggerArea;
+    public GameObject hotZone;
+    
+
+    private float distance; //Store the distance b/w enemy and player
+    private bool attackMode;    
+    private bool cooling; //Check if Enemy is cooling after attack
+    private float intTimer;
+    
 
 
     // Start is called before the first frame update
@@ -45,6 +61,13 @@ public class EnemyMovement : MonoBehaviour
         objetivo = puntoA.transform;
         speed = GetComponent<Enemy>().speed;
         rb = GetComponent<Rigidbody2D>();
+        
+    }
+
+    private void Awake()
+    {
+        SelectTarget();
+        intTimer = timer;
         anim = GetComponent<Animator>();
     }
 
@@ -134,6 +157,7 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
+        /*
         if (isChasing)
         {
             if (isChasing && ((precipicioDetectado || paredDetectada) && sueloDetectado))
@@ -145,15 +169,97 @@ public class EnemyMovement : MonoBehaviour
                 GoToTarget();
             }
 
-            /*if (((precipicioDetectado || paredDetectada) && sueloDetectado))
+            if (((precipicioDetectado || paredDetectada) && sueloDetectado))
             {
                 esEstatico = true;
                 isChasing = false;
-            }*/
+            }
+        }*/
+
+        if (isChasing)
+        {
+            if (!attackMode)
+            {
+                Move();
+            }
+
+            if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                SelectTarget();
+            }
+
+            if (inRange)
+            {
+                EnemyLogic();
+            }
+        }        
+    }
+
+    public bool InsideOfLimits()
+    {
+        return transform.position.x > puntoA.transform.position.x && transform.position.x < puntoB.transform.position.x;
+    }
+
+    public void Move()
+    {
+        anim.SetBool("Moverse", true);
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
+
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
     }
 
-    private void Flip()
+    public void EnemyLogic()
+    {
+        distance = Vector2.Distance(transform.position, target.position);
+
+        if (distance > attackDistance)
+        {
+            StopAttack();
+        }
+        else if (attackDistance >= distance && cooling == false)
+        {
+            Attack();
+        }
+
+        if (cooling)
+        {
+            Cooldown();
+            anim.SetBool("Atacar", false);
+        }
+    }
+
+    public void Attack()
+    {
+        timer = intTimer; //Reset Timer when Player enter Attack Range
+        attackMode = true; //To check if Enemy can still attack or not
+
+        anim.SetBool("Moverse", false);
+        anim.SetBool("Atacar", true);
+    }
+
+    public void Cooldown()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0 && cooling && attackMode)
+        {
+            cooling = false;
+            timer = intTimer;
+        }
+    }
+
+    public void StopAttack()
+    {
+        cooling = false;
+        attackMode = false;
+        anim.SetBool("Atacar", false);
+    }
+
+    public void Flip()
     {
         if (sueloDetectado)
         {
@@ -170,13 +276,25 @@ public class EnemyMovement : MonoBehaviour
         }
 
     }
-
-    private void OnDrawGizmos()
+    public void SelectTarget()
     {
-        Gizmos.DrawWireSphere(puntoA.transform.position, radioDeteccion);
-        Gizmos.DrawWireSphere(puntoB.transform.position, radioDeteccion);
-        Gizmos.DrawLine(puntoA.transform.position, puntoB.transform.position);
-    }
+        float distanceToLeft = Vector3.Distance(transform.position, puntoA.transform.position);
+        float distanceToRight = Vector3.Distance(transform.position, puntoB.transform.position);
+
+        if (distanceToLeft > distanceToRight)
+        {
+            target = puntoA.transform;
+        }
+        else
+        {
+            target = puntoB.transform;
+        }
+
+        //Ternary Operator
+        //target = distanceToLeft > distanceToRight ? leftLimit : rightLimit;
+
+        Flip();
+    }    
 
     IEnumerator Esperar()
     {
@@ -203,7 +321,6 @@ public class EnemyMovement : MonoBehaviour
         GetComponentInChildren<CircleCollider2D>().enabled = false;
 
         objetivo = null;
-        isChasing = false;
         esCaminante = true;        
         yield return new WaitForSeconds(1.5f);
 
@@ -223,5 +340,5 @@ public class EnemyMovement : MonoBehaviour
             rb.velocity = new Vector2(speed, rb.velocity.y);
             transform.localScale = new Vector3(-1, 1, 1);
         }
-    }
+    }    
 }

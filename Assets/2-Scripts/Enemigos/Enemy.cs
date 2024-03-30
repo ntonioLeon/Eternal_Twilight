@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float damageToGive;
     public float healthPoints;
     public float speed;
+    public float originalspeed;
     public float knockbackForceX;
     public float knockbackForceY;
     public float expToGive;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        originalspeed = speed;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
