@@ -421,7 +421,7 @@ Transform:
   m_GameObject: {fileID: 119683547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1478,8 +1478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb25ca674fa79b147b3d350c09069095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToRespawn: 0
-  enemyToRespawn: {fileID: 0}
+  timeToRespawn: 5
+  enemyToRespawn: {fileID: 830471987}
   isRespawning: 0
 --- !u!4 &401421879
 Transform:
@@ -2746,7 +2746,7 @@ MonoBehaviour:
   knockbackForceX: 2
   knockbackForceY: 1
   expToGive: 5
-  isRanged: 1
+  isRanged: 0
   shouldRespawn: 1
 --- !u!114 &830471993
 MonoBehaviour:
@@ -2761,7 +2761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDistance: 8
-  timer: 3
+  timer: 5
   leftLimit: {fileID: 257769849}
   rightLimit: {fileID: 521577375}
   target: {fileID: 0}
@@ -3059,7 +3059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &923391833
 Transform:
   m_ObjectHideFlags: 0
@@ -3119,7 +3119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.023705125, y: 0.13564661}
+  m_Offset: {x: 0.021592483, y: 0.13564661}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3130,7 +3130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2167287, y: 0.7287068}
+  m_Size: {x: 1.0181198, y: 0.7287068}
   m_EdgeRadius: 0
 --- !u!1 &941005523
 GameObject:
@@ -5629,7 +5629,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.7104201, y: 0.2677679}
+  m_Offset: {x: 0.41627312, y: 0.2677679}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5640,7 +5640,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 24.801514, y: 1.5355356}
+  m_Size: {x: 18.548126, y: 1.5355356}
   m_EdgeRadius: 0
 --- !u!1 &1301602238
 GameObject:

@@ -42,7 +42,16 @@ public class EnemyMovement : MonoBehaviour{
     {
         if (!attackMode)
         {
-            Move();
+            if (GetComponent<Enemy>().isRanged)
+            {
+                StopAttack();
+                Move();
+            }
+            else 
+            {
+                Move();
+            }
+                
         }
 
         if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
