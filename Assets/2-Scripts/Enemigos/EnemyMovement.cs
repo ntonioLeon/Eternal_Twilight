@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -7,212 +8,55 @@ using UnityEngine.U2D;
 
 public class EnemyMovement : MonoBehaviour{
 
-    [Header("Stats")]
-    float speed;
-    Rigidbody2D rb;
-    Animator anim;
-    public float radioDeteccion;
-    public bool estaEsperando;
-    public Transform precipicio, paredes, suelo;
-    bool sueloDetectado, precipicioDetectado, paredDetectada;
-    public LayerMask queEsSuelo;
-
-    [Header("Tipos Enemigo")]
-    public bool esEstatico;
-
-    //Correr
-    public bool esCaminante;
-    bool andaIzquierda;
-
-    //Patrullar
-    public bool patrulla;
-    public GameObject puntoA, puntoB;
-    public Transform objetivo;
-    bool debeEsperar;
-    public float tiempoQueEspera;
-
-    //Perseguir
-    public bool isChasing;
-
-    [Header("Variables de ataque")]
+    #region Public Variables
     public float attackDistance; //Minimum distance for attack
+    
     public float timer; //Timer for cooldown between attacks
+    public Transform leftLimit;
+    public Transform rightLimit;
+
     [HideInInspector] public Transform target;
     [HideInInspector] public bool inRange; //Check if Player is in range    
     public GameObject triggerArea;
-    public GameObject hotZone;
-    
+    public GameObject hotBox;
+    #endregion
 
+    #region Private Variables
+    private Animator anim;
     private float distance; //Store the distance b/w enemy and player
     private bool attackMode;    
     private bool cooling; //Check if Enemy is cooling after attack
     private float intTimer;
-    
+    private float moveSpeed;
+    #endregion
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (tiempoQueEspera > 0)
-        {
-            debeEsperar = true;
-        }
-
-        objetivo = puntoA.transform;
-        speed = GetComponent<Enemy>().speed;
-        rb = GetComponent<Rigidbody2D>();
-        
-    }
-
-    private void Awake()
+    void Awake()
     {
         SelectTarget();
-        intTimer = timer;
+        intTimer = timer; //Store the inital value of timer
         anim = GetComponent<Animator>();
+        moveSpeed = GetComponent<Enemy>().speed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        precipicioDetectado = !Physics2D.OverlapCircle(precipicio.position, radioDeteccion, queEsSuelo);
-        paredDetectada = Physics2D.OverlapCircle(paredes.position, radioDeteccion, queEsSuelo);
-        sueloDetectado = Physics2D.OverlapCircle(suelo.position, radioDeteccion, queEsSuelo);
-
-        if ((precipicioDetectado || paredDetectada) && sueloDetectado)
+        if (!attackMode)
         {
-            Flip();
+            Move();
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        if (esEstatico)
+        if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            anim.SetBool("Moverse", false); //Puesto que empezamos en idle y pasamos a movimientiento esto es al revés.
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            SelectTarget();
         }
 
-        if (esCaminante)
+        if (inRange)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            anim.SetBool("Moverse", true);
-
-            if (andaIzquierda)
-            {
-                rb.velocity = new Vector2(-speed, rb.velocity.y);
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            else
-            {
-                rb.velocity = new Vector2(speed, rb.velocity.y);
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-        }
-
-        if (patrulla)
-        {
-            Vector2 punto = objetivo.position - transform.position;
-
-            if (objetivo == puntoA.transform)
-            {
-                if (!estaEsperando)
-                {
-                    anim.SetBool("Moverse", true);
-                    rb.velocity = new Vector2(speed, rb.velocity.y);
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-            }
-            else
-            {
-                if (!estaEsperando)
-                {
-                    anim.SetBool("Moverse", true);
-                    rb.velocity = new Vector2(-speed, rb.velocity.y);
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
-
-            }
-
-            if ((transform.position.x - puntoA.transform.position.x) >= -radioDeteccion && objetivo == puntoA.transform)
-            {
-                if (debeEsperar)
-                {
-                    StartCoroutine(Esperar());
-                }
-
-                Flip();
-                objetivo = puntoB.transform;
-            }
-
-            if ((transform.position.x - puntoB.transform.position.x) <= radioDeteccion && objetivo == puntoB.transform)
-            {
-                if (debeEsperar)
-                {
-                    StartCoroutine(Esperar());
-                }
-
-                Flip();
-                objetivo = puntoA.transform;
-            }
-        }
-
-        /*
-        if (isChasing)
-        {
-            if (isChasing && ((precipicioDetectado || paredDetectada) && sueloDetectado))
-            {
-                StartCoroutine(DejarDeChasear());    
-            } 
-            else
-            {
-                GoToTarget();
-            }
-
-            if (((precipicioDetectado || paredDetectada) && sueloDetectado))
-            {
-                esEstatico = true;
-                isChasing = false;
-            }
-        }*/
-
-        if (isChasing)
-        {
-            if (!attackMode)
-            {
-                Move();
-            }
-
-            if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
-                SelectTarget();
-            }
-
-            if (inRange)
-            {
-                EnemyLogic();
-            }
-        }        
-    }
-
-    public bool InsideOfLimits()
-    {
-        return transform.position.x > puntoA.transform.position.x && transform.position.x < puntoB.transform.position.x;
-    }
-
-    public void Move()
-    {
-        anim.SetBool("Moverse", true);
-
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
-
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            EnemyLogic();
         }
     }
 
-    public void EnemyLogic()
+    void EnemyLogic()
     {
         distance = Vector2.Distance(transform.position, target.position);
 
@@ -232,7 +76,19 @@ public class EnemyMovement : MonoBehaviour{
         }
     }
 
-    public void Attack()
+    void Move()
+    {
+        anim.SetBool("Moverse", true);
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
+
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        }
+    }
+
+    void Attack()
     {
         timer = intTimer; //Reset Timer when Player enter Attack Range
         attackMode = true; //To check if Enemy can still attack or not
@@ -241,7 +97,7 @@ public class EnemyMovement : MonoBehaviour{
         anim.SetBool("Atacar", true);
     }
 
-    public void Cooldown()
+    void Cooldown()
     {
         timer -= Time.deltaTime;
 
@@ -252,93 +108,59 @@ public class EnemyMovement : MonoBehaviour{
         }
     }
 
-    public void StopAttack()
+    void StopAttack()
     {
         cooling = false;
         attackMode = false;
         anim.SetBool("Atacar", false);
     }
 
-    public void Flip()
+    public void TriggerCooling()
     {
-        if (sueloDetectado)
-        {
-            if (andaIzquierda)
-            {
-                andaIzquierda = false;
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-            {
-                andaIzquierda = true;
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-        }
-
+        cooling = true;
     }
+
+    private bool InsideOfLimits()
+    {
+        return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
+    }
+
     public void SelectTarget()
     {
-        float distanceToLeft = Vector3.Distance(transform.position, puntoA.transform.position);
-        float distanceToRight = Vector3.Distance(transform.position, puntoB.transform.position);
+        float distanceToLeft = Vector3.Distance(transform.position, leftLimit.position);
+        float distanceToRight = Vector3.Distance(transform.position, rightLimit.position);
 
         if (distanceToLeft > distanceToRight)
         {
-            target = puntoA.transform;
+            target = leftLimit;
         }
         else
         {
-            target = puntoB.transform;
+            target = rightLimit;
         }
 
         //Ternary Operator
         //target = distanceToLeft > distanceToRight ? leftLimit : rightLimit;
 
         Flip();
-    }    
-
-    IEnumerator Esperar()
-    {
-        anim.SetBool("Moverse", false);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        estaEsperando = true;
-        for (int i = 0; i < tiempoQueEspera; i++)
-        {
-            yield return new WaitForSeconds(1);
-
-            Flip();
-        }
-        if (tiempoQueEspera % 2 == 1)
-        {
-            Flip();
-        }
-        estaEsperando = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        anim.SetBool("Moverse", true);
     }
 
-    IEnumerator DejarDeChasear()
+    public void Flip()
     {
-        GetComponentInChildren<CircleCollider2D>().enabled = false;
+        Vector3 rotation = transform.eulerAngles;
+        if (transform.position.x > target.position.x)
+        {
+            rotation.y = 0;
+        }
+        else
+        {
+            
+            rotation.y = 180;
+        }
 
-        objetivo = null;
-        esCaminante = true;        
-        yield return new WaitForSeconds(1.5f);
+        //Ternary Operator
+        //rotation.y = (currentTarget.position.x < transform.position.x) ? rotation.y = 180f : rotation.y = 0f;
 
-        GetComponentInChildren<CircleCollider2D>().enabled = true;
+        transform.eulerAngles = rotation;
     }
-
-    private void GoToTarget()
-    {
-        if (objetivo.position.x < transform.position.x)
-        {
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (objetivo.position.x > transform.position.x)
-        {
-
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-    }    
 }

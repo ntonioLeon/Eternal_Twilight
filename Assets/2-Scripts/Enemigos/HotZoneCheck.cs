@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class HotZoneCheck : MonoBehaviour
 {
-    private EnemyMovement enemyMovement;
-    private Animator anim;
+    private EnemyMovement enemyParent;
     private bool inRange;
+    private Animator anim;
 
     private void Awake()
     {
+        enemyParent = GetComponentInParent<EnemyMovement>();
         anim = GetComponentInParent<Animator>();
-        enemyMovement = GetComponentInParent<EnemyMovement>();
     }
 
     private void Update()
     {
-        if (inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) 
         {
-            enemyMovement.Flip();
-        }    
+            enemyParent.Flip();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,9 +36,9 @@ public class EnemyAttack : MonoBehaviour
         {
             inRange = false;
             gameObject.SetActive(false);
-            enemyMovement.triggerArea.SetActive(true);
-            enemyMovement.inRange = false;
-            enemyMovement.SelectTarget();
+            enemyParent.triggerArea.SetActive(true);
+            enemyParent.inRange = false;
+            enemyParent.SelectTarget();
         }
     }
 }
