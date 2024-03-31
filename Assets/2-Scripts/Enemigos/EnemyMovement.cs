@@ -47,13 +47,28 @@ public class EnemyMovement : MonoBehaviour{
 
         if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            SelectTarget();
+            if (GetComponent<Enemy>().isRanged)
+            {
+                // RunFromTarget();
+            }
+            else
+            {
+                SelectTarget();
+            }
         }
 
         if (inRange)
         {
-            EnemyLogic();
+            if (GetComponent<Enemy>().isRanged)
+            {
+                // RangedLogic();
+            }
+            else
+            {
+                EnemyLogic();
+            }   
         }
+        
     }
 
     void EnemyLogic()
@@ -74,6 +89,13 @@ public class EnemyMovement : MonoBehaviour{
             Cooldown();
             anim.SetBool("Atacar", false);
         }
+    }
+
+    void RangedLogic()
+    {
+        //Shoot();
+        //Cooldown();
+        //KeepRunning();
     }
 
     void Move()
