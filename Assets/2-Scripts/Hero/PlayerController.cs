@@ -31,6 +31,14 @@ public class PlayerController : MonoBehaviour
     private float knockBackCounter;
     public bool stopInput;
 
+    [Header("Dash")]
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 25f;
+    private float dashingTime = 0.4f;
+    private float dashingCooldown = 1f;
+    [SerializeField] private TrailRenderer tr;
+
     private void Awake()
     {
         instance = this;
@@ -42,6 +50,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponentInChildren<Rigidbody2D>();
+        tr = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
@@ -51,6 +60,11 @@ public class PlayerController : MonoBehaviour
         {
             if (knockBackCounter <= 0)
             {
+                if (isDashing)
+                {
+                    return;
+                }                 
+
                 if (Input.GetAxisRaw("Horizontal") != 0)
                 {
                     AudioManager.instance.PlaySFX(6);
@@ -68,9 +82,14 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                 {
                     canDoubleJump = true;
-                }
+                }                
 
                 Saltar();
+
+                if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+                {
+                    StartCoroutine(Dash());
+                }
 
                 Attack();
 
@@ -147,5 +166,29 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Attack", false);
         }
+    }
+
+    IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        if (sprite.flipX)
+        {
+            rb.velocity = new Vector2(-transform.localScale.x * dashingPower, 0f /*rb.position.y*/);
+        } else
+        {
+            rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f /*rb.position.y*/);
+        }
+        
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale += originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+
     }
 }
