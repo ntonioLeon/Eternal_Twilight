@@ -170,23 +170,28 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Dash()
     {
+        Physics2D.IgnoreLayerCollision(10 ,9 , true);
         canDash = false;
         isDashing = true;
+        tr.emitting = true;
         float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
+        rb.gravityScale = 0f;        
+        
         if (sprite.flipX)
         {
             rb.velocity = new Vector2(-transform.localScale.x * dashingPower, 0f /*rb.position.y*/);
         } else
         {
             rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f /*rb.position.y*/);
-        }
+        }      
         
-        tr.emitting = true;
         yield return new WaitForSeconds(dashingTime);
+
         tr.emitting = false;
         rb.gravityScale += originalGravity;
         isDashing = false;
+        Physics2D.IgnoreLayerCollision(10, 9, false);
+
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
 

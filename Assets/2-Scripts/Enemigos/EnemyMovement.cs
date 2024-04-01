@@ -30,6 +30,16 @@ public class EnemyMovement : MonoBehaviour{
     [HideInInspector] private Rigidbody2D rb;
     #endregion
 
+    #region proyectil
+    public GameObject proyectil;
+    public Transform proyectilPos;
+    public float shootSpeed;
+    public float fixHigh;
+    private bool shooted;
+
+
+    #endregion
+
     void Awake()
     {
         SelectTarget();
@@ -38,6 +48,7 @@ public class EnemyMovement : MonoBehaviour{
         moveSpeed = GetComponent<Enemy>().speed;
         isRanged = GetComponent<Enemy>().isRanged;
         rb = GetComponent<Rigidbody2D>();
+        shooted = false;
     }
 
     void Update()
@@ -74,8 +85,11 @@ public class EnemyMovement : MonoBehaviour{
             StopAttack();
         }
         else if (attackDistance >= distance && !cooling)
-        {
-            Shoot();
+        {           
+            if (!shooted)
+            {
+                Shoot();
+            }            
         }
         else if (attackDistance >= distance && cooling)
         {
@@ -84,10 +98,6 @@ public class EnemyMovement : MonoBehaviour{
         else if (attackDistance < distance && attackMode && !cooling)
         {
             Move();
-            /*
-            Debug.Log("Patatas");
-            hotBox.SetActive(false);
-            triggerArea.SetActive(true);*/
         }
 
         if (cooling)
@@ -107,9 +117,8 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     void Shoot()
-    {
-        Debug.Log("Disparo");
-        //Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+    {        
+        Disparo();
 
         timer = intTimer; //Reset Timer when Player enter Attack Range
         attackMode = true; //To check if Enemy can still attack or not
@@ -118,12 +127,16 @@ public class EnemyMovement : MonoBehaviour{
         anim.SetBool("Atacar", true);
     }
 
+    void Disparo()
+    {        
+        GameObject disparo = Instantiate(proyectil, proyectilPos.position, Quaternion.identity);
+        shooted = true;
+    }
+
     void RunFromTarget()
     {
-        Debug.Log("Entro");
         if (Vector2.Distance(transform.position, target.transform.position) <= attackDistance)
         {
-            Debug.Log("Escapa");
 
             if ((transform.position.x - target.transform.position.x) <= 0) //player a la izquierda
             {
@@ -213,6 +226,7 @@ public class EnemyMovement : MonoBehaviour{
     public void TriggerCooling()
     {
         cooling = true;
+        shooted = false;
     }
 
     private bool InsideOfLimits()
