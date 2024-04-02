@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour{
     [HideInInspector] public bool inRange; //Check if Player is in range    
     public GameObject triggerArea;
     public GameObject hotBox;
+    public float meleeZone;
+    public bool hasGuard;
     #endregion
 
     #region Private Variables
@@ -164,16 +166,27 @@ public class EnemyMovement : MonoBehaviour{
     {
         distance = Vector2.Distance(transform.position, target.position);
 
-        if (distance > attackDistance)
+        if (distance > attackDistance && !attackMode)
         {
             StopAttack();
         }
-        else if (attackDistance >= distance && cooling == false)
+        else if (attackDistance >= distance && !cooling)
         {
             Attack();
         }
-
-        if (cooling)
+        else if (distance > attackDistance && attackMode && cooling)
+        {
+            Move();
+        }
+        else if (distance <= attackDistance && attackMode && cooling)
+        {
+            anim.SetBool("Moverse", false);
+            if (hasGuard)
+            {
+                anim.SetBool("Guardia", true);
+            }
+        }
+            if (cooling)
         {
             Cooldown();
             anim.SetBool("Atacar", false);
@@ -199,6 +212,10 @@ public class EnemyMovement : MonoBehaviour{
 
         anim.SetBool("Moverse", false);
         anim.SetBool("Atacar", true);
+        if (hasGuard)
+        {
+            anim.SetBool("Guardia", false);
+        }
     }
 
     void Cooldown()
@@ -216,8 +233,8 @@ public class EnemyMovement : MonoBehaviour{
     {
         if (!isRanged)
         {
-            cooling = false;
-            attackMode = false;
+            //cooling = false;
+            //attackMode = false;
         }       
         
         anim.SetBool("Atacar", false);

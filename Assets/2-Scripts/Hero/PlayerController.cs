@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
     private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
+    [Header("Parry")]
+    private bool canParry;
+
     private void Awake()
     {
         instance = this;
@@ -93,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
                 Attack();
 
+                //Parry();
+
                 Invertir();
             }
         }
@@ -104,6 +109,15 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Jump", !isGrounded);
     }
 
+    /*private void Parry()
+    {
+        if (Input.GetButtonDown("Fire2") && canParry)
+        {
+            Debug.Log("Parry");
+            StartCoroutine(Parrying());
+        }
+    }
+    */
     public void KnockBack()
     {
         knockBackCounter = knockBackLength;
@@ -143,7 +157,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void GetKnockBacked()
+    public void GetKnockBacked()
     {
         knockBackCounter -= Time.deltaTime;
         if (!sprite.flipX)
@@ -166,6 +180,12 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Attack", false);
         }
+    }
+    IEnumerator Parrying()
+    {
+        stopInput = true;   
+        yield return new WaitForSeconds(3);
+        stopInput = false;
     }
 
     IEnumerator Dash()
