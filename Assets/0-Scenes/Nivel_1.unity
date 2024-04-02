@@ -572,6 +572,7 @@ GameObject:
   - component: {fileID: 132678856}
   - component: {fileID: 132678855}
   - component: {fileID: 132678858}
+  - component: {fileID: 132678859}
   m_Layer: 9
   m_Name: Bandido Melee
   m_TagString: Enemy
@@ -710,6 +711,20 @@ MonoBehaviour:
   proyectilPos: {fileID: 0}
   shootSpeed: 0
   fixHigh: 0
+--- !u!114 &132678859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132678850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b231871a0889c794ea5f93c6c011e249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  parpadeo: {fileID: 2100000, guid: 1e5bb100bfbcadd4a9a0097a9de27807, type: 2}
 --- !u!1 &136388940
 GameObject:
   m_ObjectHideFlags: 0
@@ -126355,10 +126370,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1964976672}
   - component: {fileID: 1964976671}
-  - component: {fileID: 1964976673}
-  - component: {fileID: 1964976675}
-  - component: {fileID: 1964976674}
   - component: {fileID: 1964976676}
+  - component: {fileID: 1964976674}
+  - component: {fileID: 1964976675}
+  - component: {fileID: 1964976673}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -126479,7 +126494,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: b8a5d63769373e843afb548ea41926e1, type: 2}
+  m_Material: {fileID: 6200000, guid: ee1c824141373a94fbd5b146d6c7628c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    Enemy enemy;
-    //SpriteRenderer renderer;
-    private Rigidbody2D rb;
 
+    #region Public Variables
     [Header("Components")]
     public float originalHealth;
     public bool recibeDano;
-
     public GameObject deathEffect;
-    //private Blink material;
+    #endregion
+
+    #region Private Variables
+    private SpriteRenderer render;
+    private Blink material;
+    private Rigidbody2D rb;
+    private Enemy enemy;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +25,8 @@ public class EnemyHealth : MonoBehaviour
         enemy = GetComponent<Enemy>();
         rb = GetComponent<Rigidbody2D>();
 
-        //renderer= GetComponentInChildren<SpriteRenderer>();
-        //material = GetComponent<Blink>();
+        render= GetComponentInChildren<SpriteRenderer>();
+        material = GetComponent<Blink>();
 
         originalHealth = enemy.healthPoints;
     }
@@ -35,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Weapon")&&!recibeDano)
+        if (collision.CompareTag("Weapon") && !recibeDano)
         {
             enemy.healthPoints -= 5f; // falta weapon
             if (collision.transform.position.x < transform.position.x)
@@ -61,17 +65,15 @@ public class EnemyHealth : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            
-
         }
     }
 
     IEnumerator Damager()
     {
         recibeDano = true;
-        //renderer.material = material.parpadeo;
+        render.material = material.parpadeo;
         yield return new WaitForSeconds(.5f);
-        //renderer.material = material.original;
+        render.material = material.original;
         recibeDano= false;
     }
 }
