@@ -677,12 +677,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Eustaquio
   damageToGive: 2
-  healthPoints: 100
+  healthPoints: 15
   speed: 5
   originalspeed: 0
   knockbackForceX: 400
   knockbackForceY: 100
-  expToGive: 100
+  expToGive: 10
   isRanged: 0
   shouldRespawn: 1
 --- !u!114 &132678858
@@ -127298,6 +127298,7 @@ MonoBehaviour:
   expTNL: 1
   incrementoVida: 0
   incrementoItems: 0
+  lvl: 0
 --- !u!1 &1973361175
 GameObject:
   m_ObjectHideFlags: 0

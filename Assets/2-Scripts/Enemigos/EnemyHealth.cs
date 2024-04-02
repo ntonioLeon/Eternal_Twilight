@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
             if (enemy.healthPoints<=0) 
             {
                 Instantiate(deathEffect, transform.position, Quaternion.identity);
-                //Experience.instance.ExpModifier(GetComponent<Enemy>().expToGive);
+                ExperienceScript.instance.ExpModifier(GetComponent<Enemy>().expToGive);
                 if (enemy.shouldRespawn)
                 {
                     transform.GetComponentInParent<EnemyRespawn>().StartCoroutine(GetComponentInParent<EnemyRespawn>().RespawnEnemy());
