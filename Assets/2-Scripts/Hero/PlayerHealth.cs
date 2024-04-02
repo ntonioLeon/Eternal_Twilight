@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth instance;
     public float health;
     public float maxHealth;
-    //public Image healthImage;
+    public Image healthImage;
     //public GameObject gameOverImage;
     public float inmunerableTime;
     public float knockBackX;
@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //healthImage.fillAmount = health / maxHealth;
+        healthImage.fillAmount = health / maxHealth;
         if (health > maxHealth)
         {
             health = maxHealth;
