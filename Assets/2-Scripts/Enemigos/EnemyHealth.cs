@@ -36,12 +36,13 @@ public class EnemyHealth : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Weapon") && !recibeDano)
         {
-            enemy.healthPoints -= 5f; // falta weapon
+            enemy.healthPoints -= collision.GetComponentInParent<PlayerController>().weaponDamage;
+
             if (collision.transform.position.x < transform.position.x)
             {
                 rb.AddForce(new Vector2(enemy.knockbackForceX, enemy.knockbackForceY), ForceMode2D.Force);
@@ -68,7 +69,37 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    IEnumerator Damager()
+    /*
+    public void TakeDamage(Transform collision, float damage)
+    {
+        enemy.healthPoints -= damage; // falta weapon
+        if (collision.transform.position.x < transform.position.x)
+        {
+            rb.AddForce(new Vector2(enemy.knockbackForceX, enemy.knockbackForceY), ForceMode2D.Force);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(-enemy.knockbackForceX, enemy.knockbackForceY), ForceMode2D.Force);
+        }
+
+
+        StartCoroutine(Damager());
+        if (enemy.healthPoints <= 0)
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            ExperienceScript.instance.ExpModifier(GetComponent<Enemy>().expToGive);
+            if (enemy.shouldRespawn)
+            {
+                transform.GetComponentInParent<EnemyRespawn>().StartCoroutine(GetComponentInParent<EnemyRespawn>().RespawnEnemy());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+    }*/
+
+IEnumerator Damager()
     {
         recibeDano = true;
         render.material = material.parpadeo;

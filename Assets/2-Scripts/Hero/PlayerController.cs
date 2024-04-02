@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     [Header("Componentes")]
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Animator anim;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
     [Header("Movimiento")]
     public float moveSpeed;
@@ -27,7 +27,8 @@ public class PlayerController : MonoBehaviour
     public float bounceForce;
 
     [Header("KnockBack")]
-    public float knockBackLength, knockBackForce;
+    public float knockBackLength;
+    public float knockBackForce;
     private float knockBackCounter;
     public bool stopInput;
 
@@ -41,6 +42,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Parry")]
     private bool canParry;
+
+    [Header("Ataque")]
+    public float weaponDamage;
 
     private void Awake()
     {
@@ -95,7 +99,6 @@ public class PlayerController : MonoBehaviour
                 }
 
                 Attack();
-
                 //Parry();
 
                 Invertir();
@@ -128,12 +131,12 @@ public class PlayerController : MonoBehaviour
     {
         if (rb.velocity.x < 0)
         {
-            sprite.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
         else if (rb.velocity.x > 0)
         {
-            sprite.flipX = false;
-        }
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }        
     }
 
     private void Saltar()
@@ -181,6 +184,27 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Attack", false);
         }
     }
+
+    /*
+    public void DoDamage()
+    {
+        Collider2D[] hittedEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hittedEnemies)
+        {
+            enemy.GetComponentInParent<EnemyHealth>().TakeDamage(attackPoint, weaponDamage);
+        }
+    }
+    */
+
+    /*private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+
+        Gizmos.DrawSphere(attackPoint.position, attackRange);
+    }*/
+
     IEnumerator Parrying()
     {
         stopInput = true;   
@@ -214,6 +238,5 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
-
     }
 }

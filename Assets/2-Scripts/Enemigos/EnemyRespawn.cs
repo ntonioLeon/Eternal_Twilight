@@ -30,7 +30,7 @@ public class EnemyRespawn : MonoBehaviour
 
         enemyToRespawn.GetComponent<Enemy>().healthPoints = enemyToRespawn.GetComponent<EnemyHealth>().originalHealth;
 
-        //enemyToRespawn.GetComponent<SpriteRenderer>().material = enemyToRespawn.GetComponent<Blink>().original;
+        enemyToRespawn.GetComponentInChildren<SpriteRenderer>().material = enemyToRespawn.GetComponent<Blink>().original;
 
         enemyToRespawn.GetComponent<EnemyHealth>().recibeDano = false;
 
