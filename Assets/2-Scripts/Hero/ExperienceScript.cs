@@ -15,7 +15,7 @@ public class ExperienceScript : MonoBehaviour
     public float incrementoVida;
     public int incrementoItems;
     public int lvl;
-    //public Text textLvl;
+    public Text textLvl;
     #endregion
 
     #region Private Variables
@@ -37,7 +37,7 @@ public class ExperienceScript : MonoBehaviour
         currentExp = PlayerPrefs.GetFloat("currentExp", 0f);
         expTNL = PlayerPrefs.GetFloat("expTNL", expTNL);
         lvl = PlayerPrefs.GetInt("lvl", 1);
-        //textLvl.text = lvl.ToString();
+        textLvl.text = lvl.ToString();
         expImage.fillAmount = currentExp / expTNL;
     }
     public void ExpModifier(float exp)
@@ -81,10 +81,12 @@ public class ExperienceScript : MonoBehaviour
         float vida = (PlayerHealth.instance.health / PlayerHealth.instance.maxHealth);
         PlayerHealth.instance.maxHealth += incrementoVida;//
         PlayerHealth.instance.health = PlayerHealth.instance.maxHealth * vida;
+        PlayerController.instance.maxStamina = PlayerController.instance.maxStamina * 1.1f;
+        //PlayerController.instance.staminaRegen++; // No me gusta
         //SubItems.instance.maxTotal += incrementoItems;
         //AudioMannager.instance.PlayAudio(AudioMannager.instance.lvlUP);
         lvl++;
-        //textLvl.text = lvl.ToString();
+        textLvl.text = lvl.ToString();
     }
 
     public void DataToSave()

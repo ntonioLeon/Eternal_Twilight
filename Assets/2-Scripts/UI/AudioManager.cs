@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     public Slider generalSldr, musicSldr, effectsSldr;
 
+    private int currentSound;
 
     private void Awake()
     {
@@ -76,6 +77,12 @@ public class AudioManager : MonoBehaviour
         {
             soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
         }
+        currentSound = soundToPlay;
         soundEffects[soundToPlay].Play();
+    }
+
+    public void StopSFX()
+    {
+        soundEffects[6].Stop();
     }
 }

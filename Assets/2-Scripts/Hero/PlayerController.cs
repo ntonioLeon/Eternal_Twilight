@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,11 +15,19 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movimiento")]
     public float moveSpeed;
+    private bool isRunning;
 
     [Header("Ground")]
     public Transform groundCheck;
     public LayerMask whatIsGround;
     private bool isGrounded;
+
+    [Header("Stamina")]
+    public float maxStamina;
+    public float staminaRegen;
+    public float staminaCost;
+    public Image staminaImage;
+    private float currentStamina;
 
     [Header("Salto")]
     public float jumpForce;
@@ -40,8 +49,11 @@ public class PlayerController : MonoBehaviour
     private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
 
-    [Header("Parry")]
-    private bool canParry;
+    [Header("Bloqueo")]
+    public float parryWindow;
+    public bool isBlocking;
+    public float blockTimer;
+    private float blockDuration = 1f;
 
     [Header("Ataque")]
     public float weaponDamage;
@@ -58,6 +70,10 @@ public class PlayerController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponentInChildren<Rigidbody2D>();
         tr = GetComponent<TrailRenderer>();
+
+        currentStamina = maxStamina;
+        //UpdateStaminaUI();
+        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo
     }
 
     // Update is called once per frame
@@ -67,66 +83,128 @@ public class PlayerController : MonoBehaviour
         {
             if (knockBackCounter <= 0)
             {
-                if (isDashing)
-                {
-                    return;
-                }                 
-
-                if (Input.GetAxisRaw("Horizontal") != 0)
-                {
-                    AudioManager.instance.PlaySFX(6);
-                    rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
-                    anim.SetBool("Run", true);
-                } else
-                {
-                    rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
-                    anim.SetBool("Run", false);
-                }
-                
-
                 isGrounded = Physics2D.OverlapCircle(groundCheck.position, .2f, whatIsGround);
 
                 if (isGrounded)
                 {
                     canDoubleJump = true;
-                }                
+                }
+
+                if (isDashing)
+                {
+                    return;
+                }                 
+
+                Walk();
+                WalkingSound();// problemas en Pause;   
 
                 Saltar();
 
-                if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-                {
-                    StartCoroutine(Dash());
-                }
+                Dash();
 
                 Attack();
-                //Parry();
+
+                Block();
+                UpdateBlock();
 
                 Invertir();
+                
             }
         }
         else
         {
             GetKnockBacked();
         }
-
         anim.SetBool("Jump", !isGrounded);
     }
 
-    /*private void Parry()
+    private void Block()
     {
-        if (Input.GetButtonDown("Fire2") && canParry)
+        if (Input.GetKeyDown(KeyCode.P) && !isBlocking && isGrounded && !isDashing)
         {
-            Debug.Log("Parry");
-            StartCoroutine(Parrying());
+            if (currentStamina >= staminaCost)
+            {
+                blockTimer = blockDuration;
+                currentStamina -= staminaCost;
+                StartCoroutine(BlockCoroutine());
+            }
         }
     }
-    */
+
+    private void UpdateBlock()
+    {
+        if (isBlocking)
+        {
+            blockTimer -= Time.deltaTime;
+            if (blockTimer <= 0f)
+            {
+                // Finalizar el bloqueo
+                isBlocking = false;
+                anim.SetBool("Parry", false);
+            }
+        }
+    }
+    IEnumerator BlockCoroutine()
+    {
+        // Inicia el bloqueo
+        isBlocking = true;
+        anim.SetBool("Parry", true);
+        //stopInput = true; esto lo manda a la puta
+
+        // Espera durante 1 segundo
+        yield return new WaitForSeconds(blockDuration);
+
+        // Finaliza el bloqueo
+        isBlocking = false;
+        anim.SetBool("Parry", false);
+        //stopInput = false; esto lo manda a la puta
+    }
+
+    private void WalkingSound()
+    {
+        if (isRunning && isGrounded)
+        {
+            AudioManager.instance.PlaySFX(5);
+        }
+        else
+        {
+            AudioManager.instance.StopSFX();
+        }
+    }
+
+    void RegenerateStamina()
+    {
+        currentStamina += staminaRegen;
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        UpdateStaminaUI();
+    }
+
+    void UpdateStaminaUI()
+    {
+        staminaImage.fillAmount = currentStamina / maxStamina;
+    }
+
     public void KnockBack()
     {
         knockBackCounter = knockBackLength;
         rb.velocity = new Vector2(0f, knockBackForce);
     }
 
+    private void Walk()
+    {
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            anim.SetBool("Run", true);
+            isRunning = false;
+        }
+        else
+        {
+            rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            anim.SetBool("Run", false);
+            isRunning = true;
+        }
+    }
     private void Invertir()
     {
         if (rb.velocity.x < 0)
@@ -175,8 +253,10 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && currentStamina>=(staminaCost*2) && isGrounded)
         {
+            AudioManager.instance.PlaySFX(0);
+            currentStamina -= staminaCost * 2;
             anim.SetBool("Attack", true);
         }
         else
@@ -204,15 +284,15 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.DrawSphere(attackPoint.position, attackRange);
     }*/
-
-    IEnumerator Parrying()
+    private void Dash()
     {
-        stopInput = true;   
-        yield return new WaitForSeconds(3);
-        stopInput = false;
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && currentStamina >= (staminaCost * 10))
+        {
+            currentStamina -= staminaCost * 10;
+            StartCoroutine(DashCourutine());
+        }
     }
-
-    IEnumerator Dash()
+    IEnumerator DashCourutine()
     {
         Physics2D.IgnoreLayerCollision(10 ,9 , true);
         canDash = false;

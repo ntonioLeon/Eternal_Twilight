@@ -60,6 +60,29 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.CompareTag("Enemy") && !isInmune)
         {
+            
+            if(PlayerController.instance!=null && PlayerController.instance.isBlocking)
+            {
+                // Obtener la dirección de bloqueo del jugador desde el transform
+                Vector2 dirBlock = PlayerController.instance.transform.forward;
+
+                // Obtener la dirección del ataque entrante
+                Vector2 dirAtt = (collision.transform.position - PlayerController.instance.transform.position).normalized;
+
+                // Calcular el ángulo entre la dirección de bloqueo y la dirección del ataque
+                float angle = Vector2.Angle(dirBlock, dirAtt);
+
+                // Definir el rango de ángulos permitidos para bloquear
+                float allowedAngle = 90f;
+
+                // Verificar si el ángulo está dentro del rango permitido para bloquear
+                if (angle < allowedAngle)
+                {
+                    // El jugador está bloqueando en la dirección adecuada, no aplicar daño ni knockback
+                    return;
+                }
+            }
+            
             health -= collision.GetComponentInParent<Enemy>().damageToGive;
             StartCoroutine(Inmunity());
             
