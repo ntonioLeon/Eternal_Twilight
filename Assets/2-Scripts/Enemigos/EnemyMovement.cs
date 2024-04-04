@@ -21,6 +21,10 @@ public class EnemyMovement : MonoBehaviour{
     public GameObject hotBox;
     public float meleeZone;
     public bool hasGuard;
+    public Transform precipicio, paredes, suelo;
+    public Transform backPrecipicio, backParedes;
+    public float radioDeteccion;
+    public LayerMask queEsSuelo;
     #endregion
 
     #region Private Variables
@@ -30,6 +34,8 @@ public class EnemyMovement : MonoBehaviour{
     private float intTimer;
     private float moveSpeed;
     [HideInInspector] private Rigidbody2D rb;
+    private bool sueloDetectado, precipicioDetectado, paredDetectada, backPrecipicioDetectado, backParedDetectada;
+    private bool contraLaPared;
     #endregion
 
     #region proyectil
@@ -55,29 +61,41 @@ public class EnemyMovement : MonoBehaviour{
 
     void Update()
     {
-        if (!attackMode)
+        if (TerrenoTransitable())
         {
-            Move();                
+            ResetPatroll();
+        } 
+        else if (ObstaculoALaEspalda() && !contraLaPared)
+        {
+            StopMoving();
         }
-
-        if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        else
         {
-            SelectTarget();
-        }
-
-        if (inRange)
-        {
-            if (isRanged)
+            if (!attackMode)
             {
-                RangedLogic();
+                Move();
             }
-            else
+
+            if (!InsideOfLimits() && !inRange && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                EnemyLogic();
-            }   
+                SelectTarget();
+            }
+
+            if (inRange)
+            {
+                if (isRanged)
+                {
+                    RangedLogic();
+                }
+                else
+                {
+                    EnemyLogic();
+                }
+            }
         }
     }
 
+    #region Ranged
     void RangedLogic()
     {
         distance = Vector2.Distance(transform.position, target.position);
@@ -92,6 +110,10 @@ public class EnemyMovement : MonoBehaviour{
             {
                 Shoot();
             }            
+        }
+        else if (contraLaPared)
+        {
+            StopAttack();
         }
         else if (attackDistance >= distance && cooling)
         {
@@ -161,7 +183,9 @@ public class EnemyMovement : MonoBehaviour{
             anim.SetBool("Moverse", false);
         }
     }
+    #endregion
 
+    #region Melee
     void EnemyLogic()
     {
         distance = Vector2.Distance(transform.position, target.position);
@@ -174,7 +198,7 @@ public class EnemyMovement : MonoBehaviour{
         {
             Attack();
         }
-        else if (distance > attackDistance && attackMode && cooling)
+        else if (distance > attackDistance && attackMode)
         {
             if (hasGuard)
             {
@@ -190,22 +214,11 @@ public class EnemyMovement : MonoBehaviour{
                 anim.SetBool("Guardia", true);
             }
         }
-            if (cooling)
+        
+        if (cooling)
         {
             Cooldown();
             anim.SetBool("Atacar", false);
-        }
-    }    
-
-    void Move()
-    {
-        anim.SetBool("Moverse", true);
-
-        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
-
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
     }
 
@@ -221,12 +234,26 @@ public class EnemyMovement : MonoBehaviour{
             anim.SetBool("Guardia", false);
         }
     }
+    #endregion
+
+    #region Comportamientos comunes
+    void Move()
+    {
+        anim.SetBool("Moverse", true);
+
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
+
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        }
+    }    
 
     void Cooldown()
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0 && cooling && attackMode)
+        if (timer <= 0 && cooling)
         {
             cooling = false;
             timer = intTimer;
@@ -234,13 +261,7 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     void StopAttack()
-    {
-        if (!isRanged)
-        {
-            //cooling = false;
-            //attackMode = false;
-        }       
-        
+    {   
         anim.SetBool("Atacar", false);
     }
 
@@ -293,4 +314,53 @@ public class EnemyMovement : MonoBehaviour{
 
         transform.eulerAngles = rotation;
     }
+
+    private bool TerrenoTransitable()
+    {
+        precipicioDetectado = !Physics2D.OverlapCircle(precipicio.position, radioDeteccion, queEsSuelo);
+        paredDetectada = Physics2D.OverlapCircle(paredes.position, radioDeteccion, queEsSuelo);
+        sueloDetectado = Physics2D.OverlapCircle(suelo.position, radioDeteccion, queEsSuelo);
+
+        return ((precipicioDetectado || paredDetectada) && sueloDetectado);        
+    }
+
+    private void ResetPatroll()
+    {
+        StartCoroutine(ResetPatrollCoroutine());
+    }
+
+    IEnumerator ResetPatrollCoroutine()
+    {
+        triggerArea.SetActive(false);
+        GetComponentInChildren<HotZoneCheck>().OnTriggerExit2D(target.GetComponentInChildren<Collider2D>());
+        hotBox.SetActive(false);
+        SelectTarget();
+
+        yield return new WaitForSeconds(2f);
+
+        triggerArea.SetActive(true);
+    }
+
+    private bool ObstaculoALaEspalda()
+    {
+        if (isRanged)
+        {
+            backPrecipicioDetectado = !Physics2D.OverlapCircle(backPrecipicio.position, radioDeteccion * 10, queEsSuelo);
+            backParedDetectada = Physics2D.OverlapCircle(backParedes.position, radioDeteccion * 10, queEsSuelo);
+
+            return (backPrecipicioDetectado || backParedDetectada);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void StopMoving()
+    {
+        anim.SetBool("Moverse", false);
+        anim.SetBool("Atacar", false);
+        contraLaPared = true;
+    }
+    #endregion
 }

@@ -30,7 +30,7 @@ public class HotZoneCheck : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -41,10 +41,6 @@ public class HotZoneCheck : MonoBehaviour
             enemyParent.SelectTarget();
 
             enemyParent.attackMode = false;
-            if (enemyParent.isRanged)
-            {
-                
-            }
         }
     }
 }

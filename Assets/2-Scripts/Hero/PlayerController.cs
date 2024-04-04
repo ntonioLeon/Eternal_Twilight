@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Jump", !isGrounded);
     }
 
+    #region Block
     private void Block()
     {
         if (Input.GetKeyDown(KeyCode.P) && !isBlocking && isGrounded && !isDashing)
@@ -159,6 +160,7 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("Parry", false);
         //stopInput = false; esto lo manda a la puta
     }
+    #endregion
 
     private void WalkingSound()
     {
@@ -174,6 +176,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    #region Stamina
     void RegenerateStamina()
     {
         currentStamina += staminaRegen;
@@ -185,13 +188,30 @@ public class PlayerController : MonoBehaviour
     {
         staminaImage.fillAmount = currentStamina / maxStamina;
     }
+    #endregion
 
+    #region KnockBack
     public void KnockBack()
     {
         knockBackCounter = knockBackLength;
         rb.velocity = new Vector2(0f, knockBackForce);
     }
 
+    public void GetKnockBacked()
+    {
+        knockBackCounter -= Time.deltaTime;
+        if (!sprite.flipX)
+        {
+            rb.velocity = new Vector2(-knockBackForce, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(knockBackForce, rb.velocity.y);
+        }
+    }
+    #endregion
+
+    #region Movimiento
     private void Walk()
     {
         if (Input.GetAxisRaw("Horizontal") != 0)
@@ -240,19 +260,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    public void GetKnockBacked()
-    {
-        knockBackCounter -= Time.deltaTime;
-        if (!sprite.flipX)
-        {
-            rb.velocity = new Vector2(-knockBackForce, rb.velocity.y);
-        }
-        else
-        {
-            rb.velocity = new Vector2(knockBackForce, rb.velocity.y);
-        }
-    }
+    #endregion
 
     private void Attack()
     {
@@ -268,25 +276,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
-    public void DoDamage()
-    {
-        Collider2D[] hittedEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
-        foreach (Collider2D enemy in hittedEnemies)
-        {
-            enemy.GetComponentInParent<EnemyHealth>().TakeDamage(attackPoint, weaponDamage);
-        }
-    }
-    */
-
-    /*private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.DrawSphere(attackPoint.position, attackRange);
-    }*/
+    #region Dash
     private void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && currentStamina >= (staminaCost * 10))
@@ -322,4 +312,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
+    #endregion
 }
