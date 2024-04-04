@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2057648191164889140}
   - component: {fileID: 6160658121838785009}
   - component: {fileID: -3894980958431953298}
-  m_Layer: 0
+  - component: {fileID: 5711928938015178735}
+  m_Layer: 9
   m_Name: Flecha
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -191,3 +192,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segundos: 3
+--- !u!114 &5711928938015178735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347478082119478629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d104a84bdb9ce4ba9f8f9e60bb5058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: Flecha
+  damageToGive: 5
+  healthPoints: 1000
+  speed: 0
+  originalspeed: 0
+  knockbackForceX: 300
+  knockbackForceY: 500
+  expToGive: 0
+  isRanged: 0
+  shouldRespawn: 0

@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         material = GetComponent<Blink>();
         health = maxHealth;
         material.original = sprite.material;
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();        
     }
 
     // Update is called once per frame

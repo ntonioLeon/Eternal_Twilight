@@ -57,6 +57,9 @@ public class EnemyMovement : MonoBehaviour{
         isRanged = GetComponent<Enemy>().isRanged;
         rb = GetComponent<Rigidbody2D>();
         shooted = false;
+        contraLaPared = false;
+        leftLimit.parent = null;
+        rightLimit.parent = null;
     }
 
     void Update()
@@ -111,13 +114,17 @@ public class EnemyMovement : MonoBehaviour{
                 Shoot();
             }            
         }
-        else if (contraLaPared)
-        {
-            StopAttack();
-        }
         else if (attackDistance >= distance && cooling)
         {
-            RunFromTarget();
+            if (!contraLaPared)
+            {
+                RunFromTarget();
+            } 
+            else
+            {
+                anim.SetBool("Moverse", false);
+                anim.SetBool("Atacar", false);
+            }            
         }
         else if (attackDistance < distance && attackMode && !cooling)
         {
@@ -247,6 +254,11 @@ public class EnemyMovement : MonoBehaviour{
 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
+
+        if (!ObstaculoALaEspalda())
+        {
+            contraLaPared = false;
+        }
     }    
 
     void Cooldown()
@@ -345,8 +357,8 @@ public class EnemyMovement : MonoBehaviour{
     {
         if (isRanged)
         {
-            backPrecipicioDetectado = !Physics2D.OverlapCircle(backPrecipicio.position, radioDeteccion * 10, queEsSuelo);
-            backParedDetectada = Physics2D.OverlapCircle(backParedes.position, radioDeteccion * 10, queEsSuelo);
+            backPrecipicioDetectado = !Physics2D.OverlapCircle(backPrecipicio.position, radioDeteccion, queEsSuelo);
+            backParedDetectada = Physics2D.OverlapCircle(backParedes.position, radioDeteccion, queEsSuelo);
 
             return (backPrecipicioDetectado || backParedDetectada);
         }
@@ -359,7 +371,6 @@ public class EnemyMovement : MonoBehaviour{
     private void StopMoving()
     {
         anim.SetBool("Moverse", false);
-        anim.SetBool("Atacar", false);
         contraLaPared = true;
     }
     #endregion
