@@ -36,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         {
             Time.timeScale = 0f;
 
+            AudioManager.instance.StopSFX();
             pauseMenu.SetActive(true);
             isPaused = true;
         }

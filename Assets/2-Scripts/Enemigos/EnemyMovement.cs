@@ -176,6 +176,10 @@ public class EnemyMovement : MonoBehaviour{
         }
         else if (distance > attackDistance && attackMode && cooling)
         {
+            if (hasGuard)
+            {
+                anim.SetBool("Guardia", false);
+            }
             Move();
         }
         else if (distance <= attackDistance && attackMode && cooling)

@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
                 }                 
 
                 Walk();
-                WalkingSound();// problemas en Pause;   
+                WalkingSound();// problemas en Pause;  
 
                 Saltar();
 
@@ -164,11 +164,13 @@ public class PlayerController : MonoBehaviour
     {
         if (isRunning && isGrounded)
         {
-            AudioManager.instance.PlaySFX(5);
+            // Debug.Log("Corriendo y grounded");
+            // AudioManager.instance.PlaySFX(5);
         }
         else
         {
-            AudioManager.instance.StopSFX();
+            // Debug.Log("XCorriendo y Xgrounded");
+            // AudioManager.instance.StopSFX();
         }
     }
 
@@ -196,14 +198,15 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
             anim.SetBool("Run", true);
-            isRunning = false;
+            isRunning = true; 
         }
         else
         {
             rb.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
             anim.SetBool("Run", false);
-            isRunning = true;
+            isRunning = false;
         }
+        
     }
     private void Invertir()
     {

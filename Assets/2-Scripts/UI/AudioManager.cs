@@ -80,7 +80,10 @@ public class AudioManager : MonoBehaviour
         currentSound = soundToPlay;
         soundEffects[soundToPlay].Play();
     }
-
+    public void PlaySFXLoop(int soundToPlay)
+    {
+        soundEffects[soundToPlay].Play();
+    }
     public void StopSFX()
     {
         soundEffects[6].Stop();
