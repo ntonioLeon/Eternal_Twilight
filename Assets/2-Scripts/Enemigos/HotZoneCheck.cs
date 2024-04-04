@@ -34,11 +34,12 @@ public class HotZoneCheck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            enemyParent.SelectTarget();
             inRange = false;
             gameObject.SetActive(false);
             enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
-            enemyParent.SelectTarget();
+            
 
             enemyParent.attackMode = false;
         }

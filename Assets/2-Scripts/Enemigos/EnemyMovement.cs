@@ -149,8 +149,6 @@ public class EnemyMovement : MonoBehaviour{
 
     void Shoot()
     {        
-        Disparo();
-
         timer = intTimer; //Reset Timer when Player enter Attack Range
         attackMode = true; //To check if Enemy can still attack or not
 
@@ -158,9 +156,9 @@ public class EnemyMovement : MonoBehaviour{
         anim.SetBool("Atacar", true);
     }
 
-    void Disparo()
+    public void Disparo()
     {        
-        GameObject disparo = Instantiate(proyectil, proyectilPos.position, Quaternion.identity);
+        Instantiate(proyectil, proyectilPos.position, Quaternion.identity);
         shooted = true;
     }
 
@@ -316,8 +314,7 @@ public class EnemyMovement : MonoBehaviour{
             rotation.y = 0;
         }
         else
-        {
-            
+        {            
             rotation.y = 180;
         }
 
@@ -342,15 +339,11 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     IEnumerator ResetPatrollCoroutine()
-    {
-        triggerArea.SetActive(false);
+    {       
         GetComponentInChildren<HotZoneCheck>().OnTriggerExit2D(target.GetComponentInChildren<Collider2D>());
         hotBox.SetActive(false);
-        SelectTarget();
 
         yield return new WaitForSeconds(2f);
-
-        triggerArea.SetActive(true);
     }
 
     private bool ObstaculoALaEspalda()
