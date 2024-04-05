@@ -9,22 +9,33 @@ using UnityEngine.U2D;
 public class EnemyMovement : MonoBehaviour{
 
     #region Public Variables
-    public float attackDistance; //Minimum distance for attack    
-    public float timer; //Timer for cooldown between attacks
+    [Header("Status")]
+    public bool isRanged;
+    public bool isFlyer;
+    public bool hasGuard;
+
+    [Header("Puntos y localizaciones")]
     public Transform leftLimit;
     public Transform rightLimit;
-    [HideInInspector] public bool attackMode;
-    [HideInInspector] public bool isRanged;
-    [HideInInspector] public Transform target;
-    [HideInInspector] public bool inRange; //Check if Player is in range    
+    public Transform precipicio;
+    public Transform paredes;
+    public Transform suelo;
+    public Transform backPrecipicio;
+    public Transform backParedes;
+    public Transform startPoint;
+    public LayerMask queEsSuelo;
+
+    [Header("Medidas de accion y cadencia")]
     public GameObject triggerArea;
     public GameObject hotBox;
+    public float attackDistance;
     public float meleeZone;
-    public bool hasGuard;
-    public Transform precipicio, paredes, suelo;
-    public Transform backPrecipicio, backParedes;
     public float radioDeteccion;
-    public LayerMask queEsSuelo;
+    public float timer;    
+    [HideInInspector] public bool attackMode;
+    [HideInInspector] public Transform target;
+    [HideInInspector] public bool inRange; 
+    [HideInInspector] public bool chase = false;
     #endregion
 
     #region Private Variables
@@ -60,11 +71,23 @@ public class EnemyMovement : MonoBehaviour{
         contraLaPared = false;
         leftLimit.parent = null;
         rightLimit.parent = null;
+        startPoint.parent = null;
     }
 
     void Update()
     {
-        if (TerrenoTransitable())
+        if (isFlyer)
+        {
+            if (target == null)
+                return;
+
+            if (chase)
+                Chase();
+            else
+                ReturnEnemyToStartingPosition();
+            Flip();
+        }
+        else if (TerrenoTransitable())
         {
             ResetPatroll();
         } 
@@ -96,7 +119,7 @@ public class EnemyMovement : MonoBehaviour{
                 }
             }
         }
-    }
+    }    
 
     #region Ranged
     void RangedLogic()
@@ -242,6 +265,16 @@ public class EnemyMovement : MonoBehaviour{
     #endregion
 
     #region Comportamientos comunes
+    private void ReturnEnemyToStartingPosition()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, startPoint.position, moveSpeed * Time.deltaTime);
+    }
+
+    private void Chase()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+    }
+
     void Move()
     {
         anim.SetBool("Moverse", true);
