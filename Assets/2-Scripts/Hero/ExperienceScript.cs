@@ -16,6 +16,7 @@ public class ExperienceScript : MonoBehaviour
     public int incrementoItems;
     public int lvl;
     public Text textLvl;
+    public Text textQuantity;
     #endregion
 
     #region Private Variables
@@ -39,17 +40,20 @@ public class ExperienceScript : MonoBehaviour
         lvl = PlayerPrefs.GetInt("lvl", 1);
         textLvl.text = lvl.ToString();
         expImage.fillAmount = currentExp / expTNL;
+        textQuantity.text = currentExp.ToString();
+
     }
     public void ExpModifier(float exp)
     {
         //currentExp = PlayerPrefs.GetFloat("currentExp", 0f);
         currentExp += exp;
+        textQuantity.text = currentExp.ToString();
         //expTNL = PlayerPrefs.GetFloat("expTNL", expTNL);
 
 
         while (currentExp >= expTNL) 
         {
-            LvlUp();
+            //LvlUp();
         }
 
         /*
