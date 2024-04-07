@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
     public float knockbackForceY;
     public float expToGive;
     public bool isRanged;
+    public bool isFlyer;
+    public bool hasGuard;
     public bool shouldRespawn;
     private Animator anim;
     private Rigidbody2D rb;

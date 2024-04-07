@@ -9,20 +9,19 @@ using UnityEngine.U2D;
 public class EnemyMovement : MonoBehaviour{
 
     #region Public Variables
-    [Header("Status")]
-    public bool isRanged;
-    public bool isFlyer;
-    public bool hasGuard;
+    [HideInInspector] public bool isRanged;
+    [HideInInspector] public bool isFlyer;
+    [HideInInspector] public bool hasGuard;
 
     [Header("Puntos y localizaciones")]
     public Transform leftLimit;
     public Transform rightLimit;
+    public Transform startPoint;
     public Transform precipicio;
     public Transform paredes;
     public Transform suelo;
     public Transform backPrecipicio;
-    public Transform backParedes;
-    public Transform startPoint;
+    public Transform backParedes;    
     public LayerMask queEsSuelo;
 
     [Header("Medidas de accion y cadencia")]
@@ -47,6 +46,7 @@ public class EnemyMovement : MonoBehaviour{
     [HideInInspector] private Rigidbody2D rb;
     private bool sueloDetectado, precipicioDetectado, paredDetectada, backPrecipicioDetectado, backParedDetectada;
     private bool contraLaPared;
+    private bool inStart;
     #endregion
 
     #region proyectil
@@ -66,6 +66,8 @@ public class EnemyMovement : MonoBehaviour{
         anim = GetComponent<Animator>();
         moveSpeed = GetComponent<Enemy>().speed;
         isRanged = GetComponent<Enemy>().isRanged;
+        isFlyer = GetComponent<Enemy>().isFlyer;
+        hasGuard = GetComponent<Enemy>().hasGuard;
         rb = GetComponent<Rigidbody2D>();
         shooted = false;
         contraLaPared = false;
@@ -82,9 +84,13 @@ public class EnemyMovement : MonoBehaviour{
                 return;
 
             if (chase)
-                Chase();
+            {
+                FlyerLogic();
+            }                
             else
-                ReturnEnemyToStartingPosition();
+            {
+                ReturnEnemyToStartingPosition();                
+            }             
             Flip();
         }
         else if (TerrenoTransitable())
@@ -265,14 +271,60 @@ public class EnemyMovement : MonoBehaviour{
     #endregion
 
     #region Comportamientos comunes
+    public void FlyerLogic()
+    {
+        distance = Vector2.Distance(transform.position, target.position);
+
+        if (attackDistance >= distance && !cooling)
+        {
+            Attack();
+        }
+        else if (distance > attackDistance)
+        {
+            if (hasGuard)
+            {
+                anim.SetBool("Guardia", false);
+            }
+            Chase();
+        }
+        else if (distance <= attackDistance && cooling)
+        {
+            anim.SetBool("Moverse", false);
+            if (hasGuard)
+            {
+                anim.SetBool("Guardia", true);
+            }
+        }
+
+        if (cooling)
+        {
+            Cooldown();
+            anim.SetBool("Atacar", false);
+        }
+    }
+
+    private bool CheckStart()
+    {
+        return Vector2.Distance(transform.position, startPoint.position) < 0.5f;
+    }
+
     private void ReturnEnemyToStartingPosition()
     {
-        transform.position = Vector2.MoveTowards(transform.position, startPoint.position, moveSpeed * Time.deltaTime);
+        if (CheckStart())
+        {
+            anim.SetBool("Moverse", false);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(transform.position, startPoint.position, moveSpeed * Time.deltaTime);            
+            anim.SetBool("Moverse", true);
+        }
     }
 
     private void Chase()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        anim.SetBool("Moverse", true);
     }
 
     void Move()

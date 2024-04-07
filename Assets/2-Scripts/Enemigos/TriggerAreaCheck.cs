@@ -19,6 +19,11 @@ public class TriggerAreaCheck : MonoBehaviour
             enemyParent.target = collision.transform;
             enemyParent.inRange = true;
             enemyParent.hotBox.SetActive(true);
+            if (enemyParent.isFlyer)
+            {
+                enemyParent.chase = true;
+                enemyParent.target = collision.gameObject.transform;
+            }
         }
     }
 }

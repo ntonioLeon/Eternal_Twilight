@@ -34,13 +34,19 @@ public class HotZoneCheck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            enemyParent.SelectTarget();
+            if (!enemyParent.isFlyer)
+            {
+                enemyParent.SelectTarget();
+            }
             inRange = false;
             gameObject.SetActive(false);
             enemyParent.triggerArea.SetActive(true);
             enemyParent.inRange = false;
-            
-
+            if (enemyParent.isFlyer)
+            {
+                enemyParent.chase = false;
+                enemyParent.target = enemyParent.startPoint;
+            }
             enemyParent.attackMode = false;
         }
     }
