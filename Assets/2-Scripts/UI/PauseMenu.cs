@@ -9,7 +9,9 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenu;
 
-    public bool isPaused;
+    [HideInInspector]public bool isPaused;
+
+    public Animator anim;
 
     private void Awake()
     {        
@@ -35,10 +37,10 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
             Time.timeScale = 0f;
-
             AudioManager.instance.StopSFX();
-            pauseMenu.SetActive(true);
             isPaused = true;
+            pauseMenu.SetActive(true);
+
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
@@ -48,4 +50,5 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
         }
     }
+
 }
