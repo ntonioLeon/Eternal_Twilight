@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Open__book
+  m_Name: Open__Book
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,17 +22,17 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -764332066, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.13333334
+    - time: 0.11666667
       value: {fileID: 1680617182, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.25
+    - time: 0.23333333
       value: {fileID: 1426749284, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.36666667
+    - time: 0.35
       value: {fileID: 156410356, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.5
+    - time: 0.46666667
       value: {fileID: 97816388, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.6333333
+    - time: 0.5833333
       value: {fileID: 2043282368, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
-    - time: 0.75
+    - time: 0.6666667
       value: {fileID: 325980461, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}
     - time: 1
       value: {fileID: 325980461, guid: 97769436b866a084086b2bd5b094a4b6, type: 3}

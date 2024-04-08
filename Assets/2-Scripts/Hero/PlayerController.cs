@@ -110,6 +110,9 @@ public class PlayerController : MonoBehaviour
                 Invertir();
                 
             }
+        }else if (PauseMenu.instance.isPaused && stopInput)
+        {
+            rb.velocity = Vector3.zero;
         }
         else
         {
