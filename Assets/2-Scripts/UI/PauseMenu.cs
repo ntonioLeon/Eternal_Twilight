@@ -67,7 +67,7 @@ public class PauseMenu : MonoBehaviour
     }
     IEnumerator OpenCourutine()
     {
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.85f);
         fondo.SetActive (true);
         defaultMenu.SetActive(true);    
     }
