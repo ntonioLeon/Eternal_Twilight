@@ -8384,6 +8384,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 166444326}
   fondo: {fileID: 1689276405}
   openBook: {fileID: 6852807468522883592, guid: f64954d598bb05e47919c872a94ab9e3, type: 3}
+  closeBook: {fileID: 5347265421559962680, guid: ee69b31762726e44c8cdb6677629bd56, type: 3}
   defaultMenu: {fileID: 727658685}
   settingsMenu: {fileID: 904522831}
   canvas: {fileID: 305101545}

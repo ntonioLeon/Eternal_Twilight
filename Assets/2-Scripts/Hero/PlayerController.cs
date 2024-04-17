@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
         }else if (PauseMenu.instance.isPaused && stopInput)
         {
             rb.velocity = Vector3.zero;
+            anim.SetBool("Run", false);
         }
         else
         {
