@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Attack details")]
+    public Vector2[] attackMovement;
+
+    public bool isBusy { get; private set; }
+
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
@@ -40,6 +45,7 @@ public class Player : MonoBehaviour
     public PlayerWallSlideSate wallSlideSate { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerDashState dashState { get; private set; }
+    public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     #endregion
 
     public void Awake()
@@ -53,6 +59,7 @@ public class Player : MonoBehaviour
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         wallSlideSate = new PlayerWallSlideSate(this, stateMachine, "WallSlide");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
+        primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
     }
 
     private void Start()
@@ -67,7 +74,21 @@ public class Player : MonoBehaviour
     {
         stateMachine.currentState.Update();
 
-        CheckForDashInput();
+        CheckForDashInput();        
+    }
+
+    public IEnumerator BusyFor(float seconds)
+    {
+        isBusy = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        isBusy = false;
+    }
+
+    public void AnimacionTriiger()
+    {
+        stateMachine.currentState.AnimationFinishTrigger();
     }
 
     private void CheckForDashInput()
@@ -92,6 +113,11 @@ public class Player : MonoBehaviour
 
             stateMachine.ChangeState(dashState);
         }
+    }
+
+    public void ZeroVelocity()
+    {
+        rb.velocity = new Vector2(0, 0);
     }
 
     public void SetVelocity(float xVelocity, float yVelocity)
