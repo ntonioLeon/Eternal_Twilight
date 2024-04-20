@@ -1,9 +1,41 @@
 # Ethernal Twilight: Eclipse of Shadows
 
-## Antonio León, Jorge  Pastor
+## Antonio León Almodovar y Jorge Pastor Rodríguez
+
+## I. E. S. Gaspar Melchor de Jovellanos
 
 ### Proyecto de fin de grado de Desarrollo de Aplicaciones Múltiplataforma
 
+## Manuel Jesús Herrera Morgaz y Javier Ortiz Laguna
+
+- ## Indice
+
+- ## Resumen
+
+- ## Abstrac (Res en inglés)
+
+- ## Planteamiento del problema y justificación
+
+- ## Desarrollo
+
+  - ### Datos técnicos
+ 
+  - ### Funcionalidad
+ 
+  - ### Usabilidad
+ 
+  - ### Portabilidad
+ 
+  - ### Rendimiento
+ 
+- ## Conclusiones
+
+- ## Referencias bibliográficas
+
+Assets + Tutos
+
+
+ 
 - ## Concepto
 
   - ### Título
