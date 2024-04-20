@@ -8,6 +8,8 @@
 - Battle system (3 H)
 # -----------------------------------------
 # Tareas Largas
+- KillZone + Traps(4 H)
+- Platforms
 - Item System (6 H)
 - Stats + Exp (5 H)
 - UI (6 H)
