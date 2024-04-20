@@ -1,5 +1,5 @@
 # Tareas Cortas
-- _Cámara (40 min)_ 
+- ~~Cámara (40 min)~~
 - Tilemap (2 H)
 - addBlock (2 H) + remove PlayerControler
 - Skill System (3 H)
