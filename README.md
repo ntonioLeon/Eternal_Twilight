@@ -19,14 +19,36 @@
 - ## Desarrollo
 
   - ### Datos técnicos
+
+    - ### Nombre de la Aplicación
+   
+    - ### Plataforma(s)
+   
+    - ### Lenguaje de la progración
+   
+    - ### Requisitos mínimos del sistema
+   
+    - ### Manual de instalacióm
  
   - ### Funcionalidad
  
+    - ### Características
+   
+    - ### Diagramas (de flujo) + clase
+ 
   - ### Usabilidad
+
+    - ### Diseño de interfaces
+   
+    - ### Casos de uso
  
   - ### Portabilidad
  
+    - ### Plataformas
+ 
   - ### Rendimiento
+
+     - ### Pruebas realizadas
  
 - ## Conclusiones
 
