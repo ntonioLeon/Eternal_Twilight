@@ -6,16 +6,16 @@ using UnityEngine;
 public class BossState 
 {
     protected BossStateMachine stateMachine;
-    protected Boss boss;
+    protected Boss bossBase;
 
     protected bool triggerCalled;
     private string animBoolName;
     protected float stateTimmer;
 
-    public BossState(Boss boss, BossStateMachine stateMachine, string animBoolName)
+    public BossState(Boss bossBase, BossStateMachine stateMachine, string animBoolName)
     {
         this.stateMachine = stateMachine;
-        this.boss = boss;
+        this.bossBase = bossBase;
         this.animBoolName = animBoolName;
     }
     public virtual void Update()
@@ -26,11 +26,11 @@ public class BossState
     public virtual void Enter()
     {
         triggerCalled = false;
-        boss.anim.SetBool(animBoolName, true);
+        bossBase.anim.SetBool(animBoolName, true);
     }
 
     public virtual void Exit()
     {
-        boss.anim.SetBool(animBoolName, false);
+        bossBase.anim.SetBool(animBoolName, false);
     }
 }

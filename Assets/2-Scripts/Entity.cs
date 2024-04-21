@@ -70,7 +70,8 @@ public class Entity : MonoBehaviour
     #region Flip
     public virtual void Flip()
     {
-        facingDir *= -1;
+        facingDir *=- 1;
+        Debug.Log(facingRight);
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
     }

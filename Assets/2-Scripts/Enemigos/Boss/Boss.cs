@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Boss : Entity
 {
-    public Rigidbody2D rb { get; private set; }
-    public Animator anim { get; private set; }
-
     public BossStateMachine stateMachine { get; private set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         stateMachine = new BossStateMachine();
     }
 
-    private void Update()
+    protected override void Update()
     {
-       stateMachine.currentState.Update();
+        base.Update();
+        stateMachine.currentState.Update();
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 637ff26fb4b12f34794a1c65de9ef4ee
+guid: e130e01a7a887bd4f80dd56f878aa517
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -107,7 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: demon-attack-no-breath_0
+      name: demon-fire_1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cff3fcb87b9712845a61c6040fc45dfb
-      internalID: -192627550
+      spriteID: af63d47fe6ea8ea41925686f0b31e137
+      internalID: -1930570583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: demon-attack-no-breath_1
+      name: demon-fire_1_1
       rect:
         serializedVersion: 2
-        x: 192
+        x: 240
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cf7db4b30886e44499bbb542844707f
-      internalID: 289073681
+      spriteID: cc7d4522e6d228a4cabd7e94a767d870
+      internalID: -381695852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: demon-attack-no-breath_2
+      name: demon-fire_1_2
       rect:
         serializedVersion: 2
-        x: 384
+        x: 480
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81f2520d2a6deab4aa67ef93036c843a
-      internalID: -906571224
+      spriteID: 167095d396f67814c8ff7af0408de5cc
+      internalID: 902278236
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: demon-attack-no-breath_3
+      name: demon-fire_1_3
       rect:
         serializedVersion: 2
-        x: 576
+        x: 720
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,41 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0cfe84a0937bb5f45a300335ef6b0a76
-      internalID: 1987548798
+      spriteID: ff104b72c2ccdf14ea5d86e95603e3c7
+      internalID: 802951740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: demon-attack-no-breath_4
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 192
-        height: 176
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b2e7f11994b34e4b8ebfa82af158453
-      internalID: 654433852
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack-no-breath_5
+      name: demon-fire_1_4
       rect:
         serializedVersion: 2
         x: 960
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 104f355c4df907548b225e74279f13ec
-      internalID: 1617056363
+      spriteID: 3cf01c4ec6669d9449cc74220321bd55
+      internalID: -626150801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: demon-attack-no-breath_6
+      name: demon-fire_1_5
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 1200
         y: 0
-        width: 192
-        height: 176
+        width: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,29 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734a4f7b2b4d70e4aa241a20b3b23fbc
-      internalID: -950302216
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack-no-breath_7
-      rect:
-        serializedVersion: 2
-        x: 1344
-        y: 0
-        width: 192
-        height: 176
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 459f852ce2e75c7488029264379c5d21
-      internalID: -1878157679
+      spriteID: 30ceeae2467565f4facc4714cc91c202
+      internalID: -575299868
       vertices: []
       indices: 
       edges: []
@@ -301,14 +259,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      demon-attack-no-breath_0: -192627550
-      demon-attack-no-breath_1: 289073681
-      demon-attack-no-breath_2: -906571224
-      demon-attack-no-breath_3: 1987548798
-      demon-attack-no-breath_4: 654433852
-      demon-attack-no-breath_5: 1617056363
-      demon-attack-no-breath_6: -950302216
-      demon-attack-no-breath_7: -1878157679
+      demon-fire_1_0: -1930570583
+      demon-fire_1_1: -381695852
+      demon-fire_1_2: 902278236
+      demon-fire_1_3: 802951740
+      demon-fire_1_4: -626150801
+      demon-fire_1_5: -575299868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
