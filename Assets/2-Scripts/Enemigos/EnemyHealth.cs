@@ -73,10 +73,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    /*
+    
     public void TakeDamage(Transform collision, float damage)
     {
         enemy.healthPoints -= damage; // falta weapon
+
         if (collision.transform.position.x < transform.position.x)
         {
             rb.AddForce(new Vector2(enemy.knockbackForceX, enemy.knockbackForceY), ForceMode2D.Force);
@@ -101,9 +102,9 @@ public class EnemyHealth : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }*/
+    }
 
-IEnumerator Damager()
+    IEnumerator Damager()
     {
         recibeDano = true;
         render.material = material.parpadeo;

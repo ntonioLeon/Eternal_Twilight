@@ -24,7 +24,7 @@ public class GozuMoveState : BossState
     {
         base.Update();
 
-        boss.SetVelocity(2 * boss.facingDir, boss.rb.velocity.y);
+        boss.SetVelocity(boss.moveSpeed * boss.facingDir, boss.rb.velocity.y);
 
         if (boss.IsWallDetected())
         {

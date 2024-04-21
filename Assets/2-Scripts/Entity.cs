@@ -11,14 +11,18 @@ public class Entity : MonoBehaviour
 
     #region Collision Variables
     [Header("Collision info")]
+    public Transform attackCheck;
+    public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
+    #endregion
+
     public int facingDir { get; private set; } = 1;
     protected bool facingRight = true;
-    #endregion
+    
 
     protected virtual void Awake()
     {
@@ -35,6 +39,12 @@ public class Entity : MonoBehaviour
     {
         
     }
+
+    public virtual void Damage()
+    {
+        Debug.Log(gameObject.name + " Was damaged!");
+    }
+
     #region Velocity
     public void ZeroVelocity()
     {
@@ -64,6 +74,7 @@ public class Entity : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
 
@@ -71,7 +82,6 @@ public class Entity : MonoBehaviour
     public virtual void Flip()
     {
         facingDir *=- 1;
-        Debug.Log(facingRight);
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
     }

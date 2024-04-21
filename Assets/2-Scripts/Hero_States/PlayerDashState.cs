@@ -10,16 +10,20 @@ public class PlayerDashState : PlayerState
 
     public override void Enter()
     {
-        base.Enter();
+        base.Enter();        
 
         stateTimer = player.dashDuration;
+
+        Physics2D.IgnoreLayerCollision(8, 7, true);
     }
 
     public override void Exit()
     {
-        base.Exit();
+        base.Exit();        
 
         player.SetVelocity(0, rb.velocity.y);
+
+        Physics2D.IgnoreLayerCollision(8, 7, false);
     }
 
     public override void Update()
