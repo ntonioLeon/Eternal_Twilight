@@ -28,9 +28,9 @@ public class EnemyRespawn : MonoBehaviour
         yield return new WaitForSeconds(timeToRespawn);
         enemyToRespawn.SetActive(true);
 
-        enemyToRespawn.GetComponent<Enemy>().healthPoints = enemyToRespawn.GetComponent<EnemyHealth>().originalHealth;
-
         enemyToRespawn.GetComponentInChildren<SpriteRenderer>().material = enemyToRespawn.GetComponent<Blink>().original;
+
+        enemyToRespawn.GetComponent<Enemy>().healthPoints = enemyToRespawn.GetComponent<EnemyHealth>().originalHealth;
 
         enemyToRespawn.GetComponent<EnemyHealth>().recibeDano = false;
 

@@ -1673,7 +1673,7 @@ Transform:
   m_GameObject: {fileID: 369352654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.599998, y: 3.862999, z: -10.012226}
+  m_LocalPosition: {x: -19.079998, y: 3.862999, z: -10.012226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3157,7 +3157,7 @@ Transform:
   m_GameObject: {fileID: 758018559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -93.53, y: 1.97, z: 0}
+  m_LocalPosition: {x: -37.42, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6670,7 +6670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1235471926}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7732,9 +7732,9 @@ GameObject:
   - component: {fileID: 1414162609}
   - component: {fileID: 1414162610}
   - component: {fileID: 1414162611}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bandido_Melee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7748,7 +7748,7 @@ Transform:
   m_GameObject: {fileID: 1414162607}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.83, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7781,8 +7781,19 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  detectionArea: 8
   moveSpeed: 4
-  iddleTime: 1
+  idleTime: 1
+  battleTime: 4
+  attackDistance: 1
+  attackCooldown: 2
+  lastTimeAttacked: 0
+  aggroDistance: 25
+  detectDistance: 2
+  hasGuard: 0
 --- !u!50 &1414162610
 Rigidbody2D:
   serializedVersion: 4
@@ -131458,7 +131469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1677438109}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131474,7 +131485,7 @@ Transform:
   m_GameObject: {fileID: 1677438108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 0, z: 0}
+  m_LocalPosition: {x: -0.39, y: -0.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131854,7 +131865,8 @@ GameObject:
   - component: {fileID: 1746458216}
   - component: {fileID: 1746458218}
   - component: {fileID: 1746458217}
-  m_Layer: 0
+  - component: {fileID: 1746458219}
+  m_Layer: 9
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131949,6 +131961,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1746458219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746458215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd022665b9715374f9d9c01f221930d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1747860365
 GameObject:
   m_ObjectHideFlags: 0
@@ -132754,7 +132778,7 @@ Transform:
   m_GameObject: {fileID: 1933785183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.96, y: 1.59, z: -0.012225845}
+  m_LocalPosition: {x: -17.72, y: 1.59, z: -0.012225845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -133259,7 +133283,7 @@ Transform:
   m_GameObject: {fileID: 1996096071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.599998, y: 3.862999, z: -10.012226}
+  m_LocalPosition: {x: -19.079998, y: 3.862999, z: -10.012226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133363,7 +133387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2020712346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

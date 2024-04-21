@@ -67,7 +67,7 @@ public class Entity : MonoBehaviour
     }
 
     #region Velocity
-    public void ZeroVelocity()
+    public void SetZeroVelocity()
     {
         if (isKnocked)
         {

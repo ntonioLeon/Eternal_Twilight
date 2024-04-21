@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BandidoMeleeMoveState : EnemyState
+public class BandidoMeleeMoveState : BandidoMeleeGroundState
 {
-    private BandidoMelee enemy;
-
-    public BandidoMeleeMoveState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, BandidoMelee enemy) : base(enemy, stateMachine, animBoolName)
+    public BandidoMeleeMoveState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, BandidoMelee enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
-        this.enemy = enemy;
     }
 
     public override void Enter()
@@ -25,7 +22,7 @@ public class BandidoMeleeMoveState : EnemyState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, enemy.rb.velocity.y);
+        enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.velocity.y);
 
         if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
         {

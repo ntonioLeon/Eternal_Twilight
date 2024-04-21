@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BandidoMeleeIdleState : EnemyState
+public class BandidoMeleeIdleState : BandidoMeleeGroundState
 {
-    private BandidoMelee enemy;
-
-    public BandidoMeleeIdleState(Enemigo enemyNase, EnemyStateMachine stateMachine, string animBoolName, BandidoMelee enemy) : base(enemy, stateMachine, animBoolName)
+    public BandidoMeleeIdleState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, BandidoMelee enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
-        this.enemy = enemy;
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        stateTimer = enemy.iddleTime;
-        enemy.ZeroVelocity();
+        stateTimer = enemy.idleTime;
+        enemy.SetZeroVelocity();
     }
 
     public override void Exit()

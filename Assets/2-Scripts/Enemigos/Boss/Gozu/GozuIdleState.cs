@@ -13,7 +13,7 @@ public class GozuIdleState : BossState
     public override void Enter()
     {
         base.Enter();
-        boss.ZeroVelocity();
+        boss.SetZeroVelocity();
         stateTimmer = boss.iddleTime;
     }
 
