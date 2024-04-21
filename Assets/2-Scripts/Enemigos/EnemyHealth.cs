@@ -41,7 +41,11 @@ public class EnemyHealth : MonoBehaviour
     {
         if (collision.CompareTag("Weapon") && !recibeDano)
         {
+            /*
             enemy.healthPoints -= collision.GetComponentInParent<PlayerController>().weaponDamage;
+            */
+            enemy.healthPoints -= 5f; // temporal
+
 
             if (collision.transform.position.x < transform.position.x)
             {

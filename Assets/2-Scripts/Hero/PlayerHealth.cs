@@ -60,7 +60,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.CompareTag("Enemy") && !isInmune)
         {
-            
+            /*
             if(PlayerController.instance!=null && PlayerController.instance.isBlocking)
             {
                 // Obtener la dirección de bloqueo del jugador desde el transform
@@ -82,6 +82,7 @@ public class PlayerHealth : MonoBehaviour
                     return;
                 }
             }
+            */
             
             health -= collision.GetComponentInParent<Enemy>().damageToGive;
             StartCoroutine(Inmunity());

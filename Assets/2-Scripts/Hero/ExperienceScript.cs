@@ -85,7 +85,10 @@ public class ExperienceScript : MonoBehaviour
         float vida = (PlayerHealth.instance.health / PlayerHealth.instance.maxHealth);
         PlayerHealth.instance.maxHealth += incrementoVida;//
         PlayerHealth.instance.health = PlayerHealth.instance.maxHealth * vida;
+        /*
         PlayerController.instance.maxStamina = PlayerController.instance.maxStamina * 1.1f;
+        */
+
         //PlayerController.instance.staminaRegen++; // No me gusta
         //SubItems.instance.maxTotal += incrementoItems;
         //AudioMannager.instance.PlayAudio(AudioMannager.instance.lvlUP);

@@ -52,7 +52,9 @@ public class PauseMenu : MonoBehaviour
         {
             isPaused = true;
             openBook.SetActive(true);
+            /*
             PlayerController.instance.stopInput = true;
+            */
             Instantiate(openBook, canvas.transform);
             AudioManager.instance.StopSFX();            
             StartCoroutine(OpenCourutine());
@@ -67,7 +69,9 @@ public class PauseMenu : MonoBehaviour
             Instantiate(closeBook, canvas.transform);
             //Time.timeScale = 1.0f;
             StartCoroutine(CloseCourutine());
+            /*
             PlayerController.instance.stopInput = false;
+            */
             closeBook.SetActive(false);
             isPaused = false;
         }
