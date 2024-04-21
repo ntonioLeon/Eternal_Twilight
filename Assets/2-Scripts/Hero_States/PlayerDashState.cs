@@ -14,7 +14,7 @@ public class PlayerDashState : PlayerState
 
         stateTimer = player.dashDuration;
 
-        Physics2D.IgnoreLayerCollision(8, 7, true);
+        Physics2D.IgnoreLayerCollision(10, 9, true);
     }
 
     public override void Exit()
@@ -23,7 +23,7 @@ public class PlayerDashState : PlayerState
 
         player.SetVelocity(0, rb.velocity.y);
 
-        Physics2D.IgnoreLayerCollision(8, 7, false);
+        Physics2D.IgnoreLayerCollision(10, 9, false);
     }
 
     public override void Update()

@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : Entity
+public class Enemigo : Entity
 {
     [Header("Move info")]
     public float moveSpeed;
     public float iddleTime;
 
-
-    public BossStateMachine stateMachine { get; private set; }
+    public EnemyStateMachine stateMachine { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
-        stateMachine = new BossStateMachine();
+        stateMachine = new EnemyStateMachine();
     }
 
     protected override void Update()
