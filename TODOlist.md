@@ -6,6 +6,7 @@
 - Save System (2 H)
 - Audio Manager (2 H)
 - ++ Battle system (3 H)
+- ANTEPROYECTo
 # -----------------------------------------
 # Tareas Largas
 - KillZone + Traps(4 H)
