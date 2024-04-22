@@ -6,6 +6,7 @@ public class Enemigo : Entity
 {
 
     [SerializeField] protected LayerMask whatIsPlayer;
+    public Transform player;
     [SerializeField] private float detectionArea;
 
     [Header("Move info")]
@@ -28,6 +29,8 @@ public class Enemigo : Entity
     protected override void Awake()
     {
         base.Awake();
+        player = GameObject.Find("Player").transform;
+
         stateMachine = new EnemyStateMachine();
     }
 
@@ -47,11 +50,27 @@ public class Enemigo : Entity
         return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, detectionArea, whatIsPlayer);
     }
 
+    public virtual bool AceptableAttackDistance()
+    {
+        return IsPlayerDetected().distance < attackDistance;
+    }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance *facingDir, transform.position.y));
+    }
+
+    public virtual bool CanAttack()
+    {
+        if (Time.time >= lastTimeAttacked + attackCooldown)
+        {
+            lastTimeAttacked = Time.time;
+            return true;
+        }
+
+        return false;
     }
 }

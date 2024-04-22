@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BandidoMeleeMoveState : BandidoMeleeGroundState
+public class MeleeEnemyMoveState : MeleeEnemyGroundState
 {
-    public BandidoMeleeMoveState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, BandidoMelee enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
+    public MeleeEnemyMoveState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, MeleeEnemy enemy) : base(enemyBase, stateMachine, animBoolName, enemy)
     {
     }
 
