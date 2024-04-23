@@ -60,7 +60,7 @@ public class Enemigo : Entity
         counterImage.SetActive(false);
     }
 
-    protected virtual bool CanBeStunned()
+    public virtual bool CanBeStunned()
     {
         if (canBeStunned)
         {

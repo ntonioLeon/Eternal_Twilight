@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerState
 
     public override void Enter()
     {
+        player.canDoubleJump = true;
         base.Enter();
     }
 
@@ -21,6 +22,11 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            stateMachine.ChangeState(player.counterAttackState);
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {

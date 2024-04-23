@@ -52,7 +52,7 @@ public class MeleeEnemy : Enemigo
         }
     }
 
-    protected override bool CanBeStunned()
+    public override bool CanBeStunned()
     {
         if (base.CanBeStunned())
         {
