@@ -27,6 +27,11 @@ public class MeleeEnemyBattleState : EnemyState
             {
                 stateMachine.ChangeState(enemy.guardState);
             }
+            else if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
+            {
+                enemy.Flip();
+                stateMachine.ChangeState(enemy.moveState);
+            }
         }
         else
         {

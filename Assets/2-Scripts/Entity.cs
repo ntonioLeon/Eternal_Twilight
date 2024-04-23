@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
-    #endregion
+    #endregion    
 
     #region Collision Variables
     [Header("KnockBack info")]

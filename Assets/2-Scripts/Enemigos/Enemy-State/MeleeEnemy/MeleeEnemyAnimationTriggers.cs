@@ -23,4 +23,14 @@ public class MeleeEnemyAnimationTriggers : MonoBehaviour
             }
         }
     }
+
+    private void OpenCounterWindow()
+    {
+        enemy.OpenCounterAttackWindow();
+    }
+
+    private void CloseoCounterWindow()
+    {
+        enemy.CloseCounterAttackWindow();
+    }
 }

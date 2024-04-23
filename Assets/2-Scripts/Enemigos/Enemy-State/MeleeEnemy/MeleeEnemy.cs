@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeEnemy : Enemigo
@@ -10,6 +11,7 @@ public class MeleeEnemy : Enemigo
     public MeleeEnemyBattleState battleState { get; private set; }
     public MeleeEnemyAttackState attackState { get; private set; }
     public MeleeEnemyGuardState guardState { get; private set; }
+    public MeleeEnemyStunnedState stunnedState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -20,6 +22,9 @@ public class MeleeEnemy : Enemigo
         moveState = new MeleeEnemyMoveState(this, stateMachine, "Move", this);
         battleState = new MeleeEnemyBattleState(this, stateMachine, "Move", this);
         attackState = new MeleeEnemyAttackState(this, stateMachine, "Attack", this);
+        guardState = hasGuard ? new MeleeEnemyGuardState(this, stateMachine, "Guard", this) : new MeleeEnemyGuardState(this, stateMachine, "Idle", this);
+        stunnedState = new MeleeEnemyStunnedState(this, stateMachine, "Stunned", this);
+        /*
         if (hasGuard)
         {
             guardState = new MeleeEnemyGuardState(this, stateMachine, "Guard", this);
@@ -27,7 +32,8 @@ public class MeleeEnemy : Enemigo
         else 
         {
             guardState = new MeleeEnemyGuardState(this, stateMachine, "Idle", this);
-        }
+        } 
+        */
     }
 
     protected override void Start()
@@ -39,5 +45,21 @@ public class MeleeEnemy : Enemigo
     protected override void Update()
     {
         base.Update();
+
+        if (Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            stateMachine.ChangeState(stunnedState);
+        }
+    }
+
+    protected override bool CanBeStunned()
+    {
+        if (base.CanBeStunned())
+        {
+            stateMachine.ChangeState(stunnedState);
+            return true;
+        }
+
+        return false;
     }
 }

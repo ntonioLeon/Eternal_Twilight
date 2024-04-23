@@ -21,6 +21,14 @@ public class Enemigo : Entity
     public float aggroDistance;
     public float detectDistance;
 
+    #region Stun Variables
+    [Header("Stun info")]
+    public float stunDuration;
+    public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
+    #endregion
+
     [Header("Status info")]
     [SerializeField] protected bool hasGuard;
 
@@ -38,6 +46,29 @@ public class Enemigo : Entity
     {
         base.Update();
         stateMachine.currentState.Update();
+    }
+
+    public virtual void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+
+    public virtual void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+
+    protected virtual bool CanBeStunned()
+    {
+        if (canBeStunned)
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+
+        return false;
     }
 
     public virtual void AnimationFinishTrigger()

@@ -28,7 +28,7 @@ public class MeleeEnemyGroundState : EnemyState
     public override void Update()
     {
         base.Update();
-        if (enemy.IsPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position) < enemy.detectDistance)
+        if (enemy.IsPlayerDetected() || Vector2.Distance(enemy.transform.position, player.position) < enemy.detectDistance && (enemy.IsWallDetected() || !enemy.IsGroundDetected()))
         {
             stateMachine.ChangeState(enemy.battleState);
         }
