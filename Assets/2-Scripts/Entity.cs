@@ -87,6 +87,16 @@ public class Entity : MonoBehaviour
         rb.velocity = new Vector2(xVelocity, yVelocity);
         FlipController(xVelocity);
     }
+
+    public void Retroceder(float xVelocity, float yVelocity)
+    {
+        if (isKnocked)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(xVelocity, yVelocity);
+    }
     #endregion
 
     #region Collision

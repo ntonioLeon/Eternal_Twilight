@@ -7,7 +7,7 @@ public class Enemigo : Entity
 
     [SerializeField] protected LayerMask whatIsPlayer;
     public Transform player;
-    [SerializeField] private float detectionArea;
+    [SerializeField] public float detectionArea;
 
     [Header("Move info")]
     public float moveSpeed;
@@ -83,7 +83,7 @@ public class Enemigo : Entity
 
     public virtual bool AceptableAttackDistance()
     {
-        return IsPlayerDetected().distance < attackDistance;
+        return IsPlayerDetected().distance <= attackDistance;
     }
 
     protected override void OnDrawGizmos()
@@ -91,7 +91,7 @@ public class Enemigo : Entity
         base.OnDrawGizmos();
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance *facingDir, transform.position.y));
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
     }
 
     public virtual bool CanAttack()
