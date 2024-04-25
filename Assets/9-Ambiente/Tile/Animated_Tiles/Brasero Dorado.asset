@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Brasero Dorado
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 21300000, guid: eec02ced1b9f270429fe711bab10618c, type: 3}
-  - {fileID: 21300002, guid: eec02ced1b9f270429fe711bab10618c, type: 3}
-  - {fileID: 21300004, guid: eec02ced1b9f270429fe711bab10618c, type: 3}
-  - {fileID: 21300006, guid: eec02ced1b9f270429fe711bab10618c, type: 3}
+  - {fileID: 21300030, guid: 8af458c9a36be6d46a70eb4946a555a6, type: 3}
+  - {fileID: 21300032, guid: 8af458c9a36be6d46a70eb4946a555a6, type: 3}
+  - {fileID: 21300034, guid: 8af458c9a36be6d46a70eb4946a555a6, type: 3}
+  - {fileID: 21300036, guid: 8af458c9a36be6d46a70eb4946a555a6, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
