@@ -13053,11 +13053,11 @@ MonoBehaviour:
   moveSpeed: 4
   idleTime: 1
   battleTime: 5
-  attackDistance: 16
+  attackDistance: 10
   attackCooldown: 2
   lastTimeAttacked: 0
   aggroDistance: 30
-  detectDistance: 15
+  detectDistance: 10
   stunDuration: 0
   stunDirection: {x: 0, y: 0}
   counterImage: {fileID: 342294307}
@@ -140097,9 +140097,8 @@ MonoBehaviour:
   - {x: 0, y: 1.5}
   counterAttackDuration: 0.3
   moveSpeed: 7
-  jumpForce: 7
+  jumpForce: 12
   canDoubleJump: 0
-  dashCooldown: 1
   dashSpeed: 25
   dashDuration: 0.3
 --- !u!4 &1933785185

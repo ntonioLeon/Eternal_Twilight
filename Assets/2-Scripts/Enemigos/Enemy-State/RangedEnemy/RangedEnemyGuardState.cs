@@ -6,6 +6,7 @@ public class RangedEnemyGuardState : EnemyState
 {
     private RangedEnemy enemy;
     private int movingDirection;
+    private float distancia;
 
     public RangedEnemyGuardState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, RangedEnemy enemy) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -17,6 +18,8 @@ public class RangedEnemyGuardState : EnemyState
         base.Enter();
 
         enemy.SetZeroVelocity();
+
+        distancia = Vector2.Distance(enemy.transform.position, enemy.player.transform.position);
     }
 
     public override void Exit()
@@ -28,34 +31,14 @@ public class RangedEnemyGuardState : EnemyState
     {
         base.Update();
 
-        if (enemy.AceptableAttackDistance() && enemy.CanAttack())
-        {
-            stateMachine.ChangeState(enemy.attackState);
-        }
-        if (!enemy.AceptableAttackDistance() && enemy.CanAttack())
+        if (enemy.CanAttack())
         {
             stateMachine.ChangeState(enemy.battleState);
         }
-        if (!enemy.AceptableAttackDistance() && !enemy.CanAttack())
-        {
-            stateMachine.ChangeState(enemy.battleState);
-        }
-        //StatePorEnemigo();
-    }
 
-    private void StatePorEnemigo()
-    {
-        if (enemy.player.position.x > enemy.transform.position.x)
+        if (Vector2.Distance(enemy.transform.position, enemy.player.transform.position) != distancia)
         {
-            movingDirection = 1;
-            enemy.SetVelocity(0.01f * movingDirection, rb.velocity.y);
-            enemy.SetZeroVelocity();
-        }
-        else if (enemy.player.position.x < enemy.transform.position.x)
-        {
-            movingDirection = -1;
-            enemy.SetVelocity(0.01f * movingDirection, rb.velocity.y);
-            enemy.SetZeroVelocity();
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

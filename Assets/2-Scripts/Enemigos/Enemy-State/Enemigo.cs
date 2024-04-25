@@ -78,7 +78,7 @@ public class Enemigo : Entity
 
     public virtual RaycastHit2D IsPlayerDetected()
     {
-        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, detectionArea, whatIsPlayer);
+        return Physics2D.Raycast(transform.position, Vector2.right * facingDir, detectionArea, whatIsPlayer);
     }
 
     public virtual bool AceptableAttackDistance()

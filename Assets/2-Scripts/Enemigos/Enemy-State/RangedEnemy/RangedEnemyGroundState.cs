@@ -16,7 +16,7 @@ public class RangedEnemyGroundState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
+        enemy.battleMode = false;
         player = GameObject.Find("Player").transform;
     }
 

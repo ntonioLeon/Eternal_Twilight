@@ -17,9 +17,12 @@ public class RangedEnemy : Enemigo
     [SerializeField] private Transform backCheck;
     [SerializeField] private float backCheckDistance;
 
+    [SerializeField] public bool battleMode;
+
     protected override void Awake()
     {
         base.Awake();
+        battleMode = false;
 
         idleState = new RangedEnemyIdleState(this, stateMachine, "Idle", this);
         moveState = new RangedEnemyMoveState(this, stateMachine, "Move", this);
