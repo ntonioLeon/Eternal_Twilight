@@ -89,4 +89,14 @@ public class Sword_Skill : Skill
             AimDirection().normalized.y * launchForce.y) * t +.5f *(Physics2D.gravity * swordGravity) * (t*t);
         return position;
     }
+
+    /*protected override void CheckUnlock()
+    {
+        UnlockSword();
+        UnlockBounceSword();
+        UnlockSpinSword();
+        UnlockPierceSword();
+        UnlockTimeStop();
+        UnlockVulnerable();
+    }*/
 }

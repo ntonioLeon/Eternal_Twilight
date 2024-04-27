@@ -15,4 +15,13 @@ public class Clone_Skill : Skill
         GameObject newClone = Instantiate(clonePrefab);
         newClone.GetComponent<Clone_Skill_Controller>().SetUpClone(clonePosition, cloneDuration, canAttack);
     }
+
+    /*protected override void CheckUnlock()
+    {
+        base.CheckUnlock();
+        UnlockCloneAttack();
+        UnlockAggresiveClone();
+        UnlockMultiColne();
+        UnlockCrystalInstead();
+    }*/
 }

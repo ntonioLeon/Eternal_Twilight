@@ -2064,7 +2064,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439316371
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1364106624, guid: e1777e9438337294eb28725a0e64a830, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4425,7 +4425,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1519540455
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.03333336, y: 0.03333336, z: 0}
@@ -13065,6 +13065,7 @@ MonoBehaviour:
   proyectilPos: {fileID: 228967076}
   backCheck: {fileID: 414698076}
   backCheckDistance: 0.3
+  battleMode: 0
 --- !u!114 &1325011289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13711,6 +13712,52 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &1367744945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367744947}
+  - component: {fileID: 1367744946}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1367744946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367744945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249071be95c1d5d44a4a765202497c31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: data.eternal
+  encryptData: 1
+--- !u!4 &1367744947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367744945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.913837, y: 3.4717984, z: -0.021787934}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1368793642
 GameObject:
   m_ObjectHideFlags: 0
@@ -14481,7 +14528,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1519540455
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.6333334, y: 1.6333334, z: 0}
@@ -138640,7 +138687,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439316371
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1438666964, guid: afc783ff9f692794d9d30c546de0df71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139195,7 +139242,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439316371
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c78fbbfacb87fe040b853b6163680b4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -139586,7 +139633,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -439316371
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 0.627451}
@@ -140002,7 +140049,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 801284633
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -1486838738, guid: 0b032550a1bf9db4d977ed770403bba5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140937,6 +140984,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1996096074}
   - {fileID: 369352656}
+  - {fileID: 1367744947}
   - {fileID: 1666976213}
   - {fileID: 860776283}
   - {fileID: 1345930658}

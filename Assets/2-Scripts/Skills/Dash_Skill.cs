@@ -10,4 +10,11 @@ public class Dash_Skill : Skill
 
         Debug.Log("Cloness");
     }
+
+    /*protected override void CheckUnlock()
+    {
+        UnlockDash();
+        UnlockCloneOnDash();
+        UnlockClonmeOnArrival();
+    }*/
 }
