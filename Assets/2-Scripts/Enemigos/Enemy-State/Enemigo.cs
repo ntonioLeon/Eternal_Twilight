@@ -39,6 +39,7 @@ public class Enemigo : Entity
         base.Awake();
         player = GameObject.Find("Player").transform;
 
+        Physics2D.IgnoreLayerCollision(9, 9, true);
         stateMachine = new EnemyStateMachine();
     }
 
