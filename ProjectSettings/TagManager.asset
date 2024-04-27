@@ -13,7 +13,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Skills
   - Water
   - UI
   - Ground
@@ -51,6 +51,9 @@ TagManager:
     locked: 0
   - name: MiddleGround
     uniqueID: 1380515571
+    locked: 0
+  - name: Skills
+    uniqueID: 2819718537
     locked: 0
   - name: Ground
     uniqueID: 2775426841
