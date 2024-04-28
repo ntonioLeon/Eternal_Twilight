@@ -89,7 +89,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(hitTimer);
+        Debug.Log(spinTimer);
         if (canRotate)
         {
             transform.right = rb.velocity;
@@ -132,8 +132,6 @@ public class Sword_Skill_Controller : MonoBehaviour
 
                 if (hitTimer < 0)
                 {
-                    hitTimer = hitCooldown;
-
                     Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
 
                     foreach (var hit in colliders)
@@ -144,6 +142,10 @@ public class Sword_Skill_Controller : MonoBehaviour
                         }
                     }
                 }
+            }
+            else 
+            {
+                hitTimer = hitCooldown;
             }
         }
     }
