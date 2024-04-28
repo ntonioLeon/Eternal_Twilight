@@ -39,7 +39,6 @@ public class Clone_Skill_Controller : MonoBehaviour
     {
         if (canAttack)
         {
-            Debug.Log("Attaco");
             anim.SetInteger("AttackNumber", Random.Range(1, 3));
         }
 

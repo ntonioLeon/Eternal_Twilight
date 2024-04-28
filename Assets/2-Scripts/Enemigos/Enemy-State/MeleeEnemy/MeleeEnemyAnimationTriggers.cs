@@ -19,7 +19,10 @@ public class MeleeEnemyAnimationTriggers : MonoBehaviour
         {
             if (hit.GetComponent<Player>() != null)
             {
-                hit.GetComponent<Player>().Damage();
+                PlayerStats player = hit.GetComponent<PlayerStats>();
+                Debug.Log(player.name + "--"+player.nameChar); // Sabe a quien pega pero no pued epegar por que no estan bien puestos los niveles.
+                enemy.stats.DoDamage(player);
+               //EL LA SILENCIA// hit.GetComponent<Player>().Damage();
             }
         }
     }

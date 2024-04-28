@@ -19,14 +19,16 @@ public class PlayerAnimationTriggers : MonoBehaviour
         {
             if (hit.GetComponent<Boss>() != null)
             {
-                hit.GetComponent<Boss>().Damage();
-                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage);
+                //EL LA COMENTA//hit.GetComponent<Boss>().Damage();
+                //hit.GetComponentInParent<CharacterStats>().TakeDamage(player.stats.damage.GetValue());
             }
             else if (hit.GetComponent<Enemigo>() != null)
             {
-                hit.GetComponent<Enemigo>().Damage();
-                Debug.Log("Deberia recibir daño de: " + player.stats.damage + " " + player.stats.nameChar);
-                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage); //aqui no funciona
+                //EL LA COMENTA// hit.GetComponent<Enemigo>().Damage();
+                //EL LA BORRA// Debug.Log(" recibe  daño de: " + player.stats.damage.GetValue() + " " + player.stats.nameChar);  ///////
+                //EL LA BORRA// hit.GetComponentInParent<CharacterStats>().TakeDamage(player.stats.damage.GetValue()); //////// esto deberia esta al mismo nivel no uno por encima
+                EnemyStats target = hit.GetComponentInParent<EnemyStats>();
+                player.stats.DoDamage(target);
             }
         }
     }

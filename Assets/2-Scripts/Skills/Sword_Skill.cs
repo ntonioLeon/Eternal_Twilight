@@ -70,7 +70,6 @@ public class Sword_Skill : Skill
         {
             swordGravity = 4f;
         }
-        Debug.Log("Gravity: "+swordGravity);
     }
 
     protected override void Update()

@@ -3321,12 +3321,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 758018559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2f70620707cb914db94cc6892a54ca6, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b2c764f0d11c9c4399a0ed3391fb456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  maxHealth: 100
-  nameChar: Tobias
+  strenght:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 500
+    modifiers:
+    - -400
+  nameChar: ++++++++
   currentHealth: 0
 --- !u!1 &772915947
 GameObject:
@@ -140580,11 +140588,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1933785183}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2f70620707cb914db94cc6892a54ca6, type: 3}
+  m_Script: {fileID: 11500000, guid: c63a4d72da074044aa167ec1b76b60e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  maxHealth: 1000
+  strenght:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 10
+    modifiers:
+    - 55
+    - -60
+  maxHealth:
+    baseValue: 1000
+    modifiers:
+    - 900
   nameChar: Guts
   currentHealth: 0
 --- !u!1 &1934043002
