@@ -26,7 +26,6 @@ public class RangedEnemyBattleState : EnemyState
 
             if (enemy.IsWallDetected() || !enemy.IsGroundDetected()) //Si se le fuerza a ir por terreno intransitable se retira.
             {
-                Debug.Log("0");
                 enemy.Flip();
                 stateMachine.ChangeState(enemy.moveState);
                 return;
@@ -36,13 +35,11 @@ public class RangedEnemyBattleState : EnemyState
             {
                 if (enemy.CanAttack()) // y puede atacar
                 {
-                    Debug.Log("1");
                     enemy.battleMode = true;
                     stateMachine.ChangeState(enemy.attackState);
                 }
                 else // y no puede atacar
                 {
-                    Debug.Log("2");
                     if (enemy.backCollisionDetected())
                     {
                         stateMachine.ChangeState(enemy.guardState);
@@ -57,13 +54,11 @@ public class RangedEnemyBattleState : EnemyState
             {
                 if (enemy.CanAttack()) // y puede atacar
                 {
-                    Debug.Log("3");
                     enemy.SetVelocity(enemy.moveSpeed * movingDirection, rb.velocity.y);
                     
                 }
                 else // y no puede atacar
                 {
-                    Debug.Log("4");
                     if (enemy.battleMode)
                     {
                         
@@ -85,7 +80,6 @@ public class RangedEnemyBattleState : EnemyState
         }
         else  // No contacto visual
         {
-            Debug.Log("5");
             if (stateTimer < 0 || Vector2.Distance(enemy.player.transform.position, enemy.transform.position) > enemy.aggroDistance)
             {
                 stateMachine.ChangeState(enemy.idleState);
