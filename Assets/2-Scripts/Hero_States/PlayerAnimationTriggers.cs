@@ -20,10 +20,13 @@ public class PlayerAnimationTriggers : MonoBehaviour
             if (hit.GetComponent<Boss>() != null)
             {
                 hit.GetComponent<Boss>().Damage();
+                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage);
             }
             else if (hit.GetComponent<Enemigo>() != null)
             {
                 hit.GetComponent<Enemigo>().Damage();
+                Debug.Log("Deberia recibir daño de: " + player.stats.damage + " " + player.stats.nameChar);
+                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage); //aqui no funciona
             }
         }
     }

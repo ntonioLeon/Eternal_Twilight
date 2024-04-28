@@ -13,6 +13,7 @@ public class Enemigo : Entity
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
+    private float defaultMoveSpeed;
 
     [Header("Attack info")]
     public float attackDistance;
@@ -40,7 +41,9 @@ public class Enemigo : Entity
         player = GameObject.Find("Player").transform;
 
         Physics2D.IgnoreLayerCollision(9, 9, true);
+        Physics2D.IgnoreLayerCollision(9, 10, true);
         stateMachine = new EnemyStateMachine();
+        defaultMoveSpeed = moveSpeed;
     }
 
     protected override void Update()
@@ -48,7 +51,31 @@ public class Enemigo : Entity
         base.Update();
         stateMachine.currentState.Update();
     }
+    #region Freeze Time
+    public virtual void FreezeTime(bool timmeFrozen)
+    {
+        if (timmeFrozen)
+        {
+            moveSpeed = 0f;
+            anim.speed = 0f;
+        }
+        else
+        {
+            moveSpeed = defaultMoveSpeed;
+            anim.speed = 1f;
+        }
+    } 
+    protected virtual IEnumerator FreezeTimeFor(float secs)
+    {
+        FreezeTime(true);
 
+        yield return new WaitForSeconds(secs);
+
+        FreezeTime(false);
+    }
+    #endregion
+
+    #region Counter Attack Window
     public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;
@@ -60,7 +87,7 @@ public class Enemigo : Entity
         canBeStunned = false;
         counterImage.SetActive(false);
     }
-
+    #endregion
     public virtual bool CanBeStunned()
     {
         if (canBeStunned)

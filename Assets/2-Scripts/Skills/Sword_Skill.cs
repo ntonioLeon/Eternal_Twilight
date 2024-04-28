@@ -15,6 +15,7 @@ public class Sword_Skill : Skill
     [Header("Bounce info")]
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
+    [SerializeField] private float bounceSpeed;
 
     [Header("Peirce info")]
     [SerializeField] private int peirceAmount;
@@ -31,6 +32,8 @@ public class Sword_Skill : Skill
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private float swordGravity;
+    [SerializeField] private float freezeTimeDuration;
+    [SerializeField] private float returnSpeed;
 
     private Vector2 finalDir;
     [Header("Aiming Dots")]
@@ -96,7 +99,7 @@ public class Sword_Skill : Skill
 
         if (swordType == SwordType.Bounce)
         {
-            newSwordScript.SetUpBounce(true, bounceAmount);
+            newSwordScript.SetUpBounce(true, bounceAmount, bounceSpeed);
         }
         else if(swordType== SwordType.Pierce)
         {
@@ -108,7 +111,7 @@ public class Sword_Skill : Skill
         }
 
 
-        newSwordScript.SetUpSword(finalDir, swordGravity, player);
+        newSwordScript.SetUpSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
 
         player.AssignNewSword(newSword);
 
