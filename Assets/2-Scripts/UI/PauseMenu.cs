@@ -14,15 +14,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject closeBook;
     public GameObject derecha_izquierda;
     public GameObject izquierda_derecha;
-    //public GameObject defaultMenu;
-    //public GameObject settingsMenu;
     public Canvas canvas;
     #endregion
     public List<GameObject> menuList = new List<GameObject>();
     private int indexMenu;
     [HideInInspector]public bool isPaused;
-
-    //public Animator anim;
 
     private void Awake()
     {        
@@ -30,7 +26,6 @@ public class PauseMenu : MonoBehaviour
         indexMenu = 0;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         pauseMenu.SetActive(false);
@@ -38,19 +33,12 @@ public class PauseMenu : MonoBehaviour
         openBook.SetActive(false);
         closeBook.SetActive(false);
         menuList[indexMenu].SetActive(false);
-        //defaultMenu.SetActive(false);
-        //settingsMenu.SetActive(false);
         isPaused = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         Pause();
-        Debug.Log(indexMenu);
-        
-        //SwitchPage();
     }
 
     public void Pause()
@@ -74,21 +62,19 @@ public class PauseMenu : MonoBehaviour
             isPaused = false;
             indexMenu = 0;
         }
-
     }
     IEnumerator OpenCourutine()
     {
         yield return new WaitForSeconds(0.6f);
         fondo.SetActive (true);
         menuList[indexMenu].SetActive(true);
-        //defaultMenu.SetActive(true);
         pauseMenu.SetActive(true);
     }
     IEnumerator CloseCourutine()
     {
         fondo.SetActive(false);
         menuList[indexMenu].SetActive(false);
-        //defaultMenu.SetActive(false);
+
         pauseMenu.SetActive(false);
         yield return new WaitForSeconds(0.5f);       
     }

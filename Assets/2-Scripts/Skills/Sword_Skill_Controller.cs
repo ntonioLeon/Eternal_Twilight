@@ -104,7 +104,6 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(spinTimer);
         if (canRotate)
         {
             transform.right = rb.velocity;
