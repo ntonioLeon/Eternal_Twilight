@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ac37aeb90d3634e4e99a4bac44477674
+guid: 7eb30dc1bfcaa9342849a1925a807ad1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,85 +123,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hero__climb_0
+      name: hero__drop_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 88
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 176
+        width: 208
+        height: 88
+      alignment: 9
+      pivot: {x: 0.49208838, y: 0.46527117}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d536754032ac2246a2526f61f65031f
-      internalID: 1044670209
+      spriteID: 13d5d26fbf0da274498c4b00ae86ea43
+      internalID: 444005368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero__climb_1
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 64
-        width: 88
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ffa904f4a4f8ca64cb4a4a76d010e36d
-      internalID: 1386135432
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hero__climb_2
+      name: hero__drop_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 88
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 88
+        width: 208
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5681724, y: 0.461328}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d0d613e461ea464a931b0e9d19178d8
-      internalID: -1272375340
+      spriteID: d2f816c1b3991b64ea1a914da068cc4c
+      internalID: -1108683618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hero__climb_3
+      name: hero__drop_2
       rect:
         serializedVersion: 2
-        x: 88
-        y: 0
-        width: 88
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 208
+        y: 88
+        width: 208
+        height: 88
+      alignment: 9
+      pivot: {x: 0.5696593, y: 0.45457944}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d576a4dbca68060448aecd9b1b060a03
-      internalID: 1655617952
+      spriteID: a6bee3574b7d26947a7b1fab8bc08274
+      internalID: 349089565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hero__drop_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 0
+        width: 208
+        height: 88
+      alignment: 9
+      pivot: {x: 0.51394945, y: 0.46290657}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d762595528e63b42b75297702875c1d
+      internalID: -1425451948
       vertices: []
       indices: 
       edges: []
@@ -217,10 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hero__climb_0: 1044670209
-      hero__climb_1: 1386135432
-      hero__climb_2: -1272375340
-      hero__climb_3: 1655617952
+      hero__drop_0: 444005368
+      hero__drop_1: -1108683618
+      hero__drop_2: 349089565
+      hero__drop_3: -1425451948
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
