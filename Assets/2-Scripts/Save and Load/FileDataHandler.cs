@@ -71,7 +71,7 @@ public class FileDataHandler
 
                 if (encryptData)
                 {
-                    dataToLoad += EncryptDecrypt(dataToLoad);
+                    dataToLoad = EncryptDecrypt(dataToLoad);
                 }
 
                 loadData = JsonUtility.FromJson<GameData>(dataToLoad);
