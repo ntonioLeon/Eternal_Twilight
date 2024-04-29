@@ -19,7 +19,7 @@ public class Stat
         return finalValue;
     }
 
-    public void SetDefaultValue(int value)
+    public void SetDefaultValue(float value)
     {
         baseValue = value;
     }
