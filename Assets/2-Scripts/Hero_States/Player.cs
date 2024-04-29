@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Entity
@@ -39,6 +40,7 @@ public class Player : Entity
     public PlayerAimSwordState aimSwordState { get; private set; }
 
     public PlayerCatchState catchSword { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
 
     #endregion
 
@@ -59,6 +61,7 @@ public class Player : Entity
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchState(this, stateMachine, "CatchSword");
 
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
     protected override void Start()
@@ -122,5 +125,12 @@ public class Player : Entity
 
             stateMachine.ChangeState(dashState);
         }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
     }
 }

@@ -34,6 +34,7 @@ public class Enemigo : Entity
     [SerializeField] protected bool hasGuard;
 
     public EnemyStateMachine stateMachine { get; private set; }
+    public string lastAnimBoolName { get; private set; }
 
     protected override void Awake()
     {
@@ -51,6 +52,12 @@ public class Enemigo : Entity
         base.Update();
         stateMachine.currentState.Update();
     }
+
+    public virtual void AssignLastAnimName(string animBoolName)
+    {
+        lastAnimBoolName = animBoolName;
+    }
+
     #region Freeze Time
     public virtual void FreezeTime(bool timmeFrozen)
     {

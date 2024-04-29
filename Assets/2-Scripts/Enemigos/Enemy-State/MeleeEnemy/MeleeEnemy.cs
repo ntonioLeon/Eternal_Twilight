@@ -12,6 +12,7 @@ public class MeleeEnemy : Enemigo
     public MeleeEnemyAttackState attackState { get; private set; }
     public MeleeEnemyGuardState guardState { get; private set; }
     public MeleeEnemyStunnedState stunnedState { get; private set; }
+    public MeleeEnemyDeadState deadState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -24,16 +25,7 @@ public class MeleeEnemy : Enemigo
         attackState = new MeleeEnemyAttackState(this, stateMachine, "Attack", this);
         guardState = hasGuard ? new MeleeEnemyGuardState(this, stateMachine, "Guard", this) : new MeleeEnemyGuardState(this, stateMachine, "Idle", this);
         stunnedState = new MeleeEnemyStunnedState(this, stateMachine, "Stunned", this);
-        /*
-        if (hasGuard)
-        {
-            guardState = new MeleeEnemyGuardState(this, stateMachine, "Guard", this);
-        } 
-        else 
-        {
-            guardState = new MeleeEnemyGuardState(this, stateMachine, "Idle", this);
-        } 
-        */
+        deadState = new MeleeEnemyDeadState(this, stateMachine, "Idle", this);
     }
 
     protected override void Start()
@@ -61,5 +53,12 @@ public class MeleeEnemy : Enemigo
         }
 
         return false;
+    }
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
     }
 }

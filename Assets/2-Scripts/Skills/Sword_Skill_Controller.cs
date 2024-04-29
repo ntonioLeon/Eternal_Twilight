@@ -267,7 +267,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private void DamageEnemy(Enemigo enemy)
     {
-        enemy.Damage();
+        enemy.DamageEffect();
         enemy.StartCoroutine("FreezeTimeFor", freezeTimeDuration);
     }
 }

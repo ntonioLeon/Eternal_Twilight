@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public EntityFX fx { get; private set; }
     public SpriteRenderer sr { get; private set; }  
     public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D capsule { get; private set; }
     #endregion    
 
     #region Collision Variables
@@ -47,6 +48,7 @@ public class Entity : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<CharacterStats>();
+        capsule = GetComponent<CapsuleCollider2D>();
     }
 
     protected virtual void Update()
@@ -54,7 +56,7 @@ public class Entity : MonoBehaviour
         
     }
 
-    public virtual void Damage()
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockBack");
@@ -143,4 +145,9 @@ public class Entity : MonoBehaviour
         }
     }
     #endregion
+
+    public virtual void Die()
+    {
+
+    }
 }
