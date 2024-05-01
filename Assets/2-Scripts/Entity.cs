@@ -58,12 +58,19 @@ public class Entity : MonoBehaviour
         
     }
 
-    public virtual void DamageEffect()
+    public virtual void SlowEntityBy(float slowPercentage, float slowDuration)
     {
-        fx.StartCoroutine("FlashFX");
-        StartCoroutine("HitKnockBack");
 
-        //Debug.Log(gameObject.name + " Was damaged!");
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
+    public virtual void DamageImpact()
+    {
+        StartCoroutine("HitKnockBack");
     }
 
     protected virtual IEnumerator HitKnockBack()

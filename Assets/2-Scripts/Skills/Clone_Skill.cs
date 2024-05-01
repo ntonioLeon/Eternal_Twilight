@@ -13,7 +13,8 @@ public class Clone_Skill : Skill
     public void CreateClone(Transform clonePosition)
     {
         GameObject newClone = Instantiate(clonePrefab);
-        newClone.GetComponent<Clone_Skill_Controller>().SetUpClone(clonePosition, cloneDuration, canAttack);
+        newClone.GetComponent<Clone_Skill_Controller>().SetUpClone(clonePosition, cloneDuration, canAttack, player);
+
     }
 
     /*protected override void CheckUnlock()

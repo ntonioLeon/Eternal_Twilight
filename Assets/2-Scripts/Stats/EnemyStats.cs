@@ -15,8 +15,6 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(float dmg)
     {
         base.TakeDamage(dmg);
-
-        enemy.DamageEffect();
     }
 
     public override void Die()

@@ -1777,7 +1777,7 @@ Transform:
   m_GameObject: {fileID: 369352654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.93, y: 3.862999, z: -10.012226}
+  m_LocalPosition: {x: -12.799998, y: 3.862999, z: -10.012226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3772,7 +3772,7 @@ GameObject:
   - component: {fileID: 727071965}
   - component: {fileID: 727071966}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Health_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4021,7 +4021,7 @@ Transform:
   m_GameObject: {fileID: 758018559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.42, y: 1.1, z: 0}
+  m_LocalPosition: {x: -32.88, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4416,6 +4416,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: ff7c78aa27b266d46aaa2f73d5efbdf6, type: 2}
+  flashDuration: 0
+  igniteColor: []
+  chillColor: []
+  shockColor: []
 --- !u!1 &812738920
 GameObject:
   m_ObjectHideFlags: 0
@@ -15467,7 +15471,7 @@ Transform:
   m_GameObject: {fileID: 1414162607}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.83, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15491,7 +15495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de1033b2c95c754da748c7cfaa27e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackDirection: {x: 20, y: 4}
+  knockBackDirection: {x: 8, y: 4}
   knockBackDuration: 0.07
   attackCheck: {fileID: 2020712346}
   attackCheckRadius: 0.8
@@ -15559,6 +15563,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: ff7c78aa27b266d46aaa2f73d5efbdf6, type: 2}
+  flashDuration: 0.2
+  igniteColor:
+  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
+  - {r: 0.9339623, g: 0.6035511, b: 0.6035511, a: 1}
+  chillColor:
+  - {r: 0.6117647, g: 0.8352941, b: 1, a: 1}
+  - {r: 0.6117647, g: 0.8352941, b: 1, a: 1}
+  shockColor:
+  - {r: 1, g: 0.8477346, b: 0.1462264, a: 1}
+  - {r: 1, g: 0.95040166, b: 0.7216981, a: 1}
 --- !u!114 &1414162613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15605,17 +15619,19 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   fireDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: []
   iceDamage:
-    baseValue: 5
+    baseValue: 10
     modifiers: []
   lightningDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: []
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  ailmentsDuration: 3
+  shockStrikePrefab: {fileID: 6430781113370714896, guid: ee80b31e95719974da6fee574ef3b13e, type: 3}
   nameChar: Tobias
   currentHealth: 0
 --- !u!70 &1414162614
@@ -142144,7 +142160,7 @@ Transform:
   m_GameObject: {fileID: 1933785183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.57, y: 2.55, z: -0.012225845}
+  m_LocalPosition: {x: -11.44, y: 2.55, z: -0.012225845}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -142230,6 +142246,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: ff7c78aa27b266d46aaa2f73d5efbdf6, type: 2}
+  flashDuration: 0.2
+  igniteColor:
+  - {r: 0.9843137, g: 0.29411766, b: 0.29411766, a: 1}
+  - {r: 0.9339623, g: 0.6035511, b: 0.6035511, a: 1}
+  chillColor:
+  - {r: 0.6117647, g: 0.8352941, b: 1, a: 1}
+  - {r: 0.6117647, g: 0.8352941, b: 1, a: 1}
+  shockColor:
+  - {r: 1, g: 0.8477346, b: 0.1462264, a: 1}
+  - {r: 1, g: 0.95040166, b: 0.7216981, a: 1}
 --- !u!114 &1933785189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142276,17 +142302,19 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   fireDamage:
-    baseValue: 12
+    baseValue: 0
     modifiers: []
   iceDamage:
     baseValue: 0
     modifiers: []
   lightningDamage:
-    baseValue: 0
+    baseValue: 10
     modifiers: []
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  ailmentsDuration: 3
+  shockStrikePrefab: {fileID: 6430781113370714896, guid: ee80b31e95719974da6fee574ef3b13e, type: 3}
   nameChar: Guts
   currentHealth: 0
 --- !u!1 &1934043002
@@ -142756,7 +142784,7 @@ Transform:
   m_GameObject: {fileID: 1996096071}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.93, y: 3.862999, z: -10.012226}
+  m_LocalPosition: {x: -12.799998, y: 3.862999, z: -10.012226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
