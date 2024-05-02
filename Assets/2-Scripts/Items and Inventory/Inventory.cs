@@ -7,6 +7,13 @@ public class Inventory : MonoBehaviour//, ISaveManager
 {
     public static Inventory instance;
 
+    public List<InventoryItem> inventoryItems;
+    public Dictionary<ItemData, InventoryItem> inventoryDictionary;
+
+    [Header("Inventory UI")]
+    [SerializeField] private Transform inventorySlotParent;
+    private UI_ItemSlot[] itemSlots;
+
     //[Header("Data base")]
     //public List<InventoryItem> loadedItem; 
     //public List<ItemData_Equipment> loadedEquipment;
@@ -18,7 +25,57 @@ public class Inventory : MonoBehaviour//, ISaveManager
         else
             Destroy(gameObject);
     }
-    
+
+    private void Start()
+    {
+        inventoryItems = new List<InventoryItem>();
+        inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
+
+        itemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
+    }
+
+    private void UpdateSlotUI()
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            itemSlots[i].UpdateSlot(inventoryItems[i]);
+        }
+    }
+
+    public void AddItem(ItemData item)
+    {
+        if (inventoryDictionary.TryGetValue(item, out InventoryItem value))
+        {
+            value.AddStack();
+        }
+        else
+        {
+            InventoryItem newItem = new InventoryItem(item);
+            inventoryItems.Add(newItem);
+            inventoryDictionary.Add(item, newItem);
+        }
+
+        UpdateSlotUI();
+    }
+
+    public void RemoveItem(ItemData item)
+    {
+        if (inventoryDictionary.TryGetValue(item, out InventoryItem value))
+        {
+            if (value.stackSize <= 1)
+            {
+                inventoryItems.Remove(value);
+                inventoryDictionary.Remove(item);
+            }
+            else
+            {
+                value.RemoveStack();
+            }
+        }
+
+        UpdateSlotUI();
+    }
+
     /*
     private void AddStartingItems()
     {
