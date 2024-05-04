@@ -6,7 +6,7 @@ public class CharacterStats : MonoBehaviour
     private EntityFX fx;
 
     [Header("Major stats")]
-    public Stat strenght;           // 1 punto == 1 en damage y 1% de crit.power
+    public Stat strength;           // 1 punto == 1 en damage y 1% de crit.power
     public Stat agulity;            // 1 punto == 1% evasion y 1% de crit.chance
     public Stat inteligence;        // 1 punto == 3 de magic damage y 3 de magic resistance
     public Stat vitality;           // 1 punto == aumento de vida en [3-5]
@@ -105,7 +105,7 @@ public class CharacterStats : MonoBehaviour
         }
 
         //Calcular el daño recibido
-        float totalDMG = damage.GetValue() + strenght.GetValue();
+        float totalDMG = damage.GetValue() + strength.GetValue();
 
         //Calcular critico
         if (CanCrit())
@@ -396,7 +396,7 @@ public class CharacterStats : MonoBehaviour
 
     private float CalculateCriticalDamage(float damage)
     {
-        float totalCritPower = (critPower.GetValue() + strenght.GetValue()) * 0.01f;
+        float totalCritPower = (critPower.GetValue() + strength.GetValue()) * 0.01f;
 
         float critDamage = damage * totalCritPower;
 

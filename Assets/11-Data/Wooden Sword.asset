@@ -18,3 +18,17 @@ MonoBehaviour:
   itemId: c55cc899917a1c143b875154abeeea97
   dropChance: 0
   equipmentType: 0
+  strength: 0
+  agility: 0
+  intelligence: 0
+  vitality: 0
+  damage: 15
+  critChance: 5
+  critPower: 5
+  health: 0
+  armor: 0
+  magicResistance: 0
+  evasion: 0
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0

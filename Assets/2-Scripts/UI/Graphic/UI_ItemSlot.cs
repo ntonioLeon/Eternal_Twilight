@@ -42,11 +42,11 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
         itemText.text = "";
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (item.data.itemType == ItemType.Equipment)
         {
-            Debug.Log("Equiped new item + " + item.data.itemName);
+            //Debug.Log("Equiped new item + " + item.data.itemName);
             Inventory.instance.EquipItem(item.data);
         }        
     }
