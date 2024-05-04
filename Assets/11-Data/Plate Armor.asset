@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Plate Armor
   itemIcon: {fileID: -221890893, guid: 4953d14bef0c74d409ec961a9256a951, type: 3}
   itemId: 177b77f7362fd9e45bf043ffcf3412df
-  dropChance: 0
+  dropChance: 10
   equipmentType: 1
   strength: 0
   agility: 0
@@ -27,8 +27,9 @@ MonoBehaviour:
   critPower: 0
   health: 50
   armor: 20
-  evasion: 0
   magicResistance: 20
+  evasion: 0
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0
+  craftingMaterials: []

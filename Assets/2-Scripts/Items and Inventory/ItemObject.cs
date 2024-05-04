@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private ItemData itemData;
 
-    private void OnValidate()
+    private void SetupVisuals()
     {
-        GetComponent<SpriteRenderer>().sprite = itemData.itemIcon;   
+        if (itemData == null)
+        {
+            return;
+        }
+
+        GetComponent<SpriteRenderer>().sprite = itemData.itemIcon;
         gameObject.name = "Item object - " + itemData.itemName;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetupItem(ItemData itemData, Vector2 velocity)
     {
-        if (collision.GetComponent<Player>() != null)
-        {
-            Inventory.instance.AddItem(itemData);
-            Destroy(gameObject);
-        }
+        this.itemData = itemData;
+        rb.velocity = velocity;
+
+        SetupVisuals();
+    }
+
+    public void PickUpItem()
+    {
+        Inventory.instance.AddItem(itemData);
+        Destroy(gameObject);
     }
 }
