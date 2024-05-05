@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class ItemDrop : MonoBehaviour
     {
         for (int i = 0; i < possibleDrop.Length; i++)
         {
-            if (Random.Range(0, 100) <= possibleDrop[i].dropChance)
+            if (UnityEngine.Random.Range(0, 100) <= possibleDrop[i].dropChance)
             {
                 dropList.Add(possibleDrop[i]);
             }
@@ -25,10 +26,17 @@ public class ItemDrop : MonoBehaviour
 
         for (int i = 0; i < possibleItemDrop; i++)
         {
-            ItemData randomItem = dropList[Random.Range(0, dropList.Count - 1)];
+            try
+            {
+                ItemData randomItem = dropList[UnityEngine.Random.Range(0, dropList.Count - 1)];
 
-            dropList.Remove(randomItem);
-            DropItem(randomItem);
+                dropList.Remove(randomItem);
+                DropItem(randomItem);
+            }
+            catch (Exception e)
+            {
+                //Si pasa por aqui el drop es 1 o 0.
+            }
         }
     }
 
@@ -36,7 +44,7 @@ public class ItemDrop : MonoBehaviour
     {
         GameObject newDrop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
 
-        Vector2 randomVelocity = new Vector2(Random.Range(-5, 5), Random.Range(15, 20));
+        Vector2 randomVelocity = new Vector2(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(15, 20));
 
         newDrop.GetComponent<ItemObject>().SetupItem(itemData, randomVelocity);
     }
