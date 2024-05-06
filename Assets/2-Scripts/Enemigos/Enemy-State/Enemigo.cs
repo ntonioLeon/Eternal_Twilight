@@ -13,7 +13,7 @@ public class Enemigo : Entity
     public float moveSpeed;
     public float idleTime;
     public float battleTime;
-    private float defaultMoveSpeed;
+    public float defaultMoveSpeed;
 
     [Header("Attack info")]
     public float attackDistance;

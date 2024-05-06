@@ -32,6 +32,14 @@ public class PlayerState
 
     public virtual void Update()
     {
+        if (PauseMenu.instance.isPaused)
+        {
+            xInput = 0;
+            yInput = 0;
+            player.SetZeroVelocity();
+            return;
+        }
+
         stateTimer -= Time.deltaTime;
 
         xInput = Input.GetAxisRaw("Horizontal");

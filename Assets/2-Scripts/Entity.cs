@@ -34,6 +34,9 @@ public class Entity : MonoBehaviour
     #endregion
 
     public int facingDir { get; private set; } = 1;
+
+    public bool isPaused=false;
+    private Vector2 realVel;
     protected bool facingRight = true;
 
     public System.Action onFlipped;
@@ -51,11 +54,12 @@ public class Entity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<CharacterStats>();
         capsule = GetComponent<CapsuleCollider2D>();
+        realVel = GetComponent<Rigidbody2D>().velocity;
     }
 
     protected virtual void Update()
     {
-        
+       
     }
 
     public virtual void SlowEntityBy(float slowPercentage, float slowDuration)
@@ -159,6 +163,19 @@ public class Entity : MonoBehaviour
         }
     }
     #endregion
+
+    public virtual void Stop(bool paused)
+    {
+        Debug.Log("parado");
+        if (paused)
+        {
+            rb.velocity = rb.velocity * 0 ;
+        }
+        else
+        {
+            rb.velocity = realVel;
+        }
+    }
 
     public virtual void Die()
     {

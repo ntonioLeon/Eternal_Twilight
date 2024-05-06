@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyState
@@ -21,7 +22,18 @@ public class EnemyState
 
     public virtual void Update()
     {
-        stateTimer -= Time.deltaTime;
+        if (PauseMenu.instance.isPaused)
+        {
+            enemyBase.moveSpeed=0;
+            enemyBase.SetZeroVelocity();
+            return;
+        }
+        else
+        {
+            enemyBase.moveSpeed = enemyBase.defaultMoveSpeed;
+            stateTimer -= Time.deltaTime;
+        }
+        
     }
 
     public virtual void Enter()

@@ -9,6 +9,7 @@ public class PlayerPrimaryAttackState : PlayerState
 
     private float lastTimeAttacked;
     private float comboWindow = 2;
+    private bool canAttack = true;
 
     public PlayerPrimaryAttackState(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
@@ -18,6 +19,11 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Enter();
         xInput = 0;
+
+        if (!canAttack) 
+        {
+            return;
+        }
 
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
         {
@@ -51,7 +57,12 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        if (PauseMenu.instance.isPaused)
+        {
+            canAttack = false;
+            return;
+        }
+        canAttack = true;
         if (stateTimer < 0)
         {
             player.SetZeroVelocity();

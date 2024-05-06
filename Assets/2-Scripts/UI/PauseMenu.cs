@@ -15,9 +15,11 @@ public class PauseMenu : MonoBehaviour
     public GameObject derecha_izquierda;
     public GameObject izquierda_derecha;
     public Canvas canvas;
+    public List<GameObject> buutonsList = new List<GameObject>();
     #endregion
     public List<GameObject> menuList = new List<GameObject>();
     private int indexMenu;
+    private Entity[] entidades;
     [HideInInspector]public bool isPaused;
 
     private void Awake()
@@ -34,6 +36,8 @@ public class PauseMenu : MonoBehaviour
         closeBook.SetActive(false);
         menuList[indexMenu].SetActive(false);
         isPaused = false;
+        entidades = FindObjectsOfType<Entity>();
+        Debug.Log(entidades.Length);
     }
 
     void Update()
@@ -43,15 +47,22 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
-        {           
+        {
+            foreach(Entity ent in entidades)
+            {
+                if (ent != null)
+                {
+                    ent.Stop(true);
+                }
+            }
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
             AudioManager.instance.StopSFX();            
             StartCoroutine(OpenCourutine());
             openBook.SetActive(true);
-
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
         {
@@ -61,7 +72,15 @@ public class PauseMenu : MonoBehaviour
             closeBook.SetActive(false);
             isPaused = false;
             indexMenu = 0;
+            foreach (Entity ent in entidades)
+            {
+                if (ent != null)
+                {
+                    ent.Stop(false);
+                }
+            }
         }
+
     }
     IEnumerator OpenCourutine()
     {
@@ -81,13 +100,35 @@ public class PauseMenu : MonoBehaviour
 
     public void SwitchMenu()
     {
-        indexMenu++;
-        SwitchPage();
+        indexMenu= 1;
+        //Debug.Log("Hola");
+        SwitchPage(true);
     }
 
-    public void SwitchPage()
+    public void ToInvetory() 
     {
-        if (indexMenu==1)
+        indexMenu = 2;
+        //buutonsList[1].SetActive(false);
+        SwitchPage(true);
+
+    }
+
+    public void ToCrafting()
+    {
+        indexMenu = 3;
+        //buutonsList[2].SetActive(false);
+        SwitchPage(true);
+    }
+    public void ToMain()
+    {
+        indexMenu = 0;
+        //buutonsList[0].SetActive(false);
+        SwitchPage(false);
+    }
+
+    public void SwitchPage(bool derecha)
+    {
+        if (derecha)
         {
             derecha_izquierda.SetActive(true);
             Instantiate(derecha_izquierda, canvas.transform);
