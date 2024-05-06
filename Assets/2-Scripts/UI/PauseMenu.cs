@@ -37,7 +37,6 @@ public class PauseMenu : MonoBehaviour
         menuList[indexMenu].SetActive(false);
         isPaused = false;
         entidades = FindObjectsOfType<Entity>();
-        Debug.Log(entidades.Length);
     }
 
     void Update()
