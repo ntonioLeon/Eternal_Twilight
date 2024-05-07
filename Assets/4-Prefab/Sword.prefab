@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7510247172228422750}
   m_Layer: 3
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,6 +215,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a2a6974fba9ac4480e550f1db4b86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returningSpeed: 12
   bounceSpeed: 20
-  pierceAmount: 0
