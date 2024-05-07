@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Player : Entity
 {
@@ -19,11 +20,25 @@ public class Player : Entity
     private float defaultMoveSpeed;
     private float defaultJumpSpeed;
 
-
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
     private float defaultDashSpeed;
+
+    #region Angularidad
+    public float anguloMax;
+    [HideInInspector] public Vector2 capsuleSize;
+    [HideInInspector] public Vector2 posPies;
+    [HideInInspector] public bool enPendiente;
+    [HideInInspector] public float anguloLateral;
+    [HideInInspector] public float anguloPendiente;
+    [HideInInspector] public float anguloAnterior;
+    [HideInInspector] public Vector2 anguloPer;
+    [HideInInspector] public bool puedeCaminar;
+    public PhysicsMaterial2D sinFriccion;
+    public PhysicsMaterial2D maxFriccion;
+    #endregion
+    
     public float dashDir { get; private set; }
 
     public SkillManager skill { get; private set; }
@@ -78,6 +93,7 @@ public class Player : Entity
         defaultMoveSpeed = moveSpeed;
         defaultJumpSpeed = jumpForce;
         defaultDashSpeed = dashSpeed;
+        capsuleSize = capsule.size;
     }
 
     protected override void Update()
@@ -159,4 +175,6 @@ public class Player : Entity
 
         stateMachine.ChangeState(deadState);
     }
+
+    
 }

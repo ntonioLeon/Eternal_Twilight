@@ -35,6 +35,7 @@ public class ItemDrop : MonoBehaviour
             }
             catch (Exception e)
             {
+                Debug.Log("El drop es inerior a dos" + e);
                 //Si pasa por aqui el drop es 1 o 0.
             }
         }

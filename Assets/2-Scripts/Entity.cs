@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Accessibility;
+using UnityEngine.Rendering;
 
 public class Entity : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Vector2 knockBackDirection;
     [SerializeField] protected float knockBackDuration;
     protected bool isKnocked;
-
     #endregion
 
     #region Collision Variables
@@ -30,7 +30,8 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
-    [SerializeField] protected LayerMask whatIsGround;
+    [SerializeField] public float pendienteCheckDistance;
+    [SerializeField] public LayerMask whatIsGround;
     #endregion
 
     public int facingDir { get; private set; } = 1;
@@ -54,12 +55,12 @@ public class Entity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         stats = GetComponent<CharacterStats>();
         capsule = GetComponent<CapsuleCollider2D>();
-        realVel = GetComponent<Rigidbody2D>().velocity;
+        realVel = GetComponent<Rigidbody2D>().velocity;       
     }
 
     protected virtual void Update()
     {
-       
+        
     }
 
     public virtual void SlowEntityBy(float slowPercentage, float slowDuration)
@@ -121,7 +122,7 @@ public class Entity : MonoBehaviour
     #region Collision
     public virtual bool IsGroundDetected()
     {
-        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, whatIsGround);
     }
 
     public virtual bool IsWallDetected()
@@ -132,7 +133,7 @@ public class Entity : MonoBehaviour
     protected virtual void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckDistance);
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
