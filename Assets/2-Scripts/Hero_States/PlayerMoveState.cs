@@ -22,7 +22,17 @@ public class PlayerMoveState : PlayerGroundedState
     {
         base.Update();
 
-        player.SetVelocity(xInput * player.moveSpeed, rb.velocity.y);
+        // Player en suelo
+        if (!player.enPendiente)
+        {
+            player.SetVelocity(xInput * player.moveSpeed, rb.velocity.y);
+        }
+        // Player en pendiente
+        else if (player.puedeCaminar && player.enPendiente)
+        {
+            player.SetVelocity(player.moveSpeed * player.anguloPer.x * -xInput, player.moveSpeed * player.anguloPer.y * -xInput);
+        }
+        //
 
         if (xInput == 0 || player.IsWallDetected())
         {

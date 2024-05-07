@@ -64,11 +64,11 @@ public class PlayerState
     public virtual void CheckPendiente()
     {
         // COLISION HORIZONTAL.
-        player.posPies = player.transform.position - (Vector3)(new Vector2(0.0f, player.capsuleSize.y / 2 + .3f));
+        player.posPies = player.transform.position - (Vector3)(new Vector2(0.0f, player.capsuleSize.y / 2 + .2f));
         RaycastHit2D hitForward = Physics2D.Raycast(player.posPies, Vector2.right, player.pendienteCheckDistance, player.whatIsGround);
         RaycastHit2D hitBackward = Physics2D.Raycast(player.posPies, -Vector2.right, player.pendienteCheckDistance, player.whatIsGround);
-        Debug.DrawRay(player.posPies, Vector2.right * player.pendienteCheckDistance, Color.red);
-        Debug.DrawRay(player.posPies, -Vector2.right * player.pendienteCheckDistance, Color.red);
+        //Debug.DrawRay(player.posPies, Vector2.right * player.pendienteCheckDistance, Color.red);
+        //Debug.DrawRay(player.posPies, -Vector2.right * player.pendienteCheckDistance, Color.red);
         if (hitForward)
         {
             player.enPendiente = true;
@@ -94,8 +94,9 @@ public class PlayerState
             {
                 player.enPendiente = true;
             }
-            Debug.DrawRay(hitDownward.point, player.anguloPer, Color.blue);
-            Debug.DrawRay(hitDownward.point, hitDownward.normal, Color.green);
+            player.anguloAnterior = player.anguloPendiente;
+            //Debug.DrawRay(hitDownward.point, player.anguloPer, Color.blue);
+            //Debug.DrawRay(hitDownward.point, hitDownward.normal, Color.green);
         }
         // ANGULO MAXIMO
         if (player.anguloPendiente > player.anguloMax || player.anguloLateral > player.anguloMax)
@@ -106,6 +107,7 @@ public class PlayerState
         {
             player.puedeCaminar = true;
         }
+
         if (player.enPendiente && player.puedeCaminar && xInput == 0)
         {
             rb.sharedMaterial = player.maxFriccion;
