@@ -32,6 +32,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] public float pendienteCheckDistance;
     [SerializeField] public LayerMask whatIsGround;
+    [SerializeField] public bool isWatered = false;
     #endregion
 
     public int facingDir { get; private set; } = 1;
@@ -176,7 +177,6 @@ public class Entity : MonoBehaviour
             rb.velocity = realVel;
         }
     }
-
     public virtual void Die()
     {
 

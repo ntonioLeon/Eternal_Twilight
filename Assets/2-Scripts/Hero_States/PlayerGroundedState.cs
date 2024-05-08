@@ -25,7 +25,7 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword()) // falta algo como esto: && player.rb.velocity==Vector2.zero
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered) // falta algo como esto: && player.rb.velocity==Vector2.zero
         {
             stateMachine.ChangeState(player.aimSwordState);
         }
@@ -40,11 +40,11 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
-        if (!player.IsGroundDetected())
+        if (!player.IsGroundDetected() && !player.isWatered)
         {
             stateMachine.ChangeState(player.airState);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected()) //&& player.rb.velocity.magnitude >=0 Quiza haga falta
+        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected() && !player.isWatered) //&& player.rb.velocity.magnitude >=0 Quiza haga falta
         {
             stateMachine.ChangeState(player.jumpState);
         }

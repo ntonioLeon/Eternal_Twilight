@@ -28,7 +28,7 @@ public class PlayerIdleState : PlayerGroundedState
             Debug.Log("Hay muro");
             return;
         }
-        else if (xInput != player.facingDir && player.IsWallDetected())
+        else if (xInput != player.facingDir && player.IsWallDetected() && xInput!=0)
         {
             Debug.Log("me giro   "+player.rb.velocity);
             player.FlipController(-player.facingDir);

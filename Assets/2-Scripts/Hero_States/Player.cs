@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -101,7 +102,46 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
 
-        CheckForDashInput();        
+        CheckForDashInput();
+        CheckWatered();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Water"))
+        {
+            isWatered = true;
+            rb.drag = 100;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Water"))
+        {
+            isWatered = false;
+            rb.drag = 0;
+        }
+    }
+
+    private void CheckWatered()
+    {
+        if (isWatered)
+        {
+            if (!IsGroundDetected())
+            {
+                rb.velocity = new Vector3(rb.velocity.x / 2, -10, 0);
+            }
+            else
+            {
+                rb.velocity = new Vector3(rb.velocity.x / 2, 0, 0);
+            }
+            GetComponent<CharacterStats>().TakeDamage(1);// addCoroutine()+bool GetComponent<CharacterStats>().maxHealth.GetValue() * .01f
+            jumpForce = jumpForce/2;
+        }
+        else
+        {
+            ReturnDefaultSpeed();
+        }
     }
 
     public override void SlowEntityBy(float slowPercentage, float slowDuration)
@@ -155,7 +195,7 @@ public class Player : Entity
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill() && !isWatered)
         {
 
             dashDir = Input.GetAxisRaw("Horizontal");

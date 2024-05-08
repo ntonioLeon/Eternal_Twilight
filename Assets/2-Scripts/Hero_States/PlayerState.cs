@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,7 +49,6 @@ public class PlayerState
 
         CheckPendiente();
         GoingDown();
-
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
