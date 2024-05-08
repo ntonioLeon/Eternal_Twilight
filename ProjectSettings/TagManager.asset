@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Weapon
   - SpecialGround
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -67,4 +68,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 801284633
+    locked: 0
+  - name: Water
+    uniqueID: 1101182547
     locked: 0

@@ -17,7 +17,7 @@ public class Player : Entity
     public float jumpForce;
     public bool canDoubleJump;
     public float swordreturnImpact;
-    private float defaultMoveSpeed;
+    [HideInInspector]public float defaultMoveSpeed;
     private float defaultJumpSpeed;
 
     [Header("Dash info")]
@@ -79,7 +79,7 @@ public class Player : Entity
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchState(this, stateMachine, "CatchSword");
-
+        defaultMoveSpeed = moveSpeed;
         deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
@@ -90,7 +90,7 @@ public class Player : Entity
         skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
 
-        defaultMoveSpeed = moveSpeed;
+        
         defaultJumpSpeed = jumpForce;
         defaultDashSpeed = dashSpeed;
         capsuleSize = capsule.size;

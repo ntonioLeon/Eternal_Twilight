@@ -25,10 +25,24 @@ public class PlayerIdleState : PlayerGroundedState
         base.Update();
         if (xInput == player.facingDir && player.IsWallDetected())
         {
+            Debug.Log("Hay muro");
             return;
         }
+        else if (xInput != player.facingDir && player.IsWallDetected())
+        {
+            Debug.Log("me giro   "+player.rb.velocity);
+            player.FlipController(-player.facingDir);
+            stateMachine.ChangeState(player.idleState);
 
-        if (xInput != 0 && !player.isBusy)
+        }/*
+        else if (xInput == player.facingDir && !player.IsWallDetected())
+        {
+            Debug.Log("No hay muro");
+
+            stateMachine.ChangeState(player.idleState);
+        }
+        */
+            if (xInput != 0 && !player.IsWallDetected() && !player.isBusy)
         {
             stateMachine.ChangeState(player.moveState);
         }

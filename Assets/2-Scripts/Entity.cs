@@ -103,9 +103,8 @@ public class Entity : MonoBehaviour
         {
             return;
         }
-
-        rb.velocity = new Vector2(xVelocity, yVelocity);
         FlipController(xVelocity);
+        rb.velocity = new Vector2(xVelocity, yVelocity);  
     }
 
     public void Retroceder(float xVelocity, float yVelocity)

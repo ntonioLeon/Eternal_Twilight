@@ -11,6 +11,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        player.SetVelocity(xInput * player.defaultMoveSpeed, rb.velocity.y);
     }
 
     public override void Exit()
@@ -21,7 +22,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Update()
     {
         base.Update();
-
+        
         // Player en suelo
         if (!player.enPendiente)
         {
@@ -32,8 +33,6 @@ public class PlayerMoveState : PlayerGroundedState
         {
             player.SetVelocity(player.moveSpeed * player.anguloPer.x * -xInput, player.moveSpeed * player.anguloPer.y * -xInput);
         }
-        //
-
         if (xInput == 0 || player.IsWallDetected())
         {
             stateMachine.ChangeState(player.idleState);
