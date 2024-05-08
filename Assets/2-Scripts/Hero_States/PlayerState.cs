@@ -47,6 +47,7 @@ public class PlayerState
         yInput = Input.GetAxisRaw("Vertical");
 
         CheckPendiente();
+        GoingDown();
 
         player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
@@ -116,5 +117,43 @@ public class PlayerState
         {
             rb.sharedMaterial = player.sinFriccion;
         }
+    }
+    private void GoingDown()
+    {
+        if (Input.GetAxisRaw("Vertical")==-1 && player.IsGroundDetected()) // 
+        {
+            RaycastHit2D hitGround = Physics2D.Raycast(player.transform.position, Vector2.down, (player.GetComponent<CapsuleCollider2D>().size.y) + .25f, player.whatIsGround);
+            Debug.DrawRay(player.transform.position, Vector2.down * ((player.GetComponent<CapsuleCollider2D>().size.y) + .25f), Color.cyan);
+            if (hitGround)
+            {
+                if (hitGround.transform.gameObject.tag == "SpecialGround")
+                {
+                    //bool a = hitGround.transform.gameObject.GetComponent<BoxCollider2D>().isTrigger;
+                    //string b = hitGround.transform.gameObject.tag;
+                    //string c = hitGround.transform.gameObject.layer.ToString();
+                    //BoxCollider2D platform= hitGround.transform.gameObject.GetComponent<BoxCollider2D>();
+                    player.StartCoroutine(CorroutineGoingDown());
+                    //hitGround.transform.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+                    //hitGround.transform.gameObject.tag = "Untagged";
+                    //hitGround.transform.gameObject.layer = LayerMask.NameToLayer("Default");
+                    //Debug.Log("Para Abajo");
+                    //Debug.Log("Trigger: " + a + "---" + hitGround.transform.gameObject.GetComponent<BoxCollider2D>().isTrigger);
+                    //Debug.Log("Tag: " + b + "---" + hitGround.transform.gameObject.tag);
+                    //Debug.Log("Layer: " + c + "---" + hitGround.transform.gameObject.layer.ToString());
+                }
+            }
+        }
+    }
+
+    private IEnumerator CorroutineGoingDown()
+    {
+        //platform.isTrigger = true;
+
+        player.GetComponent<CapsuleCollider2D>().isTrigger= true;
+
+        yield return new WaitForSeconds(.18f);
+
+        player.GetComponent<CapsuleCollider2D>().isTrigger = false;
+        //platform.isTrigger = false;
     }
 }
