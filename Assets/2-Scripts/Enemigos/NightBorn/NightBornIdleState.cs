@@ -27,10 +27,9 @@ public class NightBornIdleState : EnemyState
     {
         base.Update();
 
-        if (stateTimer < 0)
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            
-
+            stateMachine.ChangeState(enemy.teleportState);
         }
     }
 }

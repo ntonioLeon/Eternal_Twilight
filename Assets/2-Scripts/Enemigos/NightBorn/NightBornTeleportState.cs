@@ -15,6 +15,10 @@ public class NightBornTeleportState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.FindPosition();
+
+        stateTimer = 1;
     }
 
     public override void Exit()
@@ -25,5 +29,10 @@ public class NightBornTeleportState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        if (stateTimer < 0)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+        }
     }
 }

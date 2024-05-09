@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class NightBornSpellCastState : EnemyState
 {
-    public NightBornSpellCastState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName) : base(enemyBase, stateMachine, animBoolName)
+    private Enemy_NightBorn enemy;
+
+    public NightBornSpellCastState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, Enemy_NightBorn enemy) : base(enemyBase, stateMachine, animBoolName)
     {
+        this.enemy = enemy;
     }
 
     public override void Enter()
