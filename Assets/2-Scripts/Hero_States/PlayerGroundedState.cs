@@ -24,6 +24,10 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
+        if (Input.GetKeyDown(KeyCode.P)) //REMOVER
+        {
+            ScreenShake.instance.ShakeCamera(10f, 5f);
+        }
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered) // falta algo como esto: && player.rb.velocity==Vector2.zero
         {
