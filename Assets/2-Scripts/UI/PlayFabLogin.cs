@@ -15,15 +15,26 @@ public class PlayFabLogin : MonoBehaviour
         {
             PlayFabSettings.staticSettings.TitleId = "42";
         }
-        var request = new LoginWithCustomIDRequest { CustomId = "GettingStartedGuide", CreateAccount = true };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
 
-        LoginWithAndroidDeviceIDRequest androidRequest = new LoginWithAndroidDeviceIDRequest
+#if UNITY_ANDROID
+
+        var androidRequest = new LoginWithAndroidDeviceIDRequest
         {
             AndroidDeviceId = SystemInfo.deviceUniqueIdentifier,
             CreateAccount = true
         };
         PlayFabClientAPI.LoginWithAndroidDeviceID(androidRequest, OnLoginSuccess, OnLoginFailure);
+#elif UNITY_IOS
+        var iosRequest = new LoginWithIOSDeviceIDRequest
+        {
+            DeviceId = SystemInfo.deviceUniqueIdentifier,
+            CreateAccount = true
+        };
+        PlayFabClientAPI.LoginWithIOSDeviceID(iosRequest, OnLoginSuccess, OnLoginFailure);
+#else
+        var request = new LoginWithCustomIDRequest { CustomId = "GettingStartedGuide", CreateAccount = true };
+        PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+#endif
     }
 
     public void OnLoginSuccess(LoginResult result)
