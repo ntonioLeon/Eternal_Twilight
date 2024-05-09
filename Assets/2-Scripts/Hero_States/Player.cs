@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -39,9 +40,10 @@ public class Player : Entity
     public PhysicsMaterial2D sinFriccion;
     public PhysicsMaterial2D maxFriccion;
     #endregion
-    
-    public float dashDir { get; private set; }
 
+    [SerializeField]private bool wasPoisoned = false;
+    [SerializeField] private float wateredTimer = 1;
+    public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -103,6 +105,12 @@ public class Player : Entity
         stateMachine.currentState.Update();
 
         CheckForDashInput();
+        wateredTimer -= Time.deltaTime;
+
+        if (wateredTimer < 0)
+        {
+            wasPoisoned = false;
+        }
         CheckWatered();
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -123,27 +131,37 @@ public class Player : Entity
         }
     }
 
-    private void CheckWatered()
+    public void CheckWatered()
     {
         if (isWatered)
         {
-            if (!IsGroundDetected())
+            Swiming();
+            if (!wasPoisoned)
             {
-                rb.velocity = new Vector3(rb.velocity.x / 2, -10, 0);
+                wateredTimer = 1f;
+
+                gameObject.GetComponent<CharacterStats>().TakeDamage(GetComponent<CharacterStats>().maxHealth.GetValue() * .05f);
+                //fx.IgniteFxFor(ailmentsDuration);
+                wasPoisoned = true;
             }
-            else
-            {
-                rb.velocity = new Vector3(rb.velocity.x / 2, 0, 0);
-            }
-            GetComponent<CharacterStats>().TakeDamage(1);// addCoroutine()+bool GetComponent<CharacterStats>().maxHealth.GetValue() * .01f
-            jumpForce = jumpForce/2;
         }
         else
         {
             ReturnDefaultSpeed();
         }
     }
-
+    private void Swiming()
+    {
+        if (!IsGroundDetected())
+        {
+            rb.velocity = new Vector3(rb.velocity.x / 2, -10, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector3(rb.velocity.x / 2, 0, 0);
+        }
+        jumpForce = jumpForce / 2;
+    }
     public override void SlowEntityBy(float slowPercentage, float slowDuration)
     {
         moveSpeed = moveSpeed * (1 - slowPercentage);

@@ -91,7 +91,7 @@ public class CharacterStats : MonoBehaviour
         if (isIgnited)
         {
             ApplyIgniteDamage();
-        }        
+        }
     }
 
     
