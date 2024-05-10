@@ -109,7 +109,6 @@ public class PauseMenu : MonoBehaviour
         indexMenu = 2;
         //buutonsList[1].SetActive(false);
         SwitchPage(true);
-
     }
 
     public void ToCrafting()
@@ -123,6 +122,13 @@ public class PauseMenu : MonoBehaviour
         indexMenu = 0;
         //buutonsList[0].SetActive(false);
         SwitchPage(false);
+    }
+
+    public void ToLeader()
+    {
+        indexMenu = 4;
+        //buutonsList[1].SetActive(false);
+        SwitchPage(true);
     }
 
     public void SwitchPage(bool derecha)

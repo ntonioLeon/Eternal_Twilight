@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code
 {
-    public class PlayFabLogin : MonoBehaviour
+    public class PlayFabLogin 
     {
         public event Action<string> OnSuccess;
         public void Login()

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Code
 {
-    public class PlayFabLeaderboardManager
+    public class PlayFabLeaderboardManager : MonoBehaviour
     {
         [SerializeField] private Button _getLeaderboardButton;
         [SerializeField] private Button _getLeaderboardAroundPlayerButton;
