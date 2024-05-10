@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Enemy_NightBorn : Enemigo
 {
@@ -12,10 +13,22 @@ public class Enemy_NightBorn : Enemigo
     public NightBornTeleportState teleportState { get; private set; }
     public NightBornSpellCastState spellCastState { get; private set; }
     #endregion
+    public bool bossFightBegun;
+
+    [Header("SpellCast details")]
+    [SerializeField] private GameObject spellPrefab;
+    public int amountOfSpells;
+    public float spellCooldown;
+    public float lastTimeCast;
+    [SerializeField] private float spellStateCooldown;
+    [SerializeField] private Vector2 spellOffset;
 
     [Header("Teleport detaills")]
     [SerializeField] private BoxCollider2D battleArea;
     [SerializeField] private Vector2 surroundingCheckSize;
+    public float chanceToTeleport;
+    public float defaulChanceToTeleport = 25;
+    
 
     protected override void Awake()
     {
@@ -49,6 +62,22 @@ public class Enemy_NightBorn : Enemigo
         stateMachine.ChangeState(deadState);
     }
 
+    public void CastSpell()
+    {
+        Player player = PlayerManager.instance.player;
+
+
+        float xOffset = 0;
+
+        if (player.rb.velocity.x != 0)
+            xOffset = player.facingDir * spellOffset.x;
+
+        Vector3 spellPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + spellOffset.y);
+
+        GameObject newSpell = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
+        newSpell.GetComponent<NightBornSpell_Controller>().SetupSpell(stats);
+    }
+
     public void FindPosition()
     {
         float xPos = Random.Range(battleArea.bounds.min.x + 3, battleArea.bounds.max.x -3);
@@ -80,5 +109,27 @@ public class Enemy_NightBorn : Enemigo
 
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - GroundBellow().distance));
         Gizmos.DrawWireCube(transform.position, surroundingCheckSize);
+    }
+
+    public bool CanTeleport()
+    {
+        if (Random.Range(0, 100) <= chanceToTeleport)
+        {
+            amountOfSpells -= 1;
+            chanceToTeleport = defaulChanceToTeleport;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool CanDoSpellCast()
+    {
+        if (Time.time >= lastTimeCast + spellStateCooldown)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

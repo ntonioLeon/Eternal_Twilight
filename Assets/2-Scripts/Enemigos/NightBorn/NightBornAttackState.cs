@@ -14,6 +14,8 @@ public class NightBornAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.chanceToTeleport += 5;
     }
 
     public override void Exit()
@@ -31,7 +33,14 @@ public class NightBornAttackState : EnemyState
 
         if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.teleportState);
+            if (enemy.CanTeleport())
+            {
+                stateMachine.ChangeState(enemy.teleportState);
+            }
+            else
+            {
+                stateMachine.ChangeState(enemy.battleState);
+            }
         }
     }
 }

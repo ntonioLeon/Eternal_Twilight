@@ -5,6 +5,7 @@ using UnityEngine;
 public class NightBornIdleState : EnemyState
 {
     private Enemy_NightBorn enemy;
+    private Transform player;
     public NightBornIdleState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, Enemy_NightBorn enemy) : base(enemyBase, stateMachine, animBoolName)
     {
         this.enemy = enemy;
@@ -15,7 +16,7 @@ public class NightBornIdleState : EnemyState
         base.Enter();
 
         stateTimer = enemy.idleTime;
-        enemy.SetZeroVelocity();
+        player = PlayerManager.instance.transform;
     }
 
     public override void Exit()
@@ -27,9 +28,14 @@ public class NightBornIdleState : EnemyState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Vector2.Distance(player.transform.position, enemy.transform.position) < 10)
         {
-            stateMachine.ChangeState(enemy.teleportState);
+            enemy.bossFightBegun = true;
+        }
+
+        if (stateTimer < 0 && enemy.bossFightBegun)
+        {
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

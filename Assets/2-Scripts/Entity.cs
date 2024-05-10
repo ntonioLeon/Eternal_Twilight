@@ -15,12 +15,11 @@ public class Entity : MonoBehaviour
     public CapsuleCollider2D capsule { get; private set; }
     #endregion    
 
-    #region Collision Variables
-    [Header("KnockBack info")]
-    [SerializeField] protected Vector2 knockBackDirection;
-    [SerializeField] protected float knockBackDuration;
-    protected bool isKnocked;
-    #endregion
+    [Header("Knockback info")]
+    [SerializeField] protected Vector2 knockbackPower = new Vector2(7, 12);
+    [SerializeField] protected Vector2 knockbackOffset = new Vector2(.5f, 2);
+    [SerializeField] protected float knockbackDuration = .07f;
+    public bool isKnocked;
 
     #region Collision Variables
     [Header("Collision info")]
@@ -35,6 +34,7 @@ public class Entity : MonoBehaviour
     [SerializeField] public bool isWatered = false;
     #endregion
 
+    public int knockbackDir { get; private set; }
     public int facingDir { get; private set; } = 1;
 
     public bool isPaused=false;
@@ -67,7 +67,7 @@ public class Entity : MonoBehaviour
     public virtual void SlowEntityBy(float slowPercentage, float slowDuration)
     {
 
-    }
+    }    
 
     protected virtual void ReturnDefaultSpeed()
     {
@@ -76,15 +76,42 @@ public class Entity : MonoBehaviour
 
     public virtual void DamageImpact()
     {
-        StartCoroutine("HitKnockBack");
+        StartCoroutine(HitKnockback());
     }
 
-    protected virtual IEnumerator HitKnockBack()
+    public virtual void SetupKnockbackDir(Transform _damageDirection)
+    {
+        if (_damageDirection.position.x > transform.position.x)
+            knockbackDir = -1;
+        else if (_damageDirection.position.x < transform.position.x)
+            knockbackDir = 1;
+
+
+    }
+
+    public void SetupKnockbackPower(Vector2 _knockbackpower)
+    {
+        knockbackPower = _knockbackpower;
+    }
+
+    protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
-        rb.velocity = new Vector2(knockBackDirection.x * -facingDir, knockBackDirection.y);
-        yield return new WaitForSeconds(knockBackDuration);
+
+        float xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
+
+
+        if (knockbackPower.x > 0 || knockbackPower.y > 0) // This line makes player immune to freeze effect when he takes hit
+            rb.velocity = new Vector2((knockbackPower.x + xOffset) * knockbackDir, knockbackPower.y);
+
+        yield return new WaitForSeconds(knockbackDuration);
         isKnocked = false;
+        SetupZeroKnockbackPower();
+    }
+
+    protected virtual void SetupZeroKnockbackPower()
+    {
+
     }
 
     #region Velocity

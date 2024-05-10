@@ -32,7 +32,15 @@ public class NightBornTeleportState : EnemyState
 
         if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.battleState);
+            if (enemy.CanDoSpellCast())
+            {
+                stateMachine.ChangeState(enemy.spellCastState);
+            }
+            else
+            {
+                stateMachine.ChangeState(enemy.battleState);
+            }
+            
         }
     }
 }

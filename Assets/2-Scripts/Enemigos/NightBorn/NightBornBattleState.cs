@@ -27,10 +27,23 @@ public class NightBornBattleState : EnemyState
                 {
                     stateMachine.ChangeState(enemy.attackState);
                 }
+                else
+                {
+                    stateMachine.ChangeState(enemy.idleState);
+                }
             }
+        }
+        else
+        {
+            enemy.Flip();
         }
 
         StatePorEnemigo();
+
+        if (enemy.IsGroundDetected() && enemy.IsPlayerDetected().distance < enemy.attackDistance - .5f)
+        {
+            return;
+        }
 
         enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
