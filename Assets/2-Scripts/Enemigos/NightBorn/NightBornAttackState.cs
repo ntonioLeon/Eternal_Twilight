@@ -31,7 +31,7 @@ public class NightBornAttackState : EnemyState
 
         if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.teleportState);
         }
     }
 }

@@ -54,7 +54,9 @@ public class CharacterStats : MonoBehaviour
 
     public System.Action onHealthChanged;
     protected bool isDead;
-    
+    public bool isInvincible { get; private set; }
+    private bool isVulnerable;
+
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
@@ -94,10 +96,24 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    
+    public void MakeVulnerableFor(float _duration) => StartCoroutine(VulnerableCorutine(_duration));
+
+    private IEnumerator VulnerableCorutine(float _duartion)
+    {
+        isVulnerable = true;
+
+        yield return new WaitForSeconds(_duartion);
+
+        isVulnerable = false;
+    }
 
     public virtual void DoDamage(CharacterStats character)
     {
+        if (character.isInvincible) 
+        {
+            return;
+        }           
+
         //Comprobar si esquiva el ataque
         if (TargetCanAvoidAttack(character))
         {
@@ -329,6 +345,11 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         isDead = true;
+    }
+
+    public void MakeInvincible(bool invincible)
+    {
+        isInvincible = invincible;
     }
 
     #region Calculations

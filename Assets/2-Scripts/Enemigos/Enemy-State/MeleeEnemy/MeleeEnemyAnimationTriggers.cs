@@ -6,12 +6,12 @@ public class MeleeEnemyAnimationTriggers : MonoBehaviour
 {
     private MeleeEnemy enemy => GetComponentInParent<MeleeEnemy>();
 
-    private void AnimationTrigger()
+    protected virtual void AnimationTrigger()
     {
         enemy.AnimationFinishTrigger();
     }
 
-    private void AttackTrigger()
+    protected virtual void AttackTrigger()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.position, enemy.attackCheckRadius);
 

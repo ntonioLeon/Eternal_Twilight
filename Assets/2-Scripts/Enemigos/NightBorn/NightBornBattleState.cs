@@ -21,24 +21,25 @@ public class NightBornBattleState : EnemyState
         {
             stateTimer = enemy.battleTime;
 
-            
-        }
-        else
-        {
-            if (stateTimer < 0 || Vector2.Distance(enemy.player.transform.position, enemy.transform.position) > enemy.aggroDistance)
+            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)
             {
-                stateMachine.ChangeState(enemy.idleState);
+                if (enemy.CanAttack())
+                {
+                    stateMachine.ChangeState(enemy.attackState);
+                }
             }
         }
 
         StatePorEnemigo();
 
-        
+        enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
     }
 
     public override void Enter()
     {
         base.Enter();
+
+        player = PlayerManager.instance.player.transform;
     }
 
     public override void Exit()
@@ -48,6 +49,13 @@ public class NightBornBattleState : EnemyState
 
     private void StatePorEnemigo()
     {
-       
+       if (player.position.x > enemy.transform.position.x)
+       {
+            moveDir = 1;
+        }
+       else if (player.position.x < enemy.transform.position.x) 
+       {
+            moveDir = -1;
+       }
     }
 }

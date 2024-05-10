@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class EntityFX : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    protected Player player;
+    protected SpriteRenderer sr;
+    private GameObject myHealthBar;
+
+    //[Header("Pop Up Text")]
+    //[SerializeField] private GameObject popUpTextPrefab;
 
     [Header("Flash FX")]
     [SerializeField] private Material hitMat;
@@ -16,21 +21,37 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private Color[] chillColor;
     [SerializeField] private Color[] shockColor;
 
+    //[Header("Hit FX")]
+    //[SerializeField] private GameObject hitFx;
+    //[SerializeField] private GameObject criticalHitFx;
 
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         originalMat = sr.material;
+        if (myHealthBar != null)
+        {
+            myHealthBar = GetComponentInChildren<UI_HealthBar>().gameObject;
+        }
     }
 
     public void MakeTransprent(bool transprent)
     {
         if (transprent)
         {
+            if (myHealthBar != null)
+            {
+                myHealthBar.SetActive(false);
+
+            }
             sr.color = Color.clear;
         }
         else
         {
+            if (myHealthBar != null)
+            {
+                myHealthBar.SetActive(true);
+            }
             sr.color = Color.white;
         }
     }

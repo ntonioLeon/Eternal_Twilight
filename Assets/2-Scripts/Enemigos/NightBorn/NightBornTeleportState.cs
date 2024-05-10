@@ -16,23 +16,23 @@ public class NightBornTeleportState : EnemyState
     {
         base.Enter();
 
-        enemy.FindPosition();
-
-        stateTimer = 1;
+        enemy.stats.MakeInvincible(true);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        enemy.stats.MakeInvincible(false);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (stateTimer < 0)
+        if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }
