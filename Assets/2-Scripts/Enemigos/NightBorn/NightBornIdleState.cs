@@ -28,6 +28,12 @@ public class NightBornIdleState : EnemyState
     {
         base.Update();
 
+        if (enemy.bossSpawning)
+        {
+            enemy.SetZeroVelocity();
+            return;
+        }
+
         if (Vector2.Distance(player.transform.position, enemy.transform.position) < 10)
         {
             enemy.bossFightBegun = true;

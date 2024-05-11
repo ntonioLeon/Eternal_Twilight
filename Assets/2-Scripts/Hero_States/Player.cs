@@ -1,10 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class Player : Entity
 {
@@ -19,13 +14,15 @@ public class Player : Entity
     public float jumpForce;
     public bool canDoubleJump;
     public float swordreturnImpact;
-    [HideInInspector]public float defaultMoveSpeed;
+    [HideInInspector] public float defaultMoveSpeed;
     private float defaultJumpSpeed;
 
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
     private float defaultDashSpeed;
+
+    public UnityEngine.UI.Image healthBar;
 
     #region Angularidad
     public float anguloMax;
@@ -41,7 +38,7 @@ public class Player : Entity
     public PhysicsMaterial2D maxFriccion;
     #endregion
 
-    [SerializeField]private bool wasPoisoned = false;
+    [SerializeField] private bool wasPoisoned = false;
     [SerializeField] private float wateredTimer = 1;
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
@@ -87,13 +84,13 @@ public class Player : Entity
     }
 
     protected override void Start()
-    { 
+    {
         base.Start();
-        
+
         skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
 
-        
+
         defaultJumpSpeed = jumpForce;
         defaultDashSpeed = dashSpeed;
         capsuleSize = capsule.size;
@@ -112,7 +109,9 @@ public class Player : Entity
             wasPoisoned = false;
         }
         CheckWatered();
+        UpdateHealthUI();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Water"))
@@ -167,7 +166,7 @@ public class Player : Entity
         moveSpeed = moveSpeed * (1 - slowPercentage);
         jumpForce = jumpForce * (1 - slowPercentage);
         dashSpeed = dashSpeed * (1 - slowPercentage);
-        anim.speed = anim.speed * (1- slowPercentage);
+        anim.speed = anim.speed * (1 - slowPercentage);
 
         Invoke("ReturnDefaultSpeed", slowDuration);
     }
@@ -181,15 +180,15 @@ public class Player : Entity
         dashSpeed = defaultDashSpeed;
     }
 
-    public void AssignNewSword(GameObject newSword) 
+    public void AssignNewSword(GameObject newSword)
     {
-        sword = newSword;   
+        sword = newSword;
     }
 
     public void CatchTheSword()
     {
         stateMachine.ChangeState(catchSword);
-        Destroy(sword); 
+        Destroy(sword);
     }
 
     public IEnumerator BusyFor(float seconds)
@@ -208,7 +207,7 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if (IsWallDetected())
+        if (IsWallDetected() || bossSpawning)
         {
             return;
         }
@@ -232,5 +231,13 @@ public class Player : Entity
         base.Die();
 
         stateMachine.ChangeState(deadState);
-    }    
+    }
+
+    private void UpdateHealthUI()
+    {
+        float currentHealth = GetComponent<CharacterStats>().currentHealth;
+        float maxHealth = GetComponent<CharacterStats>().maxHealth.GetValue();
+
+        healthBar.fillAmount = currentHealth / maxHealth;
+    }
 }

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Enemy_NightBorn : Enemigo
 {
@@ -14,6 +13,7 @@ public class Enemy_NightBorn : Enemigo
     public NightBornSpellCastState spellCastState { get; private set; }
     #endregion
     public bool bossFightBegun;
+    [SerializeField] private GameObject deathPrefab;
 
     [Header("SpellCast details")]
     [SerializeField] private GameObject spellPrefab;
@@ -27,8 +27,9 @@ public class Enemy_NightBorn : Enemigo
     [SerializeField] private BoxCollider2D battleArea;
     [SerializeField] private Vector2 surroundingCheckSize;
     public float chanceToTeleport;
-    public float defaulChanceToTeleport = 25;
-    
+    public float defaulChanceToTeleport = 15;
+    public UnityEngine.UI.Image healthBar;
+
 
     protected override void Awake()
     {
@@ -51,6 +52,13 @@ public class Enemy_NightBorn : Enemigo
         stateMachine.Initioalize(idleState);
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        UpdateHealthUI();
+    }
+
     public void SelfDestroy()
     {
         Destroy(gameObject);
@@ -59,7 +67,13 @@ public class Enemy_NightBorn : Enemigo
     public override void Die()
     {
         base.Die();
+        UI_Boss.instance.BossDeactivation();
         stateMachine.ChangeState(deadState);
+    }
+
+    public void Morir()
+    {
+        Instantiate(deathPrefab, transform.position, Quaternion.identity);
     }
 
     public void CastSpell()
@@ -80,7 +94,7 @@ public class Enemy_NightBorn : Enemigo
 
     public void FindPosition()
     {
-        float xPos = Random.Range(battleArea.bounds.min.x + 3, battleArea.bounds.max.x -3);
+        float xPos = Random.Range(battleArea.bounds.min.x + 3, battleArea.bounds.max.x - 3);
         float yPos = Random.Range(battleArea.bounds.min.y + 3, battleArea.bounds.max.y - 3);
 
         transform.position = new Vector3(xPos, yPos);
@@ -100,7 +114,7 @@ public class Enemy_NightBorn : Enemigo
 
     private bool SomethingIsArround()
     {
-        return Physics2D.BoxCast(transform.position, surroundingCheckSize, 0 , Vector2.zero, 0, whatIsGround);
+        return Physics2D.BoxCast(transform.position, surroundingCheckSize, 0, Vector2.zero, 0, whatIsGround);
     }
 
     protected override void OnDrawGizmos()
@@ -131,5 +145,13 @@ public class Enemy_NightBorn : Enemigo
         }
 
         return false;
+    }
+
+    private void UpdateHealthUI()
+    {
+        float currentHealth = GetComponent<CharacterStats>().currentHealth;
+        float maxHealth = GetComponent<CharacterStats>().maxHealth.GetValue();
+
+        healthBar.fillAmount = currentHealth / maxHealth;
     }
 }

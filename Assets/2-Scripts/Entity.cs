@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour
     public int knockbackDir { get; private set; }
     public int facingDir { get; private set; } = 1;
 
+    public bool bossSpawning = false;
     public bool isPaused=false;
     private Vector2 realVel;
     protected bool facingRight = true;

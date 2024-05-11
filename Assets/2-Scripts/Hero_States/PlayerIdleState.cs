@@ -23,6 +23,13 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Update()
     {
         base.Update();
+
+        if (player.bossSpawning)
+        {
+            player.SetZeroVelocity();
+            return;
+        }
+
         if (xInput == player.facingDir && player.IsWallDetected())
         {
             return;

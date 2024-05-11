@@ -24,10 +24,8 @@ public class NightBornDeadState : EnemyState
     public override void Update()
     {
         base.Update();
-        if (triggerCalled)
-        {
-            enemy.SelfDestroy();
 
-        }
+        enemy.Morir();
+        enemy.SelfDestroy();
     }
 }

@@ -55,7 +55,7 @@ public class CharacterStats : MonoBehaviour
     public System.Action onHealthChanged;
     protected bool isDead;
     public bool isInvincible { get; private set; }
-    private bool isVulnerable;
+    //private bool isVulnerable;
 
     protected virtual void Start()
     {
@@ -96,6 +96,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
+    /*
     public void MakeVulnerableFor(float _duration) => StartCoroutine(VulnerableCorutine(_duration));
 
     private IEnumerator VulnerableCorutine(float _duartion)
@@ -106,6 +107,7 @@ public class CharacterStats : MonoBehaviour
 
         isVulnerable = false;
     }
+    */
 
     public virtual void DoDamage(CharacterStats character)
     {
