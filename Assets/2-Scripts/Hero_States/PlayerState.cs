@@ -49,12 +49,35 @@ public class PlayerState
 
         CheckPendiente();
         GoingDown();
+        CheckPolvoPies();
+        CheckPolvoSalto();
         player.anim.SetFloat("yVelocity", rb.velocity.y);
+    }
+
+    private void CheckPolvoSalto()
+    {
+        if (rb.velocity.y < 0 && player.IsGroundDetected() && player.cayendo)
+        {
+            player.polvoSalto.Play();
+            player.cayendo = false;
+        }
     }
 
     public virtual void Exit()
     {
         player.anim.SetBool(animBoolName, false);
+    }
+
+    private void CheckPolvoPies()
+    {
+        if (player.IsGroundDetected() && xInput != 0)
+        {
+            player.emisionPolvoPies.rateOverTime = 35;
+        }
+        else
+        {
+            player.emisionPolvoPies.rateOverTime = 0;
+        }
     }
 
     public virtual void AnimationFinishTrigger()

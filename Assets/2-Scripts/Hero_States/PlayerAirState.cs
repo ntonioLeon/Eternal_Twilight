@@ -22,6 +22,11 @@ public class PlayerAirState : PlayerState
     {
         base.Update();
 
+        if (rb.velocity.y < 0 && !player.IsGroundDetected())
+        {
+            player.cayendo = true;
+        }
+
         if (player.canDoubleJump && Input.GetKeyDown(KeyCode.Space))
         {
             player.canDoubleJump = false;

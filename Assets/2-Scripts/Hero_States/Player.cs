@@ -17,6 +17,12 @@ public class Player : Entity
     [HideInInspector] public float defaultMoveSpeed;
     private float defaultJumpSpeed;
 
+    [Header("Particulas info")]
+    [SerializeField] public ParticleSystem polvoPies;
+    [SerializeField] public ParticleSystem polvoSalto;
+    [HideInInspector] public ParticleSystem.EmissionModule emisionPolvoPies;
+    [HideInInspector] public bool cayendo = false;
+
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
@@ -94,6 +100,7 @@ public class Player : Entity
         defaultJumpSpeed = jumpForce;
         defaultDashSpeed = dashSpeed;
         capsuleSize = capsule.size;
+        emisionPolvoPies = polvoPies.emission;
     }
 
     protected override void Update()
