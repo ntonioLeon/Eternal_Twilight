@@ -195,7 +195,6 @@ public class Entity : MonoBehaviour
 
     public virtual void Stop(bool paused)
     {
-        Debug.Log("parado");
         if (paused)
         {
             rb.velocity = rb.velocity * 0 ;

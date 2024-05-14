@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     #endregion
     public List<GameObject> menuList = new List<GameObject>();
     private int indexMenu;
+    private int altIndex;
     private Entity[] entidades;
     [HideInInspector]public bool isPaused;
 
@@ -99,41 +100,54 @@ public class PauseMenu : MonoBehaviour
 
     public void SwitchMenu()
     {
+        altIndex = indexMenu;
         indexMenu= 1;
         //Debug.Log("Hola");
-        SwitchPage(true);
+        SwitchPage(altIndex);
     }
 
     public void ToInvetory() 
     {
+        altIndex = indexMenu;
         indexMenu = 2;
         //buutonsList[1].SetActive(false);
-        SwitchPage(true);
+        SwitchPage(altIndex);
     }
 
     public void ToCrafting()
     {
+        altIndex = indexMenu;
         indexMenu = 3;
         //buutonsList[2].SetActive(false);
-        SwitchPage(true);
+        SwitchPage(altIndex);
     }
     public void ToMain()
     {
+        altIndex = indexMenu;
         indexMenu = 0;
         //buutonsList[0].SetActive(false);
-        SwitchPage(false);
+        SwitchPage(altIndex);
     }
 
     public void ToLeader()
     {
+        altIndex = indexMenu;
         indexMenu = 4;
         //buutonsList[1].SetActive(false);
-        SwitchPage(true);
+        SwitchPage(altIndex);
+    }
+    public void ToInventoryOnline()
+    {
+        altIndex = indexMenu;
+        indexMenu = 5;
+        //buutonsList[1].SetActive(false);
+        SwitchPage(altIndex);
     }
 
-    public void SwitchPage(bool derecha)
+
+    public void SwitchPage(int altIndex)
     {
-        if (derecha)
+        if (altIndex<indexMenu)
         {
             derecha_izquierda.SetActive(true);
             Instantiate(derecha_izquierda, canvas.transform);
