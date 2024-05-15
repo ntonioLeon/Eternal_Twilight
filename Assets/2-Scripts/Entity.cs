@@ -75,7 +75,7 @@ public class Entity : MonoBehaviour
         anim.speed = 1;
     }
 
-    public virtual void DamageImpact()
+    public virtual void DamageImpact ()
     {
         StartCoroutine(HitKnockback());
     }

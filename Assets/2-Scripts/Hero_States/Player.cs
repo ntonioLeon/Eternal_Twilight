@@ -29,6 +29,11 @@ public class Player : Entity
     public float dashDuration;
     private float defaultDashSpeed;
 
+    [Header("Camera info")]
+    private CameraFollowObject cameraFollowObject;
+    [SerializeField] private GameObject cameraFollowGO;
+    [HideInInspector] public float fallSpeedYDampingChangeThresold;
+
     public UnityEngine.UI.Image healthBar;
 
     #region Angularidad
@@ -102,6 +107,9 @@ public class Player : Entity
         defaultDashSpeed = dashSpeed;
         capsuleSize = capsule.size;
         emisionPolvoPies = polvoPies.emission;
+
+        cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
+        fallSpeedYDampingChangeThresold = CameraManager.instance.fallSpeedYDampingChangeTheshold;
     }
 
     protected override void Update()
@@ -118,6 +126,13 @@ public class Player : Entity
         }
         CheckWatered();
         UpdateHealthUI();
+    }
+
+    public override void Flip()
+    {
+        base.Flip();
+
+        cameraFollowObject.CallTurn();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
