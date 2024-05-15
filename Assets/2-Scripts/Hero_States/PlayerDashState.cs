@@ -32,6 +32,10 @@ public class PlayerDashState : PlayerState
     {
         base.Update();
 
+        if (player.isSpeaking) { 
+            stateMachine.ChangeState(player.idleState);
+        }
+
         if (!player.IsGroundDetected() && player.IsWallDetected())
         {
             stateMachine.ChangeState(player.wallSlideSate);

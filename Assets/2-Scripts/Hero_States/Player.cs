@@ -215,7 +215,7 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if (IsWallDetected() || bossSpawning)
+        if (IsWallDetected() || bossSpawning || isSpeaking)
         {
             return;
         }

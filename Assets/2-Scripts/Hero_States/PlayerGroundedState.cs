@@ -24,17 +24,14 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if (Input.GetKeyDown(KeyCode.P)) //REMOVER
-        {
-            ScreenShake.instance.ShakeCamera(10f, 5f);
-        }
+
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered) // falta algo como esto: && player.rb.velocity==Vector2.zero
         {
             stateMachine.ChangeState(player.aimSwordState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !player.isSpeaking)
         {
             stateMachine.ChangeState(player.counterAttackState);
         }
@@ -48,7 +45,7 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.airState);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected() && !player.isWatered) //&& player.rb.velocity.magnitude >=0 Quiza haga falta
+        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected() && !player.isWatered && !player.isSpeaking) //&& player.rb.velocity.magnitude >=0 Quiza haga falta
         {
             stateMachine.ChangeState(player.jumpState);
         }
