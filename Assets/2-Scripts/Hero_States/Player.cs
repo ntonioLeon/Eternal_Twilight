@@ -8,6 +8,7 @@ public class Player : Entity
     public float counterAttackDuration = .2f;
 
     public bool isBusy { get; private set; }
+    public bool isSpeaking;
 
     [Header("Move info")]
     public float moveSpeed = 12f;
@@ -246,5 +247,22 @@ public class Player : Entity
         float maxHealth = GetComponent<CharacterStats>().maxHealth.GetValue();
 
         healthBar.fillAmount = currentHealth / maxHealth;
+    }
+
+    public void Speak()
+    {
+        rb.velocity = new Vector2(0, 0);
+        isSpeaking = true;
+    }
+
+    public void StopSpeak()
+    {
+        isSpeaking = false;
+    }
+
+    public override void DamageImpact()
+    {
+        base.DamageImpact();
+        isSpeaking = false;
     }
 }

@@ -260,6 +260,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &476858460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476858462}
+  - component: {fileID: 476858461}
+  m_Layer: 0
+  m_Name: Guts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &476858461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476858460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: Guts
+  nameColor: {r: 1, g: 0, b: 0, a: 1}
+  soundEffect: {fileID: 0}
+  portraits:
+  - {fileID: 21300000, guid: a94acfb2fa5189f4e8a97474a8c73797, type: 3}
+  portraitsFace: 0
+  setSayDialog: {fileID: 0}
+  description: 
+--- !u!4 &476858462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476858460}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &590636107
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +754,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199159234}
   m_CullTransparentMesh: 1
+--- !u!1 &1291774256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1291774258}
+  - component: {fileID: 1291774257}
+  m_Layer: 0
+  m_Name: Aldeano
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1291774257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291774256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: Aldeano
+  nameColor: {r: 0, g: 0.63041735, b: 1, a: 1}
+  soundEffect: {fileID: 0}
+  portraits:
+  - {fileID: 21300000, guid: 9bfc0745699b77f4b8df084b4baf6add, type: 3}
+  portraitsFace: 0
+  setSayDialog: {fileID: 0}
+  description: 
+--- !u!4 &1291774258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291774256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426247800
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +951,6 @@ GameObject:
   - component: {fileID: 1748550308}
   - component: {fileID: 1748550304}
   - component: {fileID: 1748550306}
-  - component: {fileID: 1748550307}
   - component: {fileID: 1748550305}
   - component: {fileID: 1748550309}
   - component: {fileID: 1748550310}
@@ -864,6 +967,7 @@ GameObject:
   - component: {fileID: 1748550323}
   - component: {fileID: 1748550324}
   - component: {fileID: 1748550325}
+  - component: {fileID: 1748550326}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -897,8 +1001,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1748550306}
-  selectedCommands:
-  - {fileID: 1748550325}
+  selectedCommands: []
   variables:
   - {fileID: 1748550315}
   description: 
@@ -927,8 +1030,8 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{$01}'
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 476858461}
+  portrait: {fileID: 21300000, guid: a94acfb2fa5189f4e8a97474a8c73797, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -961,28 +1064,13 @@ MonoBehaviour:
   itemId: 0
   blockName: Init
   description: 
-  eventHandler: {fileID: 1748550307}
+  eventHandler: {fileID: 1748550326}
   commandList:
   - {fileID: 1748550310}
   - {fileID: 1748550325}
   - {fileID: 1748550305}
   - {fileID: 1748550309}
   suppressAllAutoSelections: 0
---- !u!114 &1748550307
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748550303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f6487d21a03404cb21b245f0242e79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 1748550306}
-  suppressBlockAutoSelect: 0
-  waitForFrames: 1
 --- !u!4 &1748550308
 Transform:
   m_ObjectHideFlags: 0
@@ -1014,8 +1102,8 @@ MonoBehaviour:
   indentLevel: 0
   storyText: '{$02}'
   description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
+  character: {fileID: 1291774257}
+  portrait: {fileID: 21300000, guid: 9bfc0745699b77f4b8df084b4baf6add, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -1769,7 +1857,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1748550325
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1787,6 +1875,21 @@ MonoBehaviour:
     stringVal: '{$btnLang}'
   description: 
   _textObjectObsolete: {fileID: 0}
+--- !u!114 &1748550326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748550303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f6487d21a03404cb21b245f0242e79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 1748550306}
+  suppressBlockAutoSelect: 0
+  waitForFrames: 1
 --- !u!1 &1852957907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,3 +2171,5 @@ SceneRoots:
   - {fileID: 450822310}
   - {fileID: 2500068705557006055}
   - {fileID: 625404643}
+  - {fileID: 476858462}
+  - {fileID: 1291774258}

@@ -34,7 +34,7 @@ public class PlayerState
 
     public virtual void Update()
     {
-        if (PauseMenu.instance.isPaused)
+        if (PauseMenu.instance.isPaused || player.isSpeaking)
         {
             xInput = 0;
             yInput = 0;
