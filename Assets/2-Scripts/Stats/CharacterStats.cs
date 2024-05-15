@@ -53,7 +53,7 @@ public class CharacterStats : MonoBehaviour
     public float currentHealth;
 
     public System.Action onHealthChanged;
-    protected bool isDead;
+    public bool isDead { get; private set; }
     public bool isInvincible { get; private set; }
     //private bool isVulnerable;
 
