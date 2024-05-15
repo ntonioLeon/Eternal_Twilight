@@ -1,0 +1,21 @@
+{
+    "btn1" : {
+        "en" : "New Game",
+        "es" : "Nueva Partida"
+    },
+
+    "btnLang" : {
+        "en" : "Español",
+        "es" : "English"
+    },
+
+    "01"  : {
+        "en" : "Hi, my name is Antonio",
+        "es" : "Hola, mi nombre es Antonio"
+    }, 
+
+    "02" : {
+        "en" : "And this is a test so we can add localization to our project",
+        "es" : "Y esto es una prueba para que podamso añadir localizacion a nuestro proyecto"
+    }
+}
