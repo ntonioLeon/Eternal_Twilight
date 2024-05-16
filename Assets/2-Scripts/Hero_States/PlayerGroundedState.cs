@@ -36,7 +36,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.counterAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !player.isSpeaking)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !player.isSpeaking && player.currentStamina > 40)
         {
             stateMachine.ChangeState(player.primaryAttackState);
         }

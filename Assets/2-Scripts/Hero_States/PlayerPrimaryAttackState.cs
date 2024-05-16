@@ -20,6 +20,9 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Enter();
         xInput = 0;
 
+        player.currentStamina -= 40;
+        player.UpdateStaminasUI();
+
         if (!canAttack) 
         {
             return;

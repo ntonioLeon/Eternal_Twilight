@@ -36,6 +36,12 @@ public class Player : Entity
 
     public UnityEngine.UI.Image healthBar;
 
+    [Header("Estamina info")]
+    public Stat maxStamina;
+    public float currentStamina;
+    public UnityEngine.UI.Image staminaBar;
+    public float staminaRegen = 5;
+
     #region Angularidad
     public float anguloMax;
     [HideInInspector] public Vector2 capsuleSize;
@@ -49,7 +55,7 @@ public class Player : Entity
     public PhysicsMaterial2D sinFriccion;
     public PhysicsMaterial2D maxFriccion;
     #endregion
-
+    [Header("Deslizamiento en pendiente")]
     [SerializeField] private bool wasPoisoned = false;
     [SerializeField] private float wateredTimer = 1;
     public float dashDir { get; private set; }
@@ -110,6 +116,10 @@ public class Player : Entity
 
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         fallSpeedYDampingChangeThresold = CameraManager.instance.fallSpeedYDampingChangeTheshold;
+
+        this.currentStamina = maxStamina.GetValue();
+        //UpdateStaminaUI();
+        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo
     }
 
     protected override void Update()
@@ -126,6 +136,7 @@ public class Player : Entity
         }
         CheckWatered();
         UpdateHealthUI();
+        UpdateStaminasUI();
     }
 
     public override void Flip()
@@ -230,13 +241,14 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if (IsWallDetected() || bossSpawning || isSpeaking)
+        if (IsWallDetected() || bossSpawning || isSpeaking || this.currentStamina < 40)
         {
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill() && !isWatered)
         {
+            this.currentStamina -= 40;             
 
             dashDir = Input.GetAxisRaw("Horizontal");
 
@@ -246,6 +258,7 @@ public class Player : Entity
             }
 
             stateMachine.ChangeState(dashState);
+            UpdateStaminasUI();
         }
     }
 
@@ -263,6 +276,13 @@ public class Player : Entity
 
         healthBar.fillAmount = currentHealth / maxHealth;
     }
+    public void UpdateStaminasUI()
+    {
+        float currentStamina = this.currentStamina;
+        float maxStamina = this.maxStamina.GetValue();
+
+        staminaBar.fillAmount = currentStamina / maxStamina;
+    }
 
     public void Speak()
     {
@@ -279,5 +299,12 @@ public class Player : Entity
     {
         base.DamageImpact();
         isSpeaking = false;
+    }
+
+    void RegenerateStamina()
+    {
+        this.currentStamina += staminaRegen;
+        this.currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina.GetValue());
+        UpdateStaminasUI();
     }
 }
