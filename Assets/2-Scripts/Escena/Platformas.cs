@@ -8,7 +8,7 @@ public class Platformas : MonoBehaviour
     public static Platformas instance;
     private GameObject player;
     private CapsuleCollider2D ccPlayer;
-    private BoxCollider2D ccPlatform;
+    private Collider2D ccPlatform;
     private Bounds ccPlatformBounds;
     private float topPlatform, footPlayer;
 
@@ -21,7 +21,7 @@ public class Platformas : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         ccPlayer = player.GetComponent<CapsuleCollider2D>();
-        ccPlatform = GetComponent<BoxCollider2D>();
+        ccPlatform = GetComponent<Collider2D>();
         ccPlatformBounds = ccPlatform.bounds;
         
 
