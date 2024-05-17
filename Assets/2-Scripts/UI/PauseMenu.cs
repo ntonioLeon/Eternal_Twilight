@@ -20,7 +20,6 @@ public class PauseMenu : MonoBehaviour
     public List<GameObject> menuList = new List<GameObject>();
     private int indexMenu;
     private int altIndex;
-    private Entity[] entidades;
     [HideInInspector]public bool isPaused;
 
     private void Awake()
@@ -37,7 +36,6 @@ public class PauseMenu : MonoBehaviour
         closeBook.SetActive(false);
         menuList[indexMenu].SetActive(false);
         isPaused = false;
-        entidades = FindObjectsOfType<Entity>();
     }
 
     void Update()
@@ -50,13 +48,6 @@ public class PauseMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
-            foreach(Entity ent in entidades)
-            {
-                if (ent != null)
-                {
-                    ent.Stop(true);
-                }
-            }
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
@@ -72,13 +63,6 @@ public class PauseMenu : MonoBehaviour
             closeBook.SetActive(false);
             isPaused = false;
             indexMenu = 0;
-            foreach (Entity ent in entidades)
-            {
-                if (ent != null)
-                {
-                    ent.Stop(false);
-                }
-            }
         }
 
     }

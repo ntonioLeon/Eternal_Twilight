@@ -55,9 +55,14 @@ public class Entity : MonoBehaviour
         fx = GetComponent<EntityFX>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        realVel = rb.velocity;
         stats = GetComponent<CharacterStats>();
         capsule = GetComponent<CapsuleCollider2D>();
-        realVel = GetComponent<Rigidbody2D>().velocity;       
+        if(rb == null)
+        {
+            Debug.Log("No existo");
+        }
+        //Debug.Log(realVel);  
     }
 
     protected virtual void Update()
@@ -193,17 +198,7 @@ public class Entity : MonoBehaviour
     }
     #endregion
 
-    public virtual void Stop(bool paused)
-    {
-        if (paused)
-        {
-            rb.velocity = rb.velocity * 0 ;
-        }
-        else
-        {
-            rb.velocity = realVel;
-        }
-    }
+
     public virtual void Die()
     {
 
