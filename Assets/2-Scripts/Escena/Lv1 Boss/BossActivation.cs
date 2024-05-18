@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro.Examples;
 using UnityEngine;
+using Cinemachine;
 
 public class BossActivation : MonoBehaviour
 {
-    public Enemy_NightBorn boss;
+    public Enemy_NightBorn boss; 
 
     private void Start()
     {
@@ -18,16 +19,17 @@ public class BossActivation : MonoBehaviour
         {
             UI_Boss.instance.BossActivation();
 
-            StartCoroutine(spawn());
+            StartCoroutine(Spawn());
         }
     }
 
-    IEnumerator spawn()
+    IEnumerator Spawn()
     {
         PlayerManager.instance.player.bossSpawning = true;
         PlayerManager.instance.player.stateMachine.ChangeState(PlayerManager.instance.player.idleState);
         boss.gameObject.SetActive(true);
         ScreenShake.instance.ShakeCamera(10f, 5f);
+
         yield return new WaitForSeconds(5f);
 
         PlayerManager.instance.player.bossSpawning = false;

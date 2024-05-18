@@ -12,13 +12,10 @@ public class ScreenShake : MonoBehaviour
     private float shakeTimer;
     private float shakeTotalTimer;
     private float startingIntensity;
+
     private void Awake()
     {
-        if (instance != null)
-        {
-            Destroy(instance.gameObject);
-        }
-        else
+        if (instance == null)
         {
             instance = this;
         }
@@ -42,9 +39,26 @@ public class ScreenShake : MonoBehaviour
 
     public void ShakeCamera(float intensity, float duration)
     {
+        if (!TryAccess())
+        {
+            return;
+        }
+
         perlin.m_AmplitudeGain = intensity;
         startingIntensity = intensity;
         shakeTimer = duration;
         shakeTotalTimer = duration;
+    }
+
+    private bool TryAccess()
+    {
+        if (GetComponent<CinemachineVirtualCamera>() != null)
+        {
+            cinemachine = GetComponent<CinemachineVirtualCamera>();
+            perlin = cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            return true;
+        }
+
+        return false;
     }
 }
