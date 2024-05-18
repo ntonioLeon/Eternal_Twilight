@@ -26,7 +26,7 @@ public class PlayerGroundedState : PlayerState
         base.Update();
 
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered) // falta algo como esto: && player.rb.velocity==Vector2.zero
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered && !player.isSpeaking) // falta algo como esto: && player.rb.velocity==Vector2.zero
         {
             stateMachine.ChangeState(player.aimSwordState);
         }

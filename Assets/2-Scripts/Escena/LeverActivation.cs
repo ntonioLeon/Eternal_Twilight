@@ -15,6 +15,7 @@ public class LeverActivation : MonoBehaviour
         {
             sr.sprite = palancaBajada;
             playableDirector.Play();
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }
