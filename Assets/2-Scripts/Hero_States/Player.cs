@@ -307,4 +307,17 @@ public class Player : Entity
         this.currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina.GetValue());
         UpdateStaminasUI();
     }
+
+    public void CutSceneTransparente()
+    {
+        Debug.Log("Aqui estoy, debiendo de ser transparente.");
+        fx.MakeTransprent(true);
+        Speak();
+    }
+
+    public void CutSceneVisible()
+    {
+        fx.MakeTransprent(false);
+        StopSpeak();
+    }
 }
