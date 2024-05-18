@@ -1,0 +1,41 @@
+{
+    "ald01" : {
+        "en" : "Please, sir! You must help us!",
+        "es" : "¡Por favor, señor! ¡Ayudenos! Se lo suplico"
+    },
+
+    "ald02" : {
+        "en" : "The Count... the one who rules this land... he's a monster! We've seen him transform. He's taken so many lives. We’re all living in fear.",
+        "es" : "El conde... el que gobierna estas tierras... ¡es un monstruo! Lo hemos visto transformarse. Ha tomado tantas vidas. Todos vivimos con miedo."
+    },
+
+    "ald03" : {
+        "en" : "Yes, we believe he’s one of those demons. The castle is cursed. Anyone who goes in never comes out.",
+        "es" : "Sí, creemos que es uno de esos demonios. El castillo está maldito. Cualquiera que entra no vuelve a salir. "
+    },
+
+    "ald04" : {
+        "en" : "Please, you’re our only hope. Save us from this nightmare!",
+        "es" : "Por favor, eres nuestra única esperanza. ¡Sálvanos de esta pesadilla!"
+    },
+
+    "ald05" : {
+        "en" : "Please sir help us! I beg you!.",
+        "es" : "¡Por favor, señor! ¡Ayudenos! Se lo ruego."
+    },
+
+    "guts01"  : {
+        "en" : "What's going on here?",
+        "es" : "¿Qué está pasando aquí?"
+    }, 
+
+    "guts02" : {
+        "en" : "An Apostle...",
+        "es" : "Un Apóstol..."
+    },
+
+    "guts03" : {
+        "en" : "...",
+        "es" : "..."
+    }
+}
