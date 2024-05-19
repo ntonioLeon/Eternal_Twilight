@@ -6,7 +6,8 @@ using Cinemachine;
 
 public class BossActivation : MonoBehaviour
 {
-    public Enemy_NightBorn boss; 
+    public Enemy_NightBorn boss;
+    public GameObject bossDialog;
 
     private void Start()
     {
@@ -32,8 +33,7 @@ public class BossActivation : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        PlayerManager.instance.player.bossSpawning = false;
-        boss.bossFightBegun = true;
+        bossDialog.SetActive(true);
         Destroy(gameObject);
     }
 }
