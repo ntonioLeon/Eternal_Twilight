@@ -75,6 +75,38 @@ MonoBehaviour:
     m_Key: Pause.ResumeCap
     m_Metadata:
       m_Items: []
+  - m_Id: 15164887479369728
+    m_Key: Pause.MainMenuFrist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165053171154944
+    m_Key: Pause.MainMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165897862037504
+    m_Key: Pause.InventaryFirst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165949988847616
+    m_Key: Pause.Inventary
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166155115479040
+    m_Key: Pause.Crafting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166241778188288
+    m_Key: Pause.Leader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166346962944000
+    m_Key: Pause.Main
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166428256944128
+    m_Key: Pause.InventoryOnline
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

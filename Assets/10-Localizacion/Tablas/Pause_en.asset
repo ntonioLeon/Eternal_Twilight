@@ -59,7 +59,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 2093582925824
-    m_Localized: A
+    m_Localized: S
     m_Metadata:
       m_Items: []
   - m_Id: 2076839264256
@@ -76,6 +76,38 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 15158242756050944
     m_Localized: R
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15164887479369728
+    m_Localized: M
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165053171154944
+    m_Localized: ain Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165897862037504
+    m_Localized: I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165949988847616
+    m_Localized: Inventoty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166155115479040
+    m_Localized: Crafting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166241778188288
+    m_Localized: Leader
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166346962944000
+    m_Localized: Main
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166428256944128
+    m_Localized: Online Inventory
     m_Metadata:
       m_Items: []
   references:

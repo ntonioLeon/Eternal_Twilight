@@ -78,6 +78,38 @@ MonoBehaviour:
     m_Localized: C
     m_Metadata:
       m_Items: []
+  - m_Id: 15164887479369728
+    m_Localized: M
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165053171154944
+    m_Localized: enu Principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165897862037504
+    m_Localized: I
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15165949988847616
+    m_Localized: Inventario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166155115479040
+    m_Localized: "Creaci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166241778188288
+    m_Localized: Puntuaciones
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166346962944000
+    m_Localized: Principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15166428256944128
+    m_Localized: Inventario Online
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
