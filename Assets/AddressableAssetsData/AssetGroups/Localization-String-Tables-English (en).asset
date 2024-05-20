@@ -24,7 +24,7 @@ MonoBehaviour:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ebefa877f6cdb804e83466134f2fd616
-    m_Address: Pause_Menu_en
+    m_Address: Pause_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
