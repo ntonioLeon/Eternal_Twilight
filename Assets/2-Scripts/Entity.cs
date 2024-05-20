@@ -106,7 +106,6 @@ public class Entity : MonoBehaviour
 
         float xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
 
-
         if (knockbackPower.x > 0 || knockbackPower.y > 0) // This line makes player immune to freeze effect when he takes hit
             rb.velocity = new Vector2((knockbackPower.x + xOffset) * knockbackDir, knockbackPower.y);
 

@@ -1,0 +1,31 @@
+{
+    "thea01" : {
+        "en" : "You dare challenge the Count? Foolish mortal. I am Theamine, The Night Borne, guardian of this realm. None shall pass.",
+        "es" : "¿Te atreves a desafiar al conde? Mortal insensato. Soy Theamine, El Nacido de la Noche, guardián de este reino. Nadie pasará."
+    },
+
+    "thea02" : {
+        "en" : "Arrogant human. Your defiance is amusing, but futile. The power I wield is beyond your understanding.",
+        "es" : "Humano arrogante. Tu desafío es divertido, pero inútil. El poder que poseo está más allá de tu comprensión."
+    },
+
+    "thea03" : {
+        "en" : "Very well. Prepare to be consumed by the shadows.",
+        "es" : "Muy bien. Prepárate para ser consumido por las sombras."
+    },
+
+    "gutsb01" : {
+        "en" : "Out of my way. I’m here for the Count.",
+        "es" : "Apártate. Estoy aquí por el conde."
+    },
+
+    "gutsb02" : {
+        "en" : "You’re just another monster in my way. Step aside, or be cut down.",
+        "es" : "Solo eres otro monstruo en mi camino. Apártate o serás cortado en pedazos."
+    },
+
+    "gutsb03" : {
+        "en" : "I’ve faced worse. Let’s see if you can back up your words.",
+        "es" : "He enfrentado peores. Vamos a ver si puedes respaldar tus palabras."
+    }
+}

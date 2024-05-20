@@ -20,6 +20,7 @@ public class Enemy_NightBornTriggers : MeleeEnemyAnimationTriggers
             if (hit.GetComponent<Player>() != null)
             {
                 PlayerStats player = hit.GetComponent<PlayerStats>();
+                hit.GetComponent<Entity>().SetupKnockbackDir(transform);
                 nightBorn.stats.DoDamage(player);
             }
         }
