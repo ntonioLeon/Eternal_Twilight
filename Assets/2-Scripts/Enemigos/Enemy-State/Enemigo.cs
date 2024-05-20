@@ -21,6 +21,7 @@ public class Enemigo : Entity
     [HideInInspector] public float lastTimeAttacked;
     public float aggroDistance;
     public float detectDistance;
+    public LayerMask whatIsWater;
 
     #region Stun Variables
     [Header("Stun info")]
@@ -153,5 +154,10 @@ public class Enemigo : Entity
         }
 
         return false;
+    }
+
+    public virtual bool IsWaterDetected()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, whatIsWater);
     }
 }

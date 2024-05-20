@@ -24,7 +24,7 @@ public class MeleeEnemyMoveState : MeleeEnemyGroundState
 
         enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, rb.velocity.y);
 
-        if (enemy.IsWallDetected() || !enemy.IsGroundDetected())
+        if (enemy.IsWallDetected() || !enemy.IsGroundDetected() || enemy.IsWaterDetected())
         {
             enemy.Flip();
             stateMachine.ChangeState(enemy.idleState);

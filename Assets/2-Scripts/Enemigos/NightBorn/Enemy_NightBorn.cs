@@ -154,4 +154,9 @@ public class Enemy_NightBorn : Enemigo
 
         healthBar.fillAmount = currentHealth / maxHealth;
     }
+
+    public void StartBattle()
+    {
+        bossFightBegun = true;
+    }
 }

@@ -320,4 +320,14 @@ public class Player : Entity
         fx.MakeTransprent(false);
         StopSpeak();
     }
+
+    public void BossSpawning()
+    {
+        bossSpawning = true;
+    }
+
+    public void BossSpawned()
+    {
+        bossSpawning = false;
+    }
 }

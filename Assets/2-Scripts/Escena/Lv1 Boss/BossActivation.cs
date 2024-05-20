@@ -29,9 +29,9 @@ public class BossActivation : MonoBehaviour
         PlayerManager.instance.player.bossSpawning = true;
         PlayerManager.instance.player.stateMachine.ChangeState(PlayerManager.instance.player.idleState);
         boss.gameObject.SetActive(true);
-        ScreenShake.instance.ShakeCamera(10f, 5f);
+        ScreenShake.instance.ShakeCamera(10f, 3f);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         bossDialog.SetActive(true);
         Destroy(gameObject);
