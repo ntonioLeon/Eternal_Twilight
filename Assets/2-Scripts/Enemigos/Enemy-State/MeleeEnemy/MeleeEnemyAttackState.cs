@@ -14,6 +14,8 @@ public class MeleeEnemyAttackState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        AudioManager.instance.PlaySFX(10);
     }
 
     public override void Exit()

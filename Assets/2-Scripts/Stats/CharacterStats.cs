@@ -122,6 +122,11 @@ public class CharacterStats : MonoBehaviour
             return;
         }
 
+        if (character.GetComponent<Player>() != null)
+        {
+            AudioManager.instance.PlaySFX(18);
+        }
+
         //Calcular el daño recibido
         float totalDMG = damage.GetValue() + strength.GetValue();
 

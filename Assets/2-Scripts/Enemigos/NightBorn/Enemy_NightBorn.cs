@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -48,7 +49,7 @@ public class Enemy_NightBorn : Enemigo
     protected override void Start()
     {
         base.Start();
-
+        AudioManager.instance.PlaySFX(22);
         stateMachine.Initioalize(idleState);
     }
 
@@ -68,6 +69,7 @@ public class Enemy_NightBorn : Enemigo
     {
         base.Die();
         UI_Boss.instance.BossDeactivation();
+        AudioManager.instance.PlaySFX(16);
         stateMachine.ChangeState(deadState);
     }
 

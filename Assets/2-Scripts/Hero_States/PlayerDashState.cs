@@ -15,7 +15,7 @@ public class PlayerDashState : PlayerState
         player.skill.clone.CreateClone(player.transform);
 
         stateTimer = player.dashDuration;
-
+        AudioManager.instance.PlaySFX(20);
         Physics2D.IgnoreLayerCollision(10, 9, true);
     }
 

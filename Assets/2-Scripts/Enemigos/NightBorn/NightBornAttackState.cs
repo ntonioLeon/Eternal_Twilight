@@ -15,6 +15,7 @@ public class NightBornAttackState : EnemyState
     {
         base.Enter();
 
+        AudioManager.instance.PlaySFX(19);
         enemy.chanceToTeleport += 5;
     }
 

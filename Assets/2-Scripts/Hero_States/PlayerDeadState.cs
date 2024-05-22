@@ -28,5 +28,7 @@ public class PlayerDeadState : PlayerState
         base.Update();
 
         player.SetZeroVelocity();
+
+        //iSTANCIAR EL OBJETO Y LLAMAR A OBJECT DESTROYERS
     }
 }

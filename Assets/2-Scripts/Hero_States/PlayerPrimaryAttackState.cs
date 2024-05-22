@@ -18,6 +18,7 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.PlaySFX(5);
         xInput = 0;
 
         player.currentStamina -= 40;

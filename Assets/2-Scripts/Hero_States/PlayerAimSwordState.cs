@@ -30,6 +30,7 @@ public class PlayerAimSwordState : PlayerState
 
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
+            AudioManager.instance.PlaySFX(8);
             stateMachine.ChangeState(player.idleState);
         }
 

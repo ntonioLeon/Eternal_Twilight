@@ -23,6 +23,7 @@ public class NightBornTeleportState : EnemyState
     {
         base.Exit();
 
+        AudioManager.instance.PlaySFX(15);
         enemy.stats.MakeInvincible(false);
     }
 
