@@ -58,7 +58,7 @@ public class MeleeEnemy : Enemigo
     public override void Die()
     {
         base.Die();
-
+        AudioManager.instance.PlaySFX(7);
         stateMachine.ChangeState(deadState);
     }
 }

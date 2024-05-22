@@ -73,10 +73,10 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(int soundToPlay)
     {
         soundEffects[soundToPlay].Stop();
-        if (soundToPlay<6)
-        {
-            soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
-        }
+       // if (soundToPlay<6)
+       // {
+        soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
+       // }
         currentSound = soundToPlay;
         soundEffects[soundToPlay].Play();
     }
