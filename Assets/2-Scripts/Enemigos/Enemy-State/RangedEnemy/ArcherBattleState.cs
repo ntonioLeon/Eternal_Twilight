@@ -99,7 +99,7 @@ public class ArcherBattleState : EnemyState
 
     private bool CanJump()
     {
-        if (enemy.GroundBehind() == false || enemy.WallBehind() == true)
+        if (!enemy.GroundBehind() || enemy.WallBehind())
         {
             return false;
 

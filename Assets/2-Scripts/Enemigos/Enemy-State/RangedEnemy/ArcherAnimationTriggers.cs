@@ -34,5 +34,10 @@ public class ArcherAnimationTriggers : MonoBehaviour
     {
         enemy.CloseCounterAttackWindow();
     }
+
+    public void SpecialAttackTrigger()
+    {
+        enemy.AnimationSpecialAttackTrigger();
+    }
 }
 
