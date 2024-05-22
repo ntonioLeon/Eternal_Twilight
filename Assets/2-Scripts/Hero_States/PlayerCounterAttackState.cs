@@ -32,6 +32,13 @@ public class PlayerCounterAttackState : PlayerState
 
         foreach (var hit in colliders)
         {
+            if (hit.GetComponent<ArrowController>() != null)
+            {
+                hit.GetComponent<ArrowController>().FLipArrow();
+                stateTimer = 10;
+                player.anim.SetBool("SuccessfulCounterAttack", true);
+            }
+
             if (hit.GetComponent<Enemigo>() != null)
             {
                 if (hit.GetComponent<Enemigo>().CanBeStunned())
