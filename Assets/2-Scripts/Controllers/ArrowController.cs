@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class ArrowController : MonoBehaviour
@@ -20,6 +21,12 @@ public class ArrowController : MonoBehaviour
             rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }
         
+    }
+
+    public void SetupArrow(float speed, CharacterStats stats)
+    {
+        xVelocity = speed;
+        stats = stats;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

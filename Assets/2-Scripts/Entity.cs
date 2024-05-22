@@ -24,12 +24,12 @@ public class Entity : MonoBehaviour
     #region Collision Variables
     [Header("Collision info")]
     public Transform attackCheck;
-    public float attackCheckRadius;
+    public float attackCheckRadius = 1.2f;
     [SerializeField] protected Transform groundCheck;
-    [SerializeField] protected float groundCheckDistance;
+    [SerializeField] protected float groundCheckDistance = 1;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
-    [SerializeField] public float pendienteCheckDistance;
+    [SerializeField] public float pendienteCheckDistance = .8f;
     [SerializeField] public LayerMask whatIsGround;
     [SerializeField] public bool isWatered = false;
     #endregion

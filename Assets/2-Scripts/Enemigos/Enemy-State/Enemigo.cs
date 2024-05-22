@@ -25,8 +25,8 @@ public class Enemigo : Entity
 
     #region Stun Variables
     [Header("Stun info")]
-    public float stunDuration;
-    public Vector2 stunDirection;
+    public float stunDuration = 1;
+    public Vector2 stunDirection = new Vector2(10, 12);
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterImage;
     #endregion
@@ -125,6 +125,11 @@ public class Enemigo : Entity
     public virtual void AnimationFinishTrigger()
     {
         stateMachine.currentState.AnimationFinishTrigger();
+    }
+
+    public virtual void AnimationSpecialAttackTrigger()
+    {
+
     }
 
     public virtual RaycastHit2D IsPlayerDetected()
