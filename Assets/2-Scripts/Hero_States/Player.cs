@@ -265,8 +265,6 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-
-        AudioManager.instance.PlaySFX(17);
         stateMachine.ChangeState(deadState);
     }
 
