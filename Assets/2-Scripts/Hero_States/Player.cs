@@ -309,7 +309,7 @@ public class Player : Entity
 
     public void CutSceneTransparente()
     {
-        Debug.Log("Aqui estoy, debiendo de ser transparente.");
+        //Debug.Log("Aqui estoy, debiendo de ser transparente.");
         fx.MakeTransprent(true);
         Speak();
     }

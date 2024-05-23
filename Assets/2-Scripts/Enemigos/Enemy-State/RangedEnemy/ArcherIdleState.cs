@@ -16,9 +16,7 @@ public class ArcherIdleState : ArcherGroundedState
 
     public override void Exit()
     {
-        base.Exit();
-
-        AudioManager.instance.PlaySFX(14);
+        base.Exit();        
     }
 
     public override void Update()

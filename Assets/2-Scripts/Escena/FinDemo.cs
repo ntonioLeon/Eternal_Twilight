@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 
 public class FinDemo : MonoBehaviour
 {    
-    [SerializeField] private PlayableDirector playableDirector;
+    [SerializeField] private PlayableDirector playableDirector;    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
