@@ -28,6 +28,8 @@ public class PlayerGroundedState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && !player.isWatered && !player.isSpeaking) // falta algo como esto: && player.rb.velocity==Vector2.zero
         {
+            // quitar mana
+            // actualizar mana
             stateMachine.ChangeState(player.aimSwordState);
         }
 

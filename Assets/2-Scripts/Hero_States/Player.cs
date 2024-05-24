@@ -115,6 +115,10 @@ public class Player : Entity
         cameraFollowObject = cameraFollowGO.GetComponent<CameraFollowObject>();
         fallSpeedYDampingChangeThresold = CameraManager.instance.fallSpeedYDampingChangeTheshold;
 
+        Color color = skill.sword.normalImage.color;
+        color.a = 1.0f;
+        skill.sword.normalImage.color = color;
+
         this.currentStamina = maxStamina.GetValue();
         //UpdateStaminaUI();
         InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo
