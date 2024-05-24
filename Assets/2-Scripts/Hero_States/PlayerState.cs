@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+
+using UnityEngine.UI;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+
 
 public class PlayerState
 {
@@ -63,7 +67,52 @@ public class PlayerState
         GoingDown();
         CheckPolvoPies();
         CheckPolvoSalto();
+        SelectSword();
         player.anim.SetFloat("yVelocity", rb.velocity.y);
+    }
+
+    private void SelectSword()
+    {
+        UnityEngine.Color color = player.skill.sword.normalImage.color;
+        UnityEngine.Color colorRes = player.skill.sword.normalImage.color;
+        color.a = 1.0f;
+        colorRes.a = .5f;
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.skill.sword.swordType = SwordType.Regular;
+            player.skill.sword.normalImage.color = color;
+
+            player.skill.sword.peirceImage.color = colorRes;
+            player.skill.sword.bounceImage.color = colorRes;
+            player.skill.sword.spinImage.color = colorRes;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            player.skill.sword.swordType = SwordType.Pierce;
+            player.skill.sword.peirceImage.color= color;
+
+            player.skill.sword.normalImage.color = colorRes;
+            player.skill.sword.bounceImage.color = colorRes;
+            player.skill.sword.spinImage.color = colorRes;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            player.skill.sword.swordType = SwordType.Bounce;
+            player.skill.sword.bounceImage.color = color;
+
+            player.skill.sword.normalImage.color = colorRes;
+            player.skill.sword.peirceImage.color = colorRes;
+            player.skill.sword.spinImage.color = colorRes;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            player.skill.sword.swordType = SwordType.Spin;
+            player.skill.sword.spinImage.color = color;
+
+            player.skill.sword.normalImage.color = colorRes;
+            player.skill.sword.peirceImage.color = colorRes;
+            player.skill.sword.bounceImage.color = colorRes;
+        }
     }
 
     private void CheckPolvoSalto()
@@ -103,8 +152,8 @@ public class PlayerState
         player.posPies = player.transform.position - (Vector3)(new Vector2(0.0f, player.capsuleSize.y / 2 + .4f));
         RaycastHit2D hitForward = Physics2D.Raycast(player.posPies, Vector2.right, player.pendienteCheckDistance, player.whatIsGround);
         RaycastHit2D hitBackward = Physics2D.Raycast(player.posPies, -Vector2.right, player.pendienteCheckDistance, player.whatIsGround);
-        Debug.DrawRay(player.posPies, Vector2.right * player.pendienteCheckDistance, Color.red);
-        Debug.DrawRay(player.posPies, -Vector2.right * player.pendienteCheckDistance, Color.red);
+        //Debug.DrawRay(player.posPies, Vector2.right * player.pendienteCheckDistance, Color.red);
+        //Debug.DrawRay(player.posPies, -Vector2.right * player.pendienteCheckDistance, Color.red);
         if (hitForward)
         {
             player.enPendiente = true;
@@ -131,8 +180,8 @@ public class PlayerState
                 player.enPendiente = true;
             }
             player.anguloAnterior = player.anguloPendiente;
-            Debug.DrawRay(hitDownward.point, player.anguloPer, Color.blue);
-            Debug.DrawRay(hitDownward.point, hitDownward.normal, Color.green);
+            //Debug.DrawRay(hitDownward.point, player.anguloPer, Color.blue);
+            //Debug.DrawRay(hitDownward.point, hitDownward.normal, Color.green);
         }
         // ANGULO MAXIMO
         if (player.anguloPendiente > player.anguloMax || player.anguloLateral > player.anguloMax)
@@ -158,7 +207,7 @@ public class PlayerState
         if (Input.GetAxisRaw("Vertical")==-1 && player.IsGroundDetected()) // 
         {
             RaycastHit2D hitGround = Physics2D.Raycast(player.transform.position, Vector2.down, (player.GetComponent<CapsuleCollider2D>().size.y) + .25f, player.whatIsGround);
-            Debug.DrawRay(player.transform.position, Vector2.down * ((player.GetComponent<CapsuleCollider2D>().size.y) + .25f), Color.cyan);
+            //Debug.DrawRay(player.transform.position, Vector2.down * ((player.GetComponent<CapsuleCollider2D>().size.y) + .25f), Color.cyan);
             if (hitGround)
             {
                 if (hitGround.transform.gameObject.tag == "SpecialGround")

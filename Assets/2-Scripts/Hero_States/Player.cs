@@ -73,9 +73,7 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
-
     public PlayerAimSwordState aimSwordState { get; private set; }
-
     public PlayerCatchState catchSword { get; private set; }
     public PlayerDeadState deadState { get; private set; }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum SwordType
 {
@@ -11,7 +12,6 @@ public enum SwordType
 public class Sword_Skill : Skill
 {
     public SwordType swordType= SwordType.Regular;
-
     [Header("Bounce info")]
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
@@ -41,6 +41,12 @@ public class Sword_Skill : Skill
     [SerializeField] private float spaceBetweenDots;
     [SerializeField] private GameObject dotPrefab;
     [SerializeField] private Transform dotsParent;
+
+    [Header("Images info")]
+    public Image bounceImage;
+    public Image spinImage;
+    public Image peirceImage;
+    public Image normalImage;
 
     private GameObject[] dots;
 
@@ -86,6 +92,7 @@ public class Sword_Skill : Skill
                 dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
             }
         }
+
 
         SetUpGravity();
     }
