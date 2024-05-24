@@ -16,7 +16,7 @@ public class ArcherDeadState : EnemyState
 
         enemy.anim.SetBool(enemy.lastAnimBoolName, true);
         enemy.anim.speed = 0;
-        //enemy.cd.enabled = false;
+        enemy.capsule.enabled = false;
 
         stateTimer = .15f;
     }

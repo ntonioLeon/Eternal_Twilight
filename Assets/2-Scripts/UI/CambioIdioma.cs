@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class CambioIdioma : MonoBehaviour
 {
-    public string[] idioma = {"English", "Español"};
+    public string[] idioma = { "Español", "English" };
     public Text idiomaText;
     private int indiceIdioma;
 
@@ -49,4 +49,15 @@ public class CambioIdioma : MonoBehaviour
         }
     }
 
+    public void lanzarFraseDeFin()
+    {
+        if (indiceIdioma == 0)
+        {
+            AudioManager.instance.PlaySFX(14);
+        }
+        else
+        {
+            AudioManager.instance.PlaySFX(13);
+        }
+    }
 }

@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     public List<GameObject> buutonsList = new List<GameObject>();
     #endregion
     public List<GameObject> menuList = new List<GameObject>();
+    //public GameObject darkScreen;
     private int indexMenu;
     private int altIndex;
     [HideInInspector]public bool isPaused;
@@ -35,6 +36,7 @@ public class PauseMenu : MonoBehaviour
         openBook.SetActive(false);
         closeBook.SetActive(false);
         menuList[indexMenu].SetActive(false);
+        //darkScreen.SetActive(false);
         isPaused = false;
     }
 
@@ -156,4 +158,6 @@ public class PauseMenu : MonoBehaviour
         }
         menuList[indexMenu].SetActive(true);
     }
+
+    
 }
