@@ -36,8 +36,8 @@ public class ArrowController : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
             if (collision.GetComponent<CharacterStats>() != null)
-            {
-                //collision.GetComponent<CharacterStats>().TakeDamage(damage);
+            {                
+                collision.GetComponent<Entity>().SetupKnockbackDir(transform);
                 myStats.DoDamage(collision.GetComponent<CharacterStats>());
 
                 StuckInto(collision);
