@@ -110,6 +110,50 @@ MonoBehaviour:
     m_Localized: Online Inventory
     m_Metadata:
       m_Items: []
+  - m_Id: 16568386989604864
+    m_Localized: N
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568477158752256
+    m_Localized: ew Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568582679052288
+    m_Localized: C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568689394728960
+    m_Localized: ontinue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568808634597376
+    m_Localized: Q
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568887315546112
+    m_Localized: uit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571052180389888
+    m_Localized: Enter Username
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16570713251266560
+    m_Localized: Login
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571238919192576
+    m_Localized: Enter Password
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571434914824192
+    m_Localized: Register
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571533430636544
+    m_Localized: Reset Password
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

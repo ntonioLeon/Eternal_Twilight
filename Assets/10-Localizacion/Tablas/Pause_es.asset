@@ -110,6 +110,50 @@ MonoBehaviour:
     m_Localized: Inventario Online
     m_Metadata:
       m_Items: []
+  - m_Id: 16568386989604864
+    m_Localized: N
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568477158752256
+    m_Localized: ueva Partida
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568582679052288
+    m_Localized: C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568689394728960
+    m_Localized: ontinuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568808634597376
+    m_Localized: S
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568887315546112
+    m_Localized: alir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571052180389888
+    m_Localized: Introduzca Usuario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16570713251266560
+    m_Localized: Acceso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571238919192576
+    m_Localized: "Introduzca Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571434914824192
+    m_Localized: Registrarse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571533430636544
+    m_Localized: "Restrablecer Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

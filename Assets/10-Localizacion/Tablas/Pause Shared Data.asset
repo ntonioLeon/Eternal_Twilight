@@ -107,6 +107,50 @@ MonoBehaviour:
     m_Key: Pause.InventoryOnline
     m_Metadata:
       m_Items: []
+  - m_Id: 16568386989604864
+    m_Key: Pause.NewGameFist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568477158752256
+    m_Key: Pause.NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568582679052288
+    m_Key: Pause.ContinuarFist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568689394728960
+    m_Key: Pause.Continuar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568808634597376
+    m_Key: Pause.QuirFirst
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16568887315546112
+    m_Key: Pause.Quir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16570713251266560
+    m_Key: Pause.Login
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571052180389888
+    m_Key: Pause.PlaceHolderName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571238919192576
+    m_Key: Pause.PlaceHolderPassword
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571434914824192
+    m_Key: Pause.Register
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16571533430636544
+    m_Key: Pause.Reset
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
