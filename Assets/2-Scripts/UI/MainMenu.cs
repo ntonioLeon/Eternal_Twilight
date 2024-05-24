@@ -2,9 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("Info Escenas")]
+    [SerializeField] private string sceneName = "Test0";
+    [SerializeField] private GameObject continueButton;
+    public UI_FadeScreen fadeSceen;
+
+    [Header("Info Objetos")]
     public static MainMenu instance;
     public GameObject fondo;
     public GameObject openBook;
@@ -23,6 +30,12 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        if (!SaveManager.instance.HasSavedData())
+        {
+            continueButton.SetActive(false);
+            //Buscar por loggin too.
+        }
+
         fondo.SetActive(false);
         openBook.SetActive(true);
         Instantiate(openBook, canvas.transform);
@@ -31,7 +44,7 @@ public class MainMenu : MonoBehaviour
         openBook.SetActive(false);
     }
 
-    IEnumerator OpenCorutine()
+    public IEnumerator OpenCorutine()
     {
         yield return new WaitForSeconds(0.6f);
         fondo.SetActive(true);
@@ -45,7 +58,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(CloseCorutine());
 
     }
-    IEnumerator CloseCorutine()
+    public IEnumerator CloseCorutine()
     {
         fondo.SetActive(false);
         menuList[indexMenu].SetActive(false);
@@ -56,5 +69,33 @@ public class MainMenu : MonoBehaviour
     public void WebLink(string link)
     {
         Application.OpenURL(link);
+    }
+
+    public void LaunchGame()
+    {
+        SaveManager.instance.DeleteSavedData();
+        StartCoroutine(LoadScreenWithFadeEffect(1.5f));
+        ToPlay();
+    }
+
+    public void ContinueGame()
+    {
+        StartCoroutine(LoadScreenWithFadeEffect(1.3f));
+        ToPlay();
+    }
+
+    public void ExitGame()
+    {
+        ToPlay();
+        Application.Quit();
+    }
+
+    IEnumerator LoadScreenWithFadeEffect(float delay)
+    {
+        fadeSceen.FadeOut();
+
+        yield return new WaitForSeconds(delay);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

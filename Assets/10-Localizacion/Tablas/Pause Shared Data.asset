@@ -151,6 +151,22 @@ MonoBehaviour:
     m_Key: Pause.Reset
     m_Metadata:
       m_Items: []
+  - m_Id: 16676446202511360
+    m_Key: Pause.FinDeLaDemo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16676545729150976
+    m_Key: Pause.HasMuerto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690806236921856
+    m_Key: Pause.MainMenuDead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690935702503424
+    m_Key: Pause.TryAgain
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

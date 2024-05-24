@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -26,6 +27,8 @@ public class UI_FadeScreen : MonoBehaviour
 
     public void ActivarTextFin()
     {
+        FadeOut(); 
+
         StartCoroutine(Creditos());
     }
 
@@ -33,6 +36,7 @@ public class UI_FadeScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        textoFin.SetActive(true);
+        if (textoFin != null)
+            textoFin.SetActive(true);
     }
 }

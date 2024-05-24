@@ -154,6 +154,22 @@ MonoBehaviour:
     m_Localized: "Restrablecer Contrase\xF1a"
     m_Metadata:
       m_Items: []
+  - m_Id: 16676446202511360
+    m_Localized: Fin de la Demo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16676545729150976
+    m_Localized: Has Muerto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690806236921856
+    m_Localized: "Men\xFA Principal"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690935702503424
+    m_Localized: Reintentar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class PauseMenu : MonoBehaviour
     private int indexMenu;
     private int altIndex;
     [HideInInspector]public bool isPaused;
+
+    [Header("End Screen")]
+    [SerializeField] private UI_FadeScreen fadeSceen;
+    [SerializeField] private GameObject youDied;
+    [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject quitButton;
 
     private void Awake()
     {        
@@ -159,5 +166,31 @@ public class PauseMenu : MonoBehaviour
         menuList[indexMenu].SetActive(true);
     }
 
-    
+    public void GoToMainMenu()
+    {
+        fadeSceen.FadeOut();
+        StartCoroutine(CloseCourutine());
+        SceneManager.LoadScene(0);
+    }
+
+    public void SwichOnEndScreen()
+    {
+        fadeSceen.FadeOut();
+
+        StartCoroutine(EndScreenCoroutine());
+    }
+
+    IEnumerator EndScreenCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        youDied.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        restartButton.SetActive(true);
+        quitButton.SetActive(true);
+    }
+
+    public void RestartGameButton()
+    {
+        GameManager.instance.RestartScene();
+    }
 }

@@ -154,6 +154,22 @@ MonoBehaviour:
     m_Localized: Reset Password
     m_Metadata:
       m_Items: []
+  - m_Id: 16676446202511360
+    m_Localized: End of the Demo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16676545729150976
+    m_Localized: You Died
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690806236921856
+    m_Localized: Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16690935702503424
+    m_Localized: Try Again
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

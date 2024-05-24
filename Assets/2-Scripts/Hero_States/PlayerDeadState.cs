@@ -17,6 +17,7 @@ public class PlayerDeadState : PlayerState
     {
         base.Enter();
         AudioManager.instance.PlaySFX(17);
+        GameObject.Find("LevelManager").GetComponent<PauseMenu>().SwichOnEndScreen();
     }
 
     public override void Exit()
