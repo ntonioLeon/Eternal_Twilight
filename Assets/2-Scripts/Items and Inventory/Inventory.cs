@@ -29,9 +29,9 @@ public class Inventory : MonoBehaviour//, ISaveManager
     private UI_ItemSlot[] stashItemSlots;
     private UI_EquipmentSlot[] equipmentSlots;
 
-    //[Header("Data base")]
-    //public List<InventoryItem> loadedItem; 
-    //public List<ItemData_Equipment> loadedEquipment;
+    [Header("Data base")]
+    public List<InventoryItem> loadedItems; 
+    public List<ItemData_Equipment> loadedEquipment;
 
     private void Awake()
     {
@@ -56,13 +56,6 @@ public class Inventory : MonoBehaviour//, ISaveManager
         stashItemSlots = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlots = eqipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
         AddStartingItems();
-    }
-
-    private void AddStartingItems()
-    {
-        for (int i = 0; i < startingItems.Count; i++)
-        {
-            AddItem(startingItems[i]);        }
     }
 
     public void EquipItem(ItemData item)
@@ -252,7 +245,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
 
     public List<InventoryItem> GetStashList() { return stash; }
 
-    /*
+    
     private void AddStartingItems()
     {
         foreach (ItemData_Equipment item in loadedEquipment)
@@ -275,9 +268,9 @@ public class Inventory : MonoBehaviour//, ISaveManager
 
         for (int i = 0; i < startingItems.Count; i++)
         {
-            if (startingItems[i] !) null)
+            if (startingItems[i] != null)
             {
-                AddItem(item.data);
+                AddItem(startingItems[i]);
             }
         }
     }
@@ -315,12 +308,12 @@ public class Inventory : MonoBehaviour//, ISaveManager
         data.inventory.Clear();
         data.equipmentId.Clear();
 
-        foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictianory)
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
         {
             data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
         }
 
-        foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictianory)
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
         {
             data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
         }
@@ -344,5 +337,5 @@ public class Inventory : MonoBehaviour//, ISaveManager
         }
 
         return itemDataBase;
-    }*/
+    }
 }
