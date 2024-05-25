@@ -167,6 +167,22 @@ MonoBehaviour:
     m_Key: Pause.TryAgain
     m_Metadata:
       m_Items: []
+  - m_Id: 16990490778189824
+    m_Key: Pause.Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990542351351808
+    m_Key: Pause.Waepon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990599989477376
+    m_Key: Pause.Flask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990664225243136
+    m_Key: Pause.Accesory
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

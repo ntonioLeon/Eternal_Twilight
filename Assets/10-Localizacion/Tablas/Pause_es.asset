@@ -170,6 +170,22 @@ MonoBehaviour:
     m_Localized: Reintentar
     m_Metadata:
       m_Items: []
+  - m_Id: 16990490778189824
+    m_Localized: Armadura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990542351351808
+    m_Localized: Arma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990599989477376
+    m_Localized: Frasco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16990664225243136
+    m_Localized: Accesorio
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
