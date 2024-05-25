@@ -22,6 +22,9 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         }
         
     }
+
+    public int GetCurrency() => currency;
+
     public void LoadData(GameData data)
     {
         this.currency = data.currency;

@@ -31,10 +31,10 @@ public class FileDataHandler
 
             string dataToStore = JsonUtility.ToJson(data, true);
 
-            if (encryptData)
+            /*if (encryptData)
             {
                 dataToStore = EncryptDecrypt(dataToStore);
-            }
+            }*/
 
             using (FileStream stream = new FileStream(fullpath, FileMode.Create))
             {

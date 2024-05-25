@@ -1,10 +1,8 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour//, ISaveManager
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
 
@@ -30,7 +28,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
     private UI_EquipmentSlot[] equipmentSlots;
 
     [Header("Data base")]
-    public List<InventoryItem> loadedItems; 
+    public List<InventoryItem> loadedItems;
     public List<ItemData_Equipment> loadedEquipment;
 
     private void Awake()
@@ -104,7 +102,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
     {
         for (int i = 0; i < equipmentSlots.Length; i++)
         {
-            foreach (KeyValuePair < ItemData_Equipment, InventoryItem > item in equipmentDictionary)
+            foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
             {
                 if (item.Key.equipmentType == equipmentSlots[i].slotType)
                 {
@@ -148,7 +146,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
             }
             UpdateSlotUI();
         }
-        
+
     }
 
     private void AddToStash(ItemData item)
@@ -225,7 +223,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
                 else
                 {
                     materialsToRemove.Add(stashValue);
-                }                     
+                }
             }
             else
             {
@@ -245,14 +243,13 @@ public class Inventory : MonoBehaviour//, ISaveManager
         return true;
     }
 
-    public List<InventoryItem> GetEquipmentList()
-    {
-        return equipment;
-    }
+    public List<InventoryItem> GetEquipmentList() { return equipment; }
 
     public List<InventoryItem> GetStashList() { return stash; }
 
-    
+    public List<InventoryItem> GetInventoryList() { return inventory; }
+
+
     private void AddStartingItems()
     {
         foreach (ItemData_Equipment item in loadedEquipment)
@@ -273,18 +270,17 @@ public class Inventory : MonoBehaviour//, ISaveManager
             return;
         }
 
+
         for (int i = 0; i < startingItems.Count; i++)
         {
             if (startingItems[i] != null)
-            {
                 AddItem(startingItems[i]);
-            }
         }
     }
 
-    public void LoadData(GameData data)
+    public void LoadData(GameData _data)
     {
-        foreach (KeyValuePair<string, int> pair in data.inventory)
+        foreach (KeyValuePair<string, int> pair in _data.inventory)
         {
             foreach (var item in GetItemDataBase())
             {
@@ -298,7 +294,7 @@ public class Inventory : MonoBehaviour//, ISaveManager
             }
         }
 
-        foreach (string loadedItemId in data.equipmentId)
+        foreach (string loadedItemId in _data.equipmentId)
         {
             foreach (var item in GetItemDataBase())
             {
@@ -310,31 +306,30 @@ public class Inventory : MonoBehaviour//, ISaveManager
         }
     }
 
-    public void SaveData(ref GameData data)
+    public void SaveData(ref GameData _data)
     {
-        data.inventory.Clear();
-        data.equipmentId.Clear();
+        _data.inventory.Clear();
 
         foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
         {
-            data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
         }
 
         foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
         {
-            data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
         }
 
         foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
         {
-            data.equipmentId.Add(pair.Key.itemId);
+            _data.equipmentId.Add(pair.Key.itemId);
         }
     }
 
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] { "11-Assets/Data/Items" });
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });
 
         foreach (string SOName in assetNames)
         {

@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 93620179}
   - component: {fileID: 93620178}
   - component: {fileID: 93620177}
+  - component: {fileID: 93620180}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -539,6 +540,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &93620180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93620176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21fdf6c830abcc349a7c5afc8d48f79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &112695423
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +683,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2677587347770055989, guid: 80c3e373d6345334f920f5624d844fe1, type: 3}
+      propertyPath: playFabManager
+      value: 
+      objectReference: {fileID: 93620180}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

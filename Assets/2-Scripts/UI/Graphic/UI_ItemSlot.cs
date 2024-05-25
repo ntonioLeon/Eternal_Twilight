@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEditor;
+using UnityEngine.UI;
 
 public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
 {
@@ -55,6 +52,6 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
         {
             //Debug.Log("Equiped new item + " + item.data.itemName);
             Inventory.instance.EquipItem(item.data);
-        }        
+        }
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
@@ -12,23 +11,39 @@ public class SaveManager : MonoBehaviour
     private GameData gameData;
     private List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
+    [SerializeField] PlayFabManager playFabManager;
+    [SerializeField] Inventory inventory;
+
+    [ContextMenu("Delete save file")]
+
+    public void DeleteSavedData()
+    {
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        dataHandler.Delete();
+    }
+
+    public bool HasSavedData()
+    {
+        if (dataHandler.Load() != null)
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void Awake()
     {
         if (instance != null)
-        {
             Destroy(instance.gameObject);
-        }
         else
-        {
-            instance = this; //64 Importante
-        }
+            instance = this;
     }
+
 
     private void Start()
     {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
-        saveManagers = FindAllSaveManagers();        
+        saveManagers = FindAllSaveManagers();
 
         LoadGame();
     }
@@ -44,28 +59,32 @@ public class SaveManager : MonoBehaviour
 
         if (this.gameData == null)
         {
+            Debug.Log("No saved data found!");
             NewGame();
         }
 
-        foreach (ISaveManager manager in saveManagers)
+        foreach (ISaveManager saveManager in saveManagers)
         {
-            manager.LoadData(gameData);
+            saveManager.LoadData(gameData);
         }
     }
 
     public void SaveGame()
     {
-        foreach (ISaveManager manager in saveManagers) 
+
+        foreach (ISaveManager saveManager in saveManagers)
         {
-            manager.SaveData(ref gameData);
+            saveManager.SaveData(ref gameData);
         }
 
         dataHandler.Save(gameData);
+        playFabManager.GetAllInventory(gameData);
     }
 
     private void OnApplicationQuit()
     {
-        SaveGame();    
+        SaveGame();
+        
     }
 
     private List<ISaveManager> FindAllSaveManagers()
@@ -73,21 +92,5 @@ public class SaveManager : MonoBehaviour
         IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
 
         return new List<ISaveManager>(saveManagers);
-    }
-
-    [ContextMenu("Delete save file")]
-    public void DeleteSavedData()
-    {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
-        dataHandler.Delete();
-    }
-
-    public bool HasSavedData()
-    {
-        if (dataHandler.Load() != null)
-        {
-            return true;
-        }
-        return false;
     }
 }
