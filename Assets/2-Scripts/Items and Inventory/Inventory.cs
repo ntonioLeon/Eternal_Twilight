@@ -89,11 +89,14 @@ public class Inventory : MonoBehaviour//, ISaveManager
 
     public void UnequipItem(ItemData_Equipment itemToRemove)
     {
-        if (equipmentDictionary.TryGetValue(itemToRemove, out InventoryItem value))
+        if (itemToRemove != null)
         {
-            equipment.Remove(value);
-            equipmentDictionary.Remove(itemToRemove);
-            itemToRemove.RemoveModifiers();
+            if (equipmentDictionary.TryGetValue(itemToRemove, out InventoryItem value))
+            {
+                equipment.Remove(value);
+                equipmentDictionary.Remove(itemToRemove);
+                itemToRemove.RemoveModifiers();
+            }
         }
     }
 
@@ -133,15 +136,19 @@ public class Inventory : MonoBehaviour//, ISaveManager
 
     public void AddItem(ItemData item)
     {
-        if (item.itemType == ItemType.Equipment)
+        if (item != null)
         {
-            AddToInventory(item);
+            if (item.itemType == ItemType.Equipment)
+            {
+                AddToInventory(item);
+            }
+            else if (item.itemType == ItemType.Material)
+            {
+                AddToStash(item);
+            }
+            UpdateSlotUI();
         }
-        else if (item.itemType == ItemType.Material)
-        {
-            AddToStash(item);
-        }
-        UpdateSlotUI();
+        
     }
 
     private void AddToStash(ItemData item)
