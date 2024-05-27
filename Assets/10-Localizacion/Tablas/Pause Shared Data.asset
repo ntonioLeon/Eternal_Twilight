@@ -183,6 +183,10 @@ MonoBehaviour:
     m_Key: Pause.Accesory
     m_Metadata:
       m_Items: []
+  - m_Id: 17687191295901696
+    m_Key: Pause.Email
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

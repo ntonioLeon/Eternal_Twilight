@@ -4,26 +4,80 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class PlayFabManager : MonoBehaviour
 {
+    [Header("UI")]
+    public Text messageText;
+    public InputField usernameInput;
+    public InputField passwordInput;
+    public InputField emailInput;
+
     void Start()
     {
-        Login();
 
-        //StartCoroutine(PedirLeader());        
-    }
-
-    IEnumerator PedirLeader()
-    {
-        yield return new WaitForSeconds(7f); //PONER EN UN BOTON, NO DEJAR EN EL START
-
-        //GetLeaderBoard();
-        //GetLeaderboardAroundPlayer("AFEAB4936BAC82C5", 3, "LeaderboardTest");
     }
 
     #region Login
+    public void RegisterButton()
+    {
+        if (passwordInput.text.Length < 6)
+        {
+            messageText.text = "Password is too short";
+        }
+
+        var request = new RegisterPlayFabUserRequest
+        {
+            Username = usernameInput.text,
+            DisplayName = usernameInput.text,
+            Password = passwordInput.text,
+            Email = emailInput.text,
+            RequireBothUsernameAndEmail = true
+        };
+        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+    }
+
+    void OnRegisterSuccess(RegisterPlayFabUserResult result)
+    {
+        messageText.text = "Registered and logged in";
+    }
+
+    public void LoginButton()
+    {
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = emailInput.text,
+            Password = passwordInput.text
+        };
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+    }
+
+    void OnLoginSuccess(LoginResult result)
+    {
+        messageText.text = "Logged as " + result.ToString();
+        Debug.Log("Logged as " + result.ToString());        
+        //Aqui cargar el inventario, posición y currency.
+    }
+
+    public void RequestPasswordButton()
+    {
+        var request = new SendAccountRecoveryEmailRequest
+        {
+            Email = emailInput.text,
+            TitleId = "2C588"
+        };
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
+    }
+
+    void OnPasswordReset(SendAccountRecoveryEmailResult result)
+    {
+        messageText.text = "Password RESET MAIL SENDT";
+    }
+    
     void Login()
     {
         var request = new LoginWithCustomIDRequest
