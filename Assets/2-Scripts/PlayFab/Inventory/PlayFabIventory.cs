@@ -5,7 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Code.Items
+namespace Code.Items { 
+    /*
 {
     public class PlayFabIventory : MonoBehaviour
     {
@@ -59,6 +60,7 @@ namespace Code.Items
                 text.AppendLine($"{item}");
             }
             */
+    /*
             _itemCounts.Clear();
 
             foreach (var item in _userItems)
@@ -146,4 +148,5 @@ namespace Code.Items
             _playFabRemoveItems.RevokeItems(revokeInventoryItems);
         }
     }
+*/
 }
