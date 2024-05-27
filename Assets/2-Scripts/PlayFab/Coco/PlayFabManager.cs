@@ -1,3 +1,4 @@
+using Fungus;
 using PlayFab;
 using PlayFab.ClientModels;
 using System;
@@ -11,15 +12,27 @@ using UnityEngine.UIElements;
 
 public class PlayFabManager : MonoBehaviour
 {
+    public static PlayFabManager instance;
+
     [Header("UI")]
     public Text messageText;
     public InputField usernameInput;
     public InputField passwordInput;
     public InputField emailInput;
 
+    [SerializeField] private MainMenu mainMenu;
+
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance.gameObject);
+        else
+            instance = this;
+    }
+
     void Start()
     {
-
+        //Login();
     }
 
     #region Login
@@ -44,6 +57,7 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in";
+        mainMenu.isLogged = true;
     }
 
     public void LoginButton()
@@ -59,7 +73,14 @@ public class PlayFabManager : MonoBehaviour
     void OnLoginSuccess(LoginResult result)
     {
         messageText.text = "Logged as " + result.ToString();
-        Debug.Log("Logged as " + result.ToString());        
+        Debug.Log("Logged as " + result.ToString());
+        mainMenu.isLogged = true;
+        PlayerPrefs.SetString("Logged", "S");
+        Debug.Log(PlayerPrefs.GetString("Logged"));
+        if (DownloadInventory())
+        {
+            mainMenu.continueButton.SetActive(true);
+        }
         //Aqui cargar el inventario, posición y currency.
     }
 
@@ -173,7 +194,8 @@ public class PlayFabManager : MonoBehaviour
     }
     #endregion
 
-    public void GetAllInventory(GameData gameData)
+    #region Inventory
+    public void UploadInventory(GameData gameData)
     {
         /*
         StringBuilder inventoryParaGuardar = new StringBuilder();
@@ -229,13 +251,59 @@ public class PlayFabManager : MonoBehaviour
                 {"PlayerData", dataToStore}
             }
         };
-        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);        
     }
-
     void OnDataSend(UpdateUserDataResult result)
     {
         Debug.Log("Data saved");
     }
 
+    public bool DownloadInventory()
+    {
+        try
+        {
+            PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataObtained, OnError);
+            return true;
+        }
+        catch (PlayFabCustomException ex)
+        {
+            return false;
+        }
+    }
 
+    void OnDataObtained(GetUserDataResult result) 
+    {
+        if (result.Data == null || !result.Data.ContainsKey("PlayerData") || result.Data["PlayerData"].Value.Length <=0)
+        {
+            Debug.Log("No hay datos");
+            throw new PlayFabCustomException();
+        }
+
+        GameData gameData = null;
+        Debug.Log(result.Data["PlayerData"].Value);
+
+        gameData = JsonUtility.FromJson<GameData>(result.Data["PlayerData"].Value);        
+
+        foreach (ISaveManager saveManager in SaveManager.instance.saveManagers)
+        {
+            saveManager.LoadData(gameData);
+        }        
+    }
+
+    public void GetObjectsPrices()
+    {
+        PlayFabClientAPI.GetTitleData(new GetTitleDataRequest(), OnPricesReceived, OnError);
+    }
+
+    void OnPricesReceived(GetTitleDataResult result)
+    {
+        if (result.Data == null || result.Data.ContainsKey("ItemCost") == false)
+        {
+            Debug.Log("No hay precios");
+            return;
+        }
+
+        Debug.Log(result.Data["ItemCost"]);
+    }
+    #endregion
 }

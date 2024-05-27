@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Info Escenas")]
     [SerializeField] private string sceneName = "Test0";
-    [SerializeField] private GameObject continueButton;
+    public GameObject continueButton;
     public UI_FadeScreen fadeSceen;
 
     [Header("Info Objetos")]
@@ -21,6 +21,8 @@ public class MainMenu : MonoBehaviour
     public Canvas canvas;
     public List<GameObject> menuList = new List<GameObject>();
     private int indexMenu;
+    public bool isLogged;
+
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetString("Logged", "N");
+        Debug.Log(PlayerPrefs.GetString("Logged"));
         if (!SaveManager.instance.HasSavedData())
         {
             continueButton.SetActive(false);
@@ -81,6 +85,10 @@ public class MainMenu : MonoBehaviour
     public void ContinueGame()
     {
         StartCoroutine(LoadScreenWithFadeEffect(1.3f));
+        if (PlayerPrefs.GetString("Logged").Equals("S"))
+        {
+            PlayFabManager.instance.DownloadInventory();
+        }
         ToPlay();
     }
 

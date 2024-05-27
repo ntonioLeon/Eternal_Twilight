@@ -1,3 +1,4 @@
+using Fungus;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -21,7 +22,6 @@ public class Inventory : MonoBehaviour, ISaveManager
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
     [SerializeField] private Transform eqipmentSlotParent;
-
 
     private UI_ItemSlot[] inventoryItemSlots;
     private UI_ItemSlot[] stashItemSlots;
@@ -53,7 +53,10 @@ public class Inventory : MonoBehaviour, ISaveManager
         inventoryItemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlots = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlots = eqipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+
+        Debug.Log(PlayerPrefs.GetString("Logged"));
         AddStartingItems();
+
     }
 
     public void EquipItem(ItemData item)

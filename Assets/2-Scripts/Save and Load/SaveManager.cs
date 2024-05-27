@@ -9,7 +9,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private bool encryptData;
     private GameData gameData;
-    private List<ISaveManager> saveManagers;
+    public List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
     [SerializeField] PlayFabManager playFabManager;
     [SerializeField] Inventory inventory;
@@ -66,7 +66,7 @@ public class SaveManager : MonoBehaviour
         foreach (ISaveManager saveManager in saveManagers)
         {
             saveManager.LoadData(gameData);
-        }
+        }        
     }
 
     public void SaveGame()
@@ -78,13 +78,12 @@ public class SaveManager : MonoBehaviour
         }
 
         dataHandler.Save(gameData);
-        playFabManager.GetAllInventory(gameData);
+        playFabManager.UploadInventory(gameData);
     }
 
     private void OnApplicationQuit()
     {
         SaveGame();
-        
     }
 
     private List<ISaveManager> FindAllSaveManagers()
