@@ -55,19 +55,6 @@ public class SaveManager : MonoBehaviour
 
     public void LoadGame()
     {
-        gameData = dataHandler.Load();
-
-        if (this.gameData == null)
-        {
-            Debug.Log("No saved data found!");
-            NewGame();
-        }
-
-        foreach (ISaveManager saveManager in saveManagers)
-        {
-            saveManager.LoadData(gameData);
-        }        
-
         if (!PlayerPrefs.GetString("Inventario").Equals(""))
         {
             gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("Inventario"));
@@ -75,8 +62,27 @@ public class SaveManager : MonoBehaviour
             foreach (ISaveManager saveManager in saveManagers)
             {
                 saveManager.LoadData(gameData);
+                return;
             }
         }
+        else
+        {
+            gameData = dataHandler.Load();
+
+            if (this.gameData == null)
+            {
+                Debug.Log("No saved data found!");
+                NewGame();
+            }
+
+            foreach (ISaveManager saveManager in saveManagers)
+            {
+                saveManager.LoadData(gameData);
+                return;
+            }
+        }
+
+        
     }
 
     public void SaveGame()

@@ -254,6 +254,10 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void AddStartingItems()
     {
+        inventoryDictionary.Clear();
+        stashDictionary.Clear();
+        equipmentDictionary.Clear();
+
         foreach (ItemData_Equipment item in loadedEquipment)
         {
             EquipItem(item);
@@ -311,6 +315,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public void SaveData(ref GameData _data)
     {
         _data.inventory.Clear();
+        _data.equipmentId.Clear();
 
         foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
         {

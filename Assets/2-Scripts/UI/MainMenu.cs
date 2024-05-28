@@ -37,8 +37,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log(PlayerPrefs.GetString("Logged"));
         if (!SaveManager.instance.HasSavedData())
         {
-            continueButton.SetActive(false);
-            //Buscar por loggin too.
+            continueButton.SetActive(false);            
         }
 
         fondo.SetActive(false);
