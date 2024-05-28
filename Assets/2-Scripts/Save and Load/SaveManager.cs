@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
     {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
         saveManagers = FindAllSaveManagers();
-
+        
         LoadGame();
     }
 
@@ -67,6 +67,16 @@ public class SaveManager : MonoBehaviour
         {
             saveManager.LoadData(gameData);
         }        
+
+        if (!PlayerPrefs.GetString("Inventario").Equals(""))
+        {
+            gameData = JsonUtility.FromJson<GameData>(PlayerPrefs.GetString("Inventario"));
+
+            foreach (ISaveManager saveManager in saveManagers)
+            {
+                saveManager.LoadData(gameData);
+            }
+        }
     }
 
     public void SaveGame()

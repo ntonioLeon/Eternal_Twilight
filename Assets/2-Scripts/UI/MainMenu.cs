@@ -33,6 +33,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetString("Logged", "N");
+        PlayerPrefs.SetString("Inventario", "");
         Debug.Log(PlayerPrefs.GetString("Logged"));
         if (!SaveManager.instance.HasSavedData())
         {

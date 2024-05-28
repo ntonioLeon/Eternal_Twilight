@@ -20,7 +20,7 @@ public class PlayFabManager : MonoBehaviour
     public InputField passwordInput;
     public InputField emailInput;
 
-    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private MainMenu mainMenu;    
 
     private void Awake()
     {
@@ -75,12 +75,9 @@ public class PlayFabManager : MonoBehaviour
         messageText.text = "Logged as " + result.ToString();
         Debug.Log("Logged as " + result.ToString());
         mainMenu.isLogged = true;
+        mainMenu.continueButton.SetActive(true);
         PlayerPrefs.SetString("Logged", "S");
         Debug.Log(PlayerPrefs.GetString("Logged"));
-        if (DownloadInventory())
-        {
-            mainMenu.continueButton.SetActive(true);
-        }
         //Aqui cargar el inventario, posición y currency.
     }
 
@@ -197,51 +194,6 @@ public class PlayFabManager : MonoBehaviour
     #region Inventory
     public void UploadInventory(GameData gameData)
     {
-        /*
-        StringBuilder inventoryParaGuardar = new StringBuilder();
-        StringBuilder equipoParaGuardar = new StringBuilder();
-
-        foreach (KeyValuePair<ItemData, InventoryItem> pair in inventory)
-        {
-            inventoryParaGuardar.Append(pair.Key.name);
-            inventoryParaGuardar.Append("#");
-            inventoryParaGuardar.Append(pair.Value.stackSize);
-            inventoryParaGuardar.Append("|");
-        }
-
-        foreach (KeyValuePair<ItemData, InventoryItem> pair in stash)
-        {
-            inventoryParaGuardar.Append(pair.Key.name);
-            inventoryParaGuardar.Append("#");
-            inventoryParaGuardar.Append(pair.Value.stackSize);
-            inventoryParaGuardar.Append("|");
-        }
-        if (inventoryParaGuardar.Length > 0)
-        {
-            inventoryParaGuardar.Remove(inventoryParaGuardar.Length - 1, 1);
-        }
-
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipment)
-        {
-            equipoParaGuardar.Append(pair.Key.name);
-            equipoParaGuardar.Append("|");
-        }
-        if (equipoParaGuardar.Length > 0)
-        {
-            equipoParaGuardar.Remove(equipoParaGuardar.Length - 1, 1);
-        }
-
-        var request = new UpdateUserDataRequest
-        {
-            Data = new Jsi
-            {
-                {"Inventory", inventoryParaGuardar.ToString()},                
-                {"Equipment", equipoParaGuardar.ToString()}
-            }
-        };
-        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
-        */
-
         string dataToStore = JsonUtility.ToJson(gameData, true);
 
         var request = new UpdateUserDataRequest
@@ -256,19 +208,12 @@ public class PlayFabManager : MonoBehaviour
     void OnDataSend(UpdateUserDataResult result)
     {
         Debug.Log("Data saved");
+        Debug.Log(result.ToString());
     }
 
-    public bool DownloadInventory()
+    public void DownloadInventory()
     {
-        try
-        {
-            PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataObtained, OnError);
-            return true;
-        }
-        catch (PlayFabCustomException ex)
-        {
-            return false;
-        }
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataObtained, OnError);
     }
 
     void OnDataObtained(GetUserDataResult result) 
@@ -276,18 +221,11 @@ public class PlayFabManager : MonoBehaviour
         if (result.Data == null || !result.Data.ContainsKey("PlayerData") || result.Data["PlayerData"].Value.Length <=0)
         {
             Debug.Log("No hay datos");
-            throw new PlayFabCustomException();
+            return;
         }
-
-        GameData gameData = null;
         Debug.Log(result.Data["PlayerData"].Value);
 
-        gameData = JsonUtility.FromJson<GameData>(result.Data["PlayerData"].Value);        
-
-        foreach (ISaveManager saveManager in SaveManager.instance.saveManagers)
-        {
-            saveManager.LoadData(gameData);
-        }        
+        PlayerPrefs.SetString("Inventario", result.Data["PlayerData"].Value);
     }
 
     public void GetObjectsPrices()

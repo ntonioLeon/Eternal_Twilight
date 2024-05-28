@@ -252,8 +252,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public List<InventoryItem> GetInventoryList() { return inventory; }
 
-
-    private void AddStartingItems()
+    public void AddStartingItems()
     {
         foreach (ItemData_Equipment item in loadedEquipment)
         {

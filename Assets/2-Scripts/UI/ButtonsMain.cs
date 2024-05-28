@@ -35,11 +35,11 @@ public class ButtonsMain : MonoBehaviour
         userName.SetActive(false);
         email.SetActive(false);
         password.SetActive(false);
-        newGame.SetActive(false);
-        continueGame.SetActive(false);
-        settings.SetActive(false);
-        shop.SetActive(false);
-        ranking.SetActive(false);
+        //newGame.SetActive(false);
+        //continueGame.SetActive(false);
+        //settings.SetActive(false);
+        //shop.SetActive(false);
+        //ranking.SetActive(false);
     }
 
     void Update()
