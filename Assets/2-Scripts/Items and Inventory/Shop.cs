@@ -80,8 +80,6 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        PlayerManager.instance.currency = 999;
-        //SetValues();
         RefreshList();
         ResetQtty();
     }

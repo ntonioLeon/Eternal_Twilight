@@ -50,6 +50,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Inventory.instance.RemoveItem(item.data);
+            PlayerManager.instance.currency += 50;
             return;
         }
 

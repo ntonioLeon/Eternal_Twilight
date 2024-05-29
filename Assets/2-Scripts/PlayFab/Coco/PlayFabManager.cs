@@ -57,6 +57,7 @@ public class PlayFabManager : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered and logged in";
+        PlayerPrefs.SetString("Logged", "S");
         mainMenu.isLogged = true;
     }
 

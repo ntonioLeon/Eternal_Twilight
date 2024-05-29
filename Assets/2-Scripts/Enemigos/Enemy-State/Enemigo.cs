@@ -7,6 +7,7 @@ public class Enemigo : Entity
 
     [SerializeField] protected LayerMask whatIsPlayer;
     public Transform player;
+    public int currencyToGive;
     [SerializeField] public float detectionArea;
 
     [Header("Move info")]
@@ -164,5 +165,11 @@ public class Enemigo : Entity
     public virtual bool IsWaterDetected()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, whatIsWater);
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        PlayerManager.instance.currency += currencyToGive;
     }
 }

@@ -62,6 +62,7 @@ public class SaveManager : MonoBehaviour
             foreach (ISaveManager saveManager in saveManagers)
             {
                 saveManager.LoadData(gameData);
+                PlayerManager.instance.currency = gameData.currency;
                 return;
             }
         }
@@ -78,6 +79,7 @@ public class SaveManager : MonoBehaviour
             foreach (ISaveManager saveManager in saveManagers)
             {
                 saveManager.LoadData(gameData);
+                PlayerManager.instance.currency = gameData.currency;
                 return;
             }
         }
@@ -94,7 +96,10 @@ public class SaveManager : MonoBehaviour
         }
 
         dataHandler.Save(gameData);
-        playFabManager.UploadInventory(gameData);
+        if (PlayerPrefs.GetString("Logged").Equals("S"))
+        {
+            playFabManager.UploadInventory(gameData);
+        }
     }
 
     private void OnApplicationQuit()

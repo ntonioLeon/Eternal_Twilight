@@ -7172,6 +7172,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 6308941130113249529, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9153054770109108069, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
