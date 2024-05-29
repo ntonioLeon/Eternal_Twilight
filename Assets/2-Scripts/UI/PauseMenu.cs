@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
+            PlayFabManager.instance.GetObjectsPrices();
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
@@ -134,6 +135,7 @@ public class PauseMenu : MonoBehaviour
         altIndex = indexMenu;
         indexMenu = 5;
         //buutonsList[1].SetActive(false);
+        Shop.instance.SetValues();
         SwitchPage(altIndex);
     }
 

@@ -1,11 +1,12 @@
-using Fungus;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class Shop : MonoBehaviour
 {
+    public static Shop instance;
+
     [SerializeField] private List<ItemData> objetos;
 
     [Header("Primer Item")]
@@ -17,6 +18,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text primerName;
     private int primerPrecio;
     private int primerCantidad;
+    private string primerIdSlot;
 
 
     [Header("Segundo Item")]
@@ -28,6 +30,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text segundoName;
     private int segundoPrecio;
     private int segundoCantidad;
+    private string segundoIdSlot;
 
     [Header("Tercer Item")]
     [SerializeField] private Image tercerImage;
@@ -38,6 +41,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text tercerName;
     private int tercerPrecio;
     private int tercerCantidad;
+    private string tercerIdSlot;
 
     [Header("Cuarta Item")]
     [SerializeField] private Image cuatroImage;
@@ -48,6 +52,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text cuatroName;
     private int cuatroPrecio;
     private int cuatroCantidad;
+    private string cuartoIdSlot;
 
     [Header("Quinto Item")]
     [SerializeField] private Image quintoImage;
@@ -58,16 +63,25 @@ public class Shop : MonoBehaviour
     [SerializeField] private Text quintoName;
     private int quintoPrecio;
     private int quintoCantidad;
+    private string quintoIdSlot;
 
     [Header("Total Summit")]
     [SerializeField] private Text totalSummit;
     [SerializeField] private GameObject buyButton;
     private int total;
 
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance.gameObject);
+        else
+            instance = this;
+    }
+
     void Start()
     {
         PlayerManager.instance.currency = 999;
-        SetValues();
+        //SetValues();
         RefreshList();
         ResetQtty();
     }
@@ -83,33 +97,34 @@ public class Shop : MonoBehaviour
         totalSummit.text = total.ToString();
     }
     #region aux
-    private void SetValues()
+    public void SetValues()
     {
         reset2Zero();
+
         if (PlayerPrefs.GetString("Logged").Equals("S"))
         {
             // recibo Diccionario key : value 
-            List<string> gomenasai = JSonToList();
-           
-            /*foreach(KeyValuePair<string, string> pair in gomenasai)
-            {
-                ///pair.Key = pair.Value;
-            }
-            */
-            primerPrice.text = gomenasai[0];
-            primerName.text = gomenasai[1];
+            List<ShopItem> gomenasai = JSonToList();
 
-            segundoPrice.text = gomenasai[2];
-            segundoName.text = gomenasai[3];
+            primerPrice.text = "" + gomenasai[0].price;
+            primerName.text = gomenasai[0].name;
+            primerIdSlot = gomenasai[0].itemId;
 
-            tercerPrice.text = gomenasai[4];
-            tercerName.text = gomenasai[5];
+            segundoPrice.text = "" + gomenasai[1].price;
+            segundoName.text = gomenasai[1].name;
+            segundoIdSlot = gomenasai[1].itemId;
 
-            cuatroPrice.text = gomenasai[6];
-            cuatroName.text = gomenasai[7];
+            tercerPrice.text = "" + gomenasai[2].price;
+            tercerName.text = gomenasai[2].name;
+            tercerIdSlot = gomenasai[2].itemId;
 
-            quintoPrice.text = gomenasai[8];
-            quintoName.text = gomenasai[9];
+            cuatroPrice.text = "" + gomenasai[3].price;
+            cuatroName.text = gomenasai[3].name;
+            cuartoIdSlot = gomenasai[3].itemId;
+
+            quintoPrice.text = "" + gomenasai[4].price;
+            quintoName.text = gomenasai[4].name;
+            quintoIdSlot = gomenasai[4].itemId;
         }
         else
         {
@@ -129,10 +144,20 @@ public class Shop : MonoBehaviour
             quintoName.text = "Item005";
         }
     }
-    private List<string> JSonToList()
+
+    private List<ShopItem> JSonToList()
     {
-        return null;
+               
+
+        string jsonString = PlayerPrefs.GetString("ShopCatalog");
+
+        var itemDict = JsonConvert.DeserializeObject<Dictionary<string, ShopItem>>(jsonString);
+
+        List<ShopItem> itemsToSell = new List<ShopItem>(itemDict.Values);
+
+        return itemsToSell;
     }
+
     private void ResetQtty()
     {
         primerPrecio = int.Parse(primerPrice.text);
@@ -161,10 +186,46 @@ public class Shop : MonoBehaviour
     {
         PlayerManager.instance.currency -= total;
         // dar items
+        GiveItems();
         reset2Zero();
         RefreshList();
         ResetQtty();
     }
+
+    private void GiveItems()
+    {
+        Dictionary<string, int> compra = new Dictionary<string, int>();
+
+        if (primerCantidad > 0)
+            compra.Add(primerIdSlot, primerCantidad);
+
+        if (segundoCantidad > 0)
+            compra.Add(segundoIdSlot, segundoCantidad);
+
+        if (tercerCantidad > 0)
+            compra.Add(tercerIdSlot, tercerCantidad);
+
+        if (cuatroCantidad > 0)
+            compra.Add(cuartoIdSlot, cuatroCantidad);
+
+        if (quintoCantidad > 0)
+            compra.Add(quintoIdSlot, quintoCantidad);
+
+        foreach (KeyValuePair<string, int> pair in compra)
+        {
+            foreach (var item in Inventory.instance.GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+                    
+                    Inventory.instance.AddItem(itemToLoad.data);
+                }
+            }
+        }
+    }
+
     public void ResetPage()
     {
         reset2Zero();
@@ -172,12 +233,14 @@ public class Shop : MonoBehaviour
         ResetQtty();
     }
     #endregion
+
     #region buttons
     public void OnPrimerAdd()
     {
         primerCantidad++;
         primerQtty.text = primerCantidad.ToString();
     }
+
     public void OnPrimerLess()
     {
         if (primerCantidad > 0)
@@ -240,7 +303,7 @@ public class Shop : MonoBehaviour
     }
     public void CanIBuy()
     {
-        if(total > PlayerManager.instance.currency)
+        if (total > PlayerManager.instance.currency)
         {
             buyButton.SetActive(false);
         }

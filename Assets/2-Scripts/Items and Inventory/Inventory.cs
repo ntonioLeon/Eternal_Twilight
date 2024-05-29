@@ -333,7 +333,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
     }
 
-    private List<ItemData> GetItemDataBase()
+    public List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDataBase = new List<ItemData>();
         string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });

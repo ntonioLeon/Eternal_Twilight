@@ -242,6 +242,7 @@ public class PlayFabManager : MonoBehaviour
         }
 
         Debug.Log(result.Data["ItemCost"]);
+        PlayerPrefs.SetString("ShopCatalog", result.Data["ItemCost"]);
     }
     #endregion
 }
