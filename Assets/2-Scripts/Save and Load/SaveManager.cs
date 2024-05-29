@@ -104,6 +104,7 @@ public class SaveManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+        PlayerPrefs.SetString("Logged", "N");
         SaveGame();
     }
 

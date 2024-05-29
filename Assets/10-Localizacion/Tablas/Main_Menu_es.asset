@@ -17,7 +17,47 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 23187fc74951ba34880b2b703586ff89, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 14890057728
+    m_Localized: Crear Cuenta Nueva
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498002622922752
+    m_Localized: Usar Cuenta Existente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498158583922688
+    m_Localized: "Resetear Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498476734464000
+    m_Localized: "Jugar sin conexi\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498679168352256
+    m_Localized: Nombre de Usuario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498768939040768
+    m_Localized: Correo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498859296931840
+    m_Localized: "Contrase\xF1a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498917903941632
+    m_Localized: Registrarse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18498994793922560
+    m_Localized: Entrar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18499068143910912
+    m_Localized: Atras
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

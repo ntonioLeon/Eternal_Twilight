@@ -57,7 +57,10 @@ public class PauseMenu : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
         {
-            PlayFabManager.instance.GetObjectsPrices();
+            if (PlayerPrefs.GetString("Logged").Equals("S"))
+            {
+                PlayFabManager.instance.GetObjectsPrices();
+            }
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
@@ -117,6 +120,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ToMain()
     {
+        PlayerPrefs.SetString("Logged", "N");
         altIndex = indexMenu;
         indexMenu = 0;
         //buutonsList[0].SetActive(false);

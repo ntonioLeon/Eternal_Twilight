@@ -187,6 +187,38 @@ MonoBehaviour:
     m_Key: Pause.Email
     m_Metadata:
       m_Items: []
+  - m_Id: 18501305557630976
+    m_Key: pause.item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501425795743744
+    m_Key: puase.price
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501565008887808
+    m_Key: pause.quan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501663415648256
+    m_Key: pause.add
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501735742226432
+    m_Key: pause.buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501824984432640
+    m_Key: pause.summit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502554042548224
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502574191984640
+    m_Key: pause.shop
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -99,11 +99,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 15166241778188288
-    m_Localized: Puntuaciones
+    m_Localized: Ranking
     m_Metadata:
       m_Items: []
   - m_Id: 15166346962944000
-    m_Localized: Principal
+    m_Localized: Inicio
     m_Metadata:
       m_Items: []
   - m_Id: 15166428256944128
@@ -188,6 +188,34 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 17687191295901696
     m_Localized: Introduzca Email
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501305557630976
+    m_Localized: Objeto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501425795743744
+    m_Localized: Precio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501565008887808
+    m_Localized: Cantidad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501663415648256
+    m_Localized: "A\xF1adir"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501735742226432
+    m_Localized: Comprar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18501824984432640
+    m_Localized: Total a pagar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502574191984640
+    m_Localized: Tienda
     m_Metadata:
       m_Items: []
   references:
