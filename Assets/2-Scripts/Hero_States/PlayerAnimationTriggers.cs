@@ -31,10 +31,17 @@ public class PlayerAnimationTriggers : MonoBehaviour
                 //EL LA BORRA// hit.GetComponentInParent<CharacterStats>().TakeDamage(player.stats.damage.GetValue()); //////// esto deberia esta al mismo nivel no uno por encima
                 EnemyStats target = hit.GetComponent<EnemyStats>();
                 player.stats.DoDamage(target);
-                Inventory.instance.GetEquipment(EquipmentType.Weapon).Effect(target.transform);
+
+                ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);        
+
+                if (weaponData != null)
+                {
+                    weaponData.Effect(target.transform);
+                }
             }
         }
     }
+
     private void ThrowSword()
     {
         SkillManager.instance.sword.CreateSword();

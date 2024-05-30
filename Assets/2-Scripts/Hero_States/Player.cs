@@ -58,6 +58,7 @@ public class Player : Entity
     [Header("Deslizamiento en pendiente")]
     [SerializeField] private bool wasPoisoned = false;
     [SerializeField] private float wateredTimer = 1;
+
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
@@ -136,6 +137,12 @@ public class Player : Entity
         {
             wasPoisoned = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Inventory.instance.UseFlask();
+        }
+
         CheckWatered();
         UpdateHealthUI();
         UpdateStaminasUI();

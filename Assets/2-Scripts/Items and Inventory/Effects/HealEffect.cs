@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
-public class HealEffect : MonoBehaviour
+[CreateAssetMenu(fileName = "Heal Effect", menuName = "Data/Item Effects/Heal Effect")]
+public class HealEffect : ItemEffect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Range(0f, 1f)]
+    [SerializeField] private float healPercent;
 
-    // Update is called once per frame
-    void Update()
+    public override void ExecutedEffect(Transform enemyPosition)
     {
-        
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+        float healAmount = Mathf.RoundToInt(playerStats.GetMaxHealthValue() * healPercent);
+
+        Debug.Log(healAmount);
+
+        playerStats.IncreaseHealthBy(healAmount);
+
+        playerStats.currentHealth += healAmount;
     }
 }

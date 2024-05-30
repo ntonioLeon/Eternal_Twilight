@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: FireSword
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Fire Sword
+  itemName: FireSword
   itemIcon: {fileID: -597324966, guid: 4953d14bef0c74d409ec961a9256a951, type: 3}
   itemId: 2771f1f3fcf330a4d9c32f738c4fca86
   dropChance: 0
   equipmentType: 0
-  itemEffects: []
-  strength: 5
+  itemEffects:
+  - {fileID: 11400000, guid: 12927f8863e5a9f48be67549a31bccb6, type: 2}
+  strength: 10
   agility: 0
   intelligence: 0
   vitality: 0
-  damage: 10
-  critChance: 20
-  critPower: 20
+  damage: 20
+  critChance: 10
+  critPower: 25
   health: 0
   armor: 0
   magicResistance: 0

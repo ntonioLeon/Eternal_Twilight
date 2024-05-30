@@ -208,7 +208,7 @@ public class CharacterStats : MonoBehaviour
 
         if (canApplyIgnite)
         {
-            character.SetupIgniteDamage(fDamage * .2f);
+            character.SetupIgniteDamage(fDamage * 5f);
         }
 
         if (canApplyShock)
@@ -217,6 +217,21 @@ public class CharacterStats : MonoBehaviour
         }
         //Aplicamos el estado
         character.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
+    }
+
+    public virtual void IncreaseHealthBy(float amount)
+    {
+        currentHealth += amount;
+        
+        if (currentHealth > maxHealth.GetValue())
+        {
+            currentHealth = maxHealth.GetValue();
+        }
+
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
     }
 
     public void ApplyAilments(bool ignite, bool chill, bool shock)
