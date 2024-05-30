@@ -18,6 +18,7 @@ MonoBehaviour:
   itemId: a1474cd36ee620444a8ae3dcaf79868e
   dropChance: 100
   equipmentType: 0
+  itemEffects: []
   strength: 0
   agility: 0
   intelligence: 0

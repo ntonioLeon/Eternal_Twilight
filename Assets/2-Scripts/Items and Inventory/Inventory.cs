@@ -347,4 +347,17 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         return itemDataBase;
     }
+
+    public ItemData_Equipment GetEquipment(EquipmentType equip)
+    {
+        ItemData_Equipment equipItem = null;
+
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
+        {
+            if (item.Key.equipmentType == equip)
+                equipItem = item.Key;
+        }
+
+        return equipItem;
+    }
 }

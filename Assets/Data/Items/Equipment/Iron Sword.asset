@@ -18,6 +18,7 @@ MonoBehaviour:
   itemId: c55cc899917a1c143b875154abeeea97
   dropChance: 100
   equipmentType: 0
+  itemEffects: []
   strength: 0
   agility: 0
   intelligence: 0
@@ -32,4 +33,6 @@ MonoBehaviour:
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0
-  craftingMaterials: []
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: d283f2058bed44f4aabc1a3ed5fac69d, type: 2}
+    stackSize: 0

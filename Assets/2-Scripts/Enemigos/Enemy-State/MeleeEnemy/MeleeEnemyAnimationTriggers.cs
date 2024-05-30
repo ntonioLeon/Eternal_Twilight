@@ -20,6 +20,7 @@ public class MeleeEnemyAnimationTriggers : MonoBehaviour
             if (hit.GetComponent<Player>() != null)
             {
                 PlayerStats player = hit.GetComponent<PlayerStats>();
+                hit.GetComponent<Entity>().SetupKnockbackDir(transform);
                 enemy.stats.DoDamage(player);
             }
         }
