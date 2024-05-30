@@ -5,10 +5,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class PlayFabManager : MonoBehaviour
 {
@@ -16,9 +18,11 @@ public class PlayFabManager : MonoBehaviour
 
     [Header("UI")]
     public Text messageText;
+    public Text display;
     public InputField usernameInput;
     public InputField passwordInput;
     public InputField emailInput;
+    private StringBuilder sb;
 
     [SerializeField] private MainMenu mainMenu;    
 
@@ -32,7 +36,7 @@ public class PlayFabManager : MonoBehaviour
 
     void Start()
     {
-        //Login();
+        sb = new StringBuilder();
     }
 
     #region Login
@@ -58,6 +62,7 @@ public class PlayFabManager : MonoBehaviour
     {
         messageText.text = "Registered and logged in";
         PlayerPrefs.SetString("Logged", "S");
+        PlayerPrefs.SetString("PlayerID", result.PlayFabId);
         mainMenu.isLogged = true;
     }
 
@@ -78,6 +83,7 @@ public class PlayFabManager : MonoBehaviour
         mainMenu.isLogged = true;
         mainMenu.continueButton.SetActive(true);
         PlayerPrefs.SetString("Logged", "S");
+        PlayerPrefs.SetString("PlayerID", result.PlayFabId);
         Debug.Log(PlayerPrefs.GetString("Logged"));
         //Aqui cargar el inventario, posición y currency.
     }
@@ -152,13 +158,37 @@ public class PlayFabManager : MonoBehaviour
         };
         PlayFabClientAPI.GetLeaderboard(request, OnLeaderBoardGet, OnError);
     }
-
+    public void GetArroundU()
+    {
+        var request = new GetLeaderboardAroundPlayerRequest
+        {
+            PlayFabId = PlayerPrefs.GetString("PlayerID"),
+            MaxResultsCount = 3, //11
+            StatisticName = "LeaderboardTest"
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
+    }
+    public void GetUrBest()
+    {
+        var request = new GetLeaderboardAroundPlayerRequest
+        {
+            PlayFabId = PlayerPrefs.GetString("PlayerID"),
+            MaxResultsCount = 1, //11
+            StatisticName = "LeaderboardTest"
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
+    }
     void OnLeaderBoardGet(GetLeaderboardResult result)
     {
+        
+        sb.Clear();
+        sb.Append("Rank\t-\tUnsername\t-\tPoints\n\n");
         foreach (var item in result.Leaderboard)
         {
-            Debug.Log((item.Position + 1) + " - " + item.PlayFabId + " - " + item.StatValue + " - " + item.DisplayName);
+            sb.Append(item.Position + 1).Append(" - ").Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
+            //sb.Append((item.Position + 1) + " - " + item.PlayFabId + " - " + item.StatValue + " - " + item.DisplayName+"/n");
         }
+        display.text = sb.ToString();
     }
 
     public event Action<string> OnSuccess;
@@ -175,17 +205,36 @@ public class PlayFabManager : MonoBehaviour
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
     }
 
-    private void OnGetLeaderboardArroundPlayerSuccess(GetLeaderboardAroundPlayerResult result)
+    
+    public void GetLeaderPlayerBest(string playerId, int maxResoultsCount, string leaderboardName)
     {
-        var leaderboard = new StringBuilder();
-        foreach (var playerLeaderboardEntry in result.Leaderboard)
+        var request = new GetLeaderboardAroundPlayerRequest
         {
-            //leaderboard.AppendLine($"{playerLeaderboardEntry.Position}.- {playerLeaderboardEntry.DisplayName} {playerLeaderboardEntry.StatValue}");
-            Debug.Log($"{playerLeaderboardEntry.Position}.- {playerLeaderboardEntry.PlayFabId}.- {playerLeaderboardEntry.DisplayName}.- {playerLeaderboardEntry.StatValue}");
-        }
-        OnSuccess?.Invoke(leaderboard.ToString());
+            PlayFabId = "AFEAB4936BAC82C5",
+            MaxResultsCount = 1, //11
+            StatisticName = leaderboardName
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
     }
-
+    public void OnGetLeaderboardArroundPlayerSuccess(GetLeaderboardAroundPlayerResult result)
+    {
+        sb.Clear();
+        if (result.Leaderboard.Count != 1)
+        {
+            sb.Append("Unsername\t-\tPoints\n\n");
+            foreach (var item in result.Leaderboard)
+            {
+                sb.Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
+                //sb.Append((item.Position + 1) + " - " + item.PlayFabId + " - " + item.StatValue + " - " + item.DisplayName+"/n");
+            }
+        }
+        else
+        {
+            sb.Append(result.Leaderboard[0].DisplayName).Append(" - ").Append(result.Leaderboard[0].StatValue).Append("\n");
+        }
+        
+        display.text = sb.ToString();
+    }
     private void OnGetLeaderboardArroundPlayerFailure(PlayFabError error)
     {
         Debug.LogError($"Debug informa: {error.GenerateErrorReport()}");

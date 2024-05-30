@@ -67,6 +67,7 @@ public class Shop : MonoBehaviour
 
     [Header("Total Summit")]
     [SerializeField] private Text totalSummit;
+    [SerializeField] private Text playerCurrency;
     [SerializeField] private GameObject buyButton;
     private int total;
 
@@ -82,10 +83,12 @@ public class Shop : MonoBehaviour
     {
         RefreshList();
         ResetQtty();
+        playerCurrency.text = PlayerManager.instance.currency.ToString();
     }
 
     void Update()
     {
+        playerCurrency.text = PlayerManager.instance.currency.ToString();
         TotalSummit();
         CanIBuy();
     }

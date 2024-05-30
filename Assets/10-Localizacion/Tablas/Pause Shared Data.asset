@@ -219,6 +219,30 @@ MonoBehaviour:
     m_Key: pause.shop
     m_Metadata:
       m_Items: []
+  - m_Id: 18872699176927232
+    m_Key: pause.SShop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18872775441956864
+    m_Key: pause.hop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873526444670976
+    m_Key: pause.nearplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873655251746816
+    m_Key: pause.nnearplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873729964883968
+    m_Key: pause.best
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873887104483328
+    m_Key: pause.bbest
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

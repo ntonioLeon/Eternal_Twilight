@@ -218,6 +218,30 @@ MonoBehaviour:
     m_Localized: Tienda
     m_Metadata:
       m_Items: []
+  - m_Id: 18872699176927232
+    m_Localized: T
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18872775441956864
+    m_Localized: ienda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873526444670976
+    m_Localized: ugadores cercanos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873655251746816
+    m_Localized: J
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873729964883968
+    m_Localized: ejor Propia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18873887104483328
+    m_Localized: M
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
