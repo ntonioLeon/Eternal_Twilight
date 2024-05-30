@@ -29,9 +29,9 @@ public class PlayerAnimationTriggers : MonoBehaviour
 
                 //EL LA BORRA// Debug.Log(" recibe  daño de: " + player.stats.damage.GetValue() + " " + player.stats.nameChar);  ///////
                 //EL LA BORRA// hit.GetComponentInParent<CharacterStats>().TakeDamage(player.stats.damage.GetValue()); //////// esto deberia esta al mismo nivel no uno por encima
-                Inventory.instance.GetEquipment(EquipmentType.Weapon).ExecuteItemEffect();
                 EnemyStats target = hit.GetComponent<EnemyStats>();
                 player.stats.DoDamage(target);
+                Inventory.instance.GetEquipment(EquipmentType.Weapon).Effect(target.transform);
             }
         }
     }

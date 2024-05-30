@@ -18,8 +18,7 @@ MonoBehaviour:
   itemId: 2771f1f3fcf330a4d9c32f738c4fca86
   dropChance: 0
   equipmentType: 0
-  itemEffects:
-  - {fileID: 11400000, guid: b0459d1d1a8732b4fbf47d0c0129a3b4, type: 2}
+  itemEffects: []
   strength: 5
   agility: 0
   intelligence: 0

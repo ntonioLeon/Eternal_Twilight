@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThunderStrikeEffect : MonoBehaviour
+[CreateAssetMenu(fileName = "Thunder strike effect", menuName = "Data/Item Effects/Thunder Strike")]
+public class ThunderStrikeEffect : ItemEffect
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject thunderStrikeEffectPrefab;
 
-    // Update is called once per frame
-    void Update()
+    public override void ExecutedEffect(Transform enemyPosition)
     {
-        
+        GameObject newThunderStrike = Instantiate(thunderStrikeEffectPrefab, enemyPosition.position, Quaternion.identity);
+
+        Destroy(newThunderStrike, 1f);
     }
 }
