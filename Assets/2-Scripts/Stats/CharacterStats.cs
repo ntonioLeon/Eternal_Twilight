@@ -70,6 +70,11 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (currentHealth > maxHealth.GetValue())
+        {
+            currentHealth = maxHealth.GetValue();
+        }
+
         igniteTimer -= Time.deltaTime;
         igniteDamageTimer -= Time.deltaTime;
         chillTimer -= Time.deltaTime;

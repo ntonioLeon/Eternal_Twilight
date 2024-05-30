@@ -243,7 +243,7 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        if (IsWallDetected() || bossSpawning || isSpeaking || this.currentStamina < 40)
+        if (IsWallDetected() || bossSpawning || isSpeaking || this.currentStamina < 40 || PauseMenu.instance.isPaused)
         {
             return;
         }
@@ -330,5 +330,21 @@ public class Player : Entity
     public void BossSpawned()
     {
         bossSpawning = false;
+    }
+
+    public void MandarDatos()
+    {
+        if (PlayerPrefs.GetString("Logged").Equals("S"))
+        {
+            int score = 0;
+            if (PlayerManager.instance.bossKilled)
+                score += 1000;
+
+            score += PlayerManager.instance.currency;
+
+            score += (int)GetComponent<PlayerStats>().maxHealth.GetValue() / (int)GetComponent<PlayerStats>().currentHealth * 1000;
+
+            PlayFabManager.instance.SendLeaderBoard(score);
+        }
     }
 }

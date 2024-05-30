@@ -53,6 +53,7 @@ public class ItemData_Equipment : ItemData
         playerStats.critPower.AddModifier(critPower);
 
         playerStats.maxHealth.AddModifier(health);
+        playerStats.currentHealth += health;
         playerStats.armor.AddModifier(armor);
         playerStats.magicResistance.AddModifier(magicResistance);
         playerStats.evasion.AddModifier(evasion);
@@ -76,6 +77,15 @@ public class ItemData_Equipment : ItemData
         playerStats.critPower.RemoveModifier(critPower);
 
         playerStats.maxHealth.RemoveModifier(health);
+        if (playerStats.currentHealth > health)
+        {
+            playerStats.currentHealth -= health;
+        }
+        else
+        {
+            playerStats.currentHealth = 1;
+        }
+
         playerStats.armor.RemoveModifier(armor);
         playerStats.evasion.RemoveModifier(evasion);
         playerStats.magicResistance.RemoveModifier(magicResistance);

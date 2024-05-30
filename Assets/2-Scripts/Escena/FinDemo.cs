@@ -11,7 +11,8 @@ public class FinDemo : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
-        {            
+        {
+            collision.GetComponent<Player>().MandarDatos();
             playableDirector.Play();
             GetComponent<BoxCollider2D>().enabled = false;
             //Aqui se lanza la pantalla de puntos

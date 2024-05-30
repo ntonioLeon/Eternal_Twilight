@@ -9,7 +9,8 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 
     public Player player;
     public int currency;
-    public Text total; 
+    public Text total;
+    public bool bossKilled = false;
 
     private void Awake()
     {
