@@ -255,6 +255,10 @@ MonoBehaviour:
     m_Key: Pause.Volverr
     m_Metadata:
       m_Items: []
+  - m_Id: 19231426771959808
+    m_Key: Pause.Restart
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

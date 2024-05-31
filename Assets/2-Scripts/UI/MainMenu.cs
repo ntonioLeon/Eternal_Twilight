@@ -42,10 +42,10 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("PlayerID", "");
 
         //Debug.Log(PlayerPrefs.GetString("Logged"));
-        if (!SaveManager.instance.HasSavedData())
-        {
-            continueButton.SetActive(false);            
-        }
+        //if (!SaveManager.instance.HasSavedData())
+        //{
+        //    continueButton.SetActive(false);            
+        //}
 
         fondo.SetActive(false);
         openBook.SetActive(true);

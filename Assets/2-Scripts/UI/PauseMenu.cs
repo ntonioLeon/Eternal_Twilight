@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -22,22 +20,29 @@ public class PauseMenu : MonoBehaviour
     //public GameObject darkScreen;
     private int indexMenu;
     private int altIndex;
-    [HideInInspector]public bool isPaused;
+    [HideInInspector] public bool isPaused;
 
     [Header("End Screen")]
     [SerializeField] private UI_FadeScreen fadeSceen;
     [SerializeField] private GameObject youDied;
+    [SerializeField] private GameObject tryAgainButton;
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject quitButton;
 
     private void Awake()
-    {        
+    {
         instance = this;
         indexMenu = 0;
     }
 
     void Start()
     {
+        if (!PlayerPrefs.GetString("Logged").Equals("S"))
+        {
+            buutonsList[3].SetActive(false);
+            buutonsList[4].SetActive(false);
+        }
+
         pauseMenu.SetActive(false);
         fondo.SetActive(false);
         openBook.SetActive(false);
@@ -54,8 +59,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && !GameObject.Find("Player").GetComponent<Player>().isSpeaking)
         {
             if (PlayerPrefs.GetString("Logged").Equals("S"))
             {
@@ -64,7 +69,7 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
-            AudioManager.instance.StopSFX();            
+            AudioManager.instance.StopSFX();
             StartCoroutine(OpenCourutine());
             openBook.SetActive(true);
         }
@@ -82,7 +87,7 @@ public class PauseMenu : MonoBehaviour
     IEnumerator OpenCourutine()
     {
         yield return new WaitForSeconds(0.6f);
-        fondo.SetActive (true);
+        fondo.SetActive(true);
         menuList[indexMenu].SetActive(true);
         pauseMenu.SetActive(true);
     }
@@ -92,17 +97,17 @@ public class PauseMenu : MonoBehaviour
         menuList[indexMenu].SetActive(false);
 
         pauseMenu.SetActive(false);
-        yield return new WaitForSeconds(0.5f);       
+        yield return new WaitForSeconds(0.5f);
     }
 
     public void SwitchMenu()
     {
         altIndex = indexMenu;
-        indexMenu= 1;
+        indexMenu = 1;
         SwitchPage(altIndex);
     }
 
-    public void ToInvetory() 
+    public void ToInvetory()
     {
         altIndex = indexMenu;
         indexMenu = 2;
@@ -145,7 +150,7 @@ public class PauseMenu : MonoBehaviour
 
     public void SwitchPage(int altIndex)
     {
-        if (altIndex<indexMenu)
+        if (altIndex < indexMenu)
         {
             derecha_izquierda.SetActive(true);
             Instantiate(derecha_izquierda, canvas.transform);
@@ -164,7 +169,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PaintMenu()
     {
-        foreach (var menu in menuList) 
+        foreach (var menu in menuList)
         {
             menu.SetActive(false);
         }
@@ -190,12 +195,34 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(1);
         youDied.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+        tryAgainButton.SetActive(true);
         restartButton.SetActive(true);
         quitButton.SetActive(true);
+    }
+
+    public void SwichOffEndScreen()
+    {
+        fadeSceen.FadeIn();
+
+        StartCoroutine(EndScreenOffCoroutine());
+    }
+
+    IEnumerator EndScreenOffCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        youDied.SetActive(false);        
+        tryAgainButton.SetActive(false);
+        restartButton.SetActive(false);
+        quitButton.SetActive(false);
     }
 
     public void RestartGameButton()
     {
         GameManager.instance.RestartScene();
+    }
+
+    public void Respawn()
+    {
+        GameManager.instance.RespawnPlayer();
     }
 }

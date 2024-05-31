@@ -1,17 +1,10 @@
-using Fungus;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class PlayFabManager : MonoBehaviour
 {

@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public static PlayerManager instance;
 
     public Player player;
+    public bool CinematicaVista = false;
     public int currency;
     public Text total;
     public bool bossKilled = false;
@@ -34,10 +35,12 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public void LoadData(GameData data)
     {
         this.currency = data.currency;
+        this.CinematicaVista = data.cinematica;
     }
 
     public void SaveData(ref GameData data)
     {
         data.currency = this.currency;
+        data.cinematica = this.CinematicaVista;
     }
 }
