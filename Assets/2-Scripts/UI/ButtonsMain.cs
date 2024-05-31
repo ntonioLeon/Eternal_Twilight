@@ -65,7 +65,7 @@ public class ButtonsMain : MonoBehaviour
 
         newGame.SetActive(false);
         continueGame.SetActive(false);
-        settings.SetActive(false);
+        //settings.SetActive(false);
         ranking.SetActive(false);
     }
 
@@ -134,6 +134,7 @@ public class ButtonsMain : MonoBehaviour
         resetPasword.SetActive(false);
 
         newGame.SetActive(true);
+        settings.SetActive(true);
     }
     public void GoBack()
     {

@@ -99,7 +99,6 @@ public class PauseMenu : MonoBehaviour
     {
         altIndex = indexMenu;
         indexMenu= 1;
-        //Debug.Log("Hola");
         SwitchPage(altIndex);
     }
 
