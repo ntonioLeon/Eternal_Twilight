@@ -49,7 +49,10 @@ public class CameraManager : MonoBehaviour
 
         startingTrackedObjectOffset = framingTransposer.m_TrackedObjectOffset;
     }
-
+    private void Start()
+    {
+        AudioManager.instance.PlayGameMusic();
+    }
     public void LerpYDamping(bool isPlayerFalling)
     {
         lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));

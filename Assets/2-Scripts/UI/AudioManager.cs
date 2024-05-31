@@ -69,7 +69,38 @@ public class AudioManager : MonoBehaviour
     {
         generalMixer.SetFloat("Effects", effectsSldr.value);
     }
-
+    public void StopMain()
+    {
+        soundMusic[0].Stop();
+    }
+    public void PlayMain()
+    {
+        soundMusic[0].Play();
+    }
+    public void StopGameMusic()
+    {
+        soundMusic[1].Stop();
+    }
+    public void PlayGameMusic()
+    {
+        soundMusic[1].Play();
+    }
+    public void StopBattle()
+    {
+        soundMusic[2].Stop();
+    }
+    public void PlayBattle()
+    {
+        soundMusic[2].Play();
+    }
+    public void StopEndMusic()
+    {
+        soundMusic[3].Stop();
+    }
+    public void PlayEndMusic()
+    {
+        soundMusic[3].Stop();
+    }
     public void PlaySFX(int soundToPlay)
     {
         soundEffects[soundToPlay].Stop();

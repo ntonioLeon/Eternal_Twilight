@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,7 +25,7 @@ public class PlayFabManager : MonoBehaviour
     public InputField emailInput;
     private StringBuilder sb;
 
-    [SerializeField] private MainMenu mainMenu;    
+    [SerializeField] private MainMenu mainMenu;
 
     private void Awake()
     {
@@ -42,9 +43,31 @@ public class PlayFabManager : MonoBehaviour
     #region Login
     public void RegisterButton()
     {
-        if (passwordInput.text.Length < 6)
+        messageText.text = "";
+
+        if (string.IsNullOrEmpty(usernameInput.text) || string.IsNullOrWhiteSpace(usernameInput.text))
         {
-            messageText.text = "Password is too short";
+            messageText.text = "Username cannot be empty.";
+        }
+        else if (usernameInput.text.Length < 3)
+        {
+            messageText.text = "Username is too short.\nIt must be at least 3 characters long.";
+        }
+        else if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrWhiteSpace(emailInput.text))
+        {
+            messageText.text = "Email cannot be empty.";
+        }
+        else if (!IsValidEmail(emailInput.text))
+        {
+            messageText.text = "Invalid email.\nPlease enter a valid email.";
+        }
+        else if (string.IsNullOrEmpty(passwordInput.text) || string.IsNullOrWhiteSpace(passwordInput.text))
+        {
+            messageText.text = "Password cannot be empty.";
+        }
+        else if (passwordInput.text.Length < 6)
+        {
+            messageText.text = "Password is too short.\nIt must be at least 6 characters long.";
         }
 
         var request = new RegisterPlayFabUserRequest
@@ -64,10 +87,30 @@ public class PlayFabManager : MonoBehaviour
         PlayerPrefs.SetString("Logged", "S");
         PlayerPrefs.SetString("PlayerID", result.PlayFabId);
         mainMenu.isLogged = true;
+        ButtonsMain.instance.CheckRegister(true);
     }
 
     public void LoginButton()
     {
+        messageText.text = "";
+
+        if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrWhiteSpace(emailInput.text))
+        {
+            messageText.text = "Email cannot be empty.";
+        }
+        else if (!IsValidEmail(emailInput.text))
+        {
+            messageText.text = "Invalid email.\nPlease enter a valid email.";
+        }
+        else if (string.IsNullOrEmpty(passwordInput.text) || string.IsNullOrWhiteSpace(passwordInput.text))
+        {
+            messageText.text = "Password cannot be empty.";
+        }
+        else if (passwordInput.text.Length < 6)
+        {
+            messageText.text = "Password is too short.\nIt must be at least 6 characters long.";
+        }
+
         var request = new LoginWithEmailAddressRequest
         {
             Email = emailInput.text,
@@ -78,31 +121,44 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLoginSuccess(LoginResult result)
     {
-        messageText.text = "Logged as " + result.ToString();
-        Debug.Log("Logged as " + result.ToString());
-        mainMenu.isLogged = true;
-        mainMenu.continueButton.SetActive(true);
         PlayerPrefs.SetString("Logged", "S");
         PlayerPrefs.SetString("PlayerID", result.PlayFabId);
-        Debug.Log(PlayerPrefs.GetString("Logged"));
+        messageText.text = "Successfully logged in!";
+
+        mainMenu.isLogged = true;
+        mainMenu.continueButton.SetActive(true);
+
+        ButtonsMain.instance.CheckRegister(true);
+        //Debug.Log("Logged as " + result.ToString());
+        //Debug.Log(PlayerPrefs.GetString("Logged"));
         //Aqui cargar el inventario, posición y currency.
     }
 
     public void RequestPasswordButton()
     {
+        messageText.text = "";
+
+        if (string.IsNullOrEmpty(emailInput.text) || string.IsNullOrWhiteSpace(emailInput.text))
+        {
+            messageText.text = "Email cannot be empty.";
+        }
+        else if (!IsValidEmail(emailInput.text))
+        {
+            messageText.text = "Invalid email.\nPlease enter a valid email.";
+        }
         var request = new SendAccountRecoveryEmailRequest
         {
             Email = emailInput.text,
             TitleId = "2C588"
         };
-        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnErrorPass);
     }
 
     void OnPasswordReset(SendAccountRecoveryEmailResult result)
     {
-        messageText.text = "Password RESET MAIL SENDT";
+        messageText.text = "We have sent you an email to reset your password.\nPlease check your email.";
     }
-    
+
     void Login()
     {
         var request = new LoginWithCustomIDRequest
@@ -115,12 +171,16 @@ public class PlayFabManager : MonoBehaviour
 
     void OnnSuccess(LoginResult result)
     {
-        Debug.Log("Login bien");
+        //Debug.Log("Login bien");
     }
 
     void OnError(PlayFabError error)
     {
-        Debug.Log("error.\n" + error);
+        messageText.text += "\n" + error.ErrorMessage;
+    }
+    void OnErrorPass(PlayFabError error)
+    {
+        messageText.text += "\nThere is no account associated with this email.\nPlease verify that the entered email is correct.";
     }
     #endregion
 
@@ -144,7 +204,7 @@ public class PlayFabManager : MonoBehaviour
 
     void onLeaderBoardUpdate(UpdatePlayerStatisticsResult result)
     {
-        Debug.Log("Se mando bien la puntuacion");
+        //Debug.Log("Se mando bien la puntuacion");
     }
 
     //Ver los 10 primeros
@@ -180,7 +240,7 @@ public class PlayFabManager : MonoBehaviour
     }
     void OnLeaderBoardGet(GetLeaderboardResult result)
     {
-        
+
         sb.Clear();
         sb.Append("Rank\t-\tUnsername\t-\tPoints\n\n");
         foreach (var item in result.Leaderboard)
@@ -191,9 +251,6 @@ public class PlayFabManager : MonoBehaviour
         display.text = sb.ToString();
     }
 
-    public event Action<string> OnSuccess;
-
-    //Verte a ti.
     public void GetLeaderboardAroundPlayer(string playerId, int maxResoultsCount, string leaderboardName)
     {
         var request = new GetLeaderboardAroundPlayerRequest
@@ -205,7 +262,7 @@ public class PlayFabManager : MonoBehaviour
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
     }
 
-    
+
     public void GetLeaderPlayerBest(string playerId, int maxResoultsCount, string leaderboardName)
     {
         var request = new GetLeaderboardAroundPlayerRequest
@@ -232,12 +289,12 @@ public class PlayFabManager : MonoBehaviour
         {
             sb.Append(result.Leaderboard[0].DisplayName).Append(" - ").Append(result.Leaderboard[0].StatValue).Append("\n");
         }
-        
+
         display.text = sb.ToString();
     }
     private void OnGetLeaderboardArroundPlayerFailure(PlayFabError error)
     {
-        Debug.LogError($"Debug informa: {error.GenerateErrorReport()}");
+        //Debug.LogError($"Debug informa: {error.GenerateErrorReport()}");
     }
     #endregion
 
@@ -253,7 +310,7 @@ public class PlayFabManager : MonoBehaviour
                 {"PlayerData", dataToStore}
             }
         };
-        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);        
+        PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
     }
     void OnDataSend(UpdateUserDataResult result)
     {
@@ -266,15 +323,14 @@ public class PlayFabManager : MonoBehaviour
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataObtained, OnError);
     }
 
-    void OnDataObtained(GetUserDataResult result) 
+    void OnDataObtained(GetUserDataResult result)
     {
-        if (result.Data == null || !result.Data.ContainsKey("PlayerData") || result.Data["PlayerData"].Value.Length <=0)
+        if (result.Data == null || !result.Data.ContainsKey("PlayerData") || result.Data["PlayerData"].Value.Length <= 0)
         {
             Debug.Log("No hay datos");
             return;
         }
-        Debug.Log(result.Data["PlayerData"].Value);
-
+        //Debug.Log(result.Data["PlayerData"].Value);
         PlayerPrefs.SetString("Inventario", result.Data["PlayerData"].Value);
     }
 
@@ -291,8 +347,26 @@ public class PlayFabManager : MonoBehaviour
             return;
         }
 
-        Debug.Log(result.Data["ItemCost"]);
+        //Debug.Log(result.Data["ItemCost"]);
         PlayerPrefs.SetString("ShopCatalog", result.Data["ItemCost"]);
     }
     #endregion
+
+    public static bool IsValidEmail(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+            return false;
+
+        try
+        {
+            // Expresión regular para validar el correo electrónico
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(email);
+        }
+        catch (RegexMatchTimeoutException)
+        {
+            return false;
+        }
+    }
 }

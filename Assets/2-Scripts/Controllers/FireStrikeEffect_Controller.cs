@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireStrikeEffect_Controller : ThunderStike_Controller
 {
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<Enemigo>() != null)
         {

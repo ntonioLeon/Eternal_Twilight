@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        AudioManager.instance.PlayMain();
         instance = this;
         indexMenu = 0;
     }
@@ -37,7 +38,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("ShopCatalog", "");
         PlayerPrefs.SetString("PlayerID", "");
 
-        Debug.Log(PlayerPrefs.GetString("Logged"));
+        //Debug.Log(PlayerPrefs.GetString("Logged"));
         if (!SaveManager.instance.HasSavedData())
         {
             continueButton.SetActive(false);            
@@ -78,29 +79,6 @@ public class MainMenu : MonoBehaviour
         Application.OpenURL(link);
     }
 
-    public void LaunchGame()
-    {
-        SaveManager.instance.DeleteSavedData();
-        StartCoroutine(LoadScreenWithFadeEffect(1.5f));
-        ToPlay();
-    }
-
-    public void ContinueGame()
-    {
-        StartCoroutine(LoadScreenWithFadeEffect(1.3f));
-        if (PlayerPrefs.GetString("Logged").Equals("S"))
-        {
-            PlayFabManager.instance.DownloadInventory();
-        }
-        ToPlay();
-    }
-
-    public void ExitGame()
-    {
-        ToPlay();
-        Application.Quit();
-    }
-
     IEnumerator LoadScreenWithFadeEffect(float delay)
     {
         fadeSceen.FadeOut();
@@ -109,4 +87,32 @@ public class MainMenu : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
+
+    #region Buttons
+    public void OnLaunchGame()
+    {
+        AudioManager.instance.StopMain();
+        SaveManager.instance.DeleteSavedData();
+        StartCoroutine(LoadScreenWithFadeEffect(1.5f));
+        ToPlay();
+    }
+
+    public void OnContinueGame()
+    {
+        AudioManager.instance.StopMain();
+        StartCoroutine(LoadScreenWithFadeEffect(1.3f));
+        if (PlayerPrefs.GetString("Logged").Equals("S"))
+        {
+            PlayFabManager.instance.DownloadInventory();
+        }
+        ToPlay();
+    }
+
+    public void OnExitGame()
+    {
+        AudioManager.instance.StopMain();
+        ToPlay();
+        Application.Quit();
+    }
+    #endregion
 }

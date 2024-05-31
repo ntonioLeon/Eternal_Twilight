@@ -14,6 +14,8 @@ public class NightBornDeadState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.StopBattle();
+        AudioManager.instance.PlayGameMusic();
     }
 
     public override void Exit()

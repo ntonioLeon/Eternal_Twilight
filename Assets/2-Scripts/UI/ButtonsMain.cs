@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
+using static System.Net.WebRequestMethods;
 
 public class ButtonsMain : MonoBehaviour
 {
+    public static ButtonsMain instance;
+
     [Header("Principals")]
     [SerializeField] private GameObject newAccount;
     [SerializeField] private GameObject exisAccount;
@@ -24,29 +28,72 @@ public class ButtonsMain : MonoBehaviour
     [SerializeField] private GameObject newGame;
     [SerializeField] private GameObject continueGame;
     [SerializeField] private GameObject settings;
-    [SerializeField] private GameObject shop;
     [SerializeField] private GameObject ranking;
 
+    private bool isConnected = false;
+    public bool isRegistered = false;
+
+    private void Awake()
+    {
+        if (instance != null)
+            Destroy(instance.gameObject);
+        else
+            instance = this;
+    }
     void Start()
     {
+        CheckInternet();
+        if (isConnected)
+        {
+            newAccount.SetActive(true);
+            exisAccount.SetActive(true);
+            resetPasword.SetActive(true);
+        }
+        else
+        {
+            newAccount.SetActive(false);
+            exisAccount.SetActive(false);
+            resetPasword.SetActive(false);
+        }
+
         register.SetActive(false);
         logIn.SetActive(false);
         reset.SetActive(false);
         userName.SetActive(false);
         email.SetActive(false);
         password.SetActive(false);
-        //newGame.SetActive(false);
-        //continueGame.SetActive(false);
-        //settings.SetActive(false);
-        //shop.SetActive(false);
-        //ranking.SetActive(false);
+
+        newGame.SetActive(false);
+        continueGame.SetActive(false);
+        settings.SetActive(false);
+        ranking.SetActive(false);
     }
 
     void Update()
     {
-        
+
+    }
+    private void CheckInternet()
+    {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            isConnected = false;
+        }
+        else
+        {
+            isConnected = true;
+        }
     }
 
+    public void CheckRegister(bool value)
+    {
+        isRegistered = value;
+        newGame.SetActive(value);
+        continueGame.SetActive(value);
+        settings.SetActive(value);
+        ranking.SetActive(value);
+    }
+    #region Buttons
     public void OnCreateNewAccount()
     {
         exisAccount.SetActive(false);
@@ -86,8 +133,8 @@ public class ButtonsMain : MonoBehaviour
         exisAccount.SetActive(false);
         resetPasword.SetActive(false);
 
+        newGame.SetActive(true);
     }
-
     public void GoBack()
     {
         newAccount.SetActive(true);
@@ -101,7 +148,13 @@ public class ButtonsMain : MonoBehaviour
         userName.SetActive(false);
         email.SetActive(false);
         password.SetActive(false);
+
+        newGame.SetActive(false);
+        continueGame.SetActive(false);
+        settings.SetActive(false);
+        ranking.SetActive(false);
+
+        PlayFabManager.instance.messageText.text = "";
     }
-
-
+    #endregion
 }
