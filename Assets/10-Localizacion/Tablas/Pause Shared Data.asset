@@ -243,6 +243,18 @@ MonoBehaviour:
     m_Key: pause.bbest
     m_Metadata:
       m_Items: []
+  - m_Id: 19159740391374848
+    m_Key: Pause.VolverFist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19159813330321408
+    m_Key: Pause.Volver
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19160553792749568
+    m_Key: Pause.Volverr
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
