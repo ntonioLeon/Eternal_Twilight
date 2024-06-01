@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Entity
 {
@@ -41,6 +42,8 @@ public class Player : Entity
     public float currentStamina;
     public UnityEngine.UI.Image staminaBar;
     public float staminaRegen = 5;
+    [SerializeField] private Image poti;
+    [SerializeField] private Text potiText;
 
     #region Angularidad
     public float anguloMax;
@@ -141,11 +144,40 @@ public class Player : Entity
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             Inventory.instance.UseFlask();
+            StartCoroutine(BanishPoti());
         }
 
         CheckWatered();
         UpdateHealthUI();
         UpdateStaminasUI();
+    }
+    IEnumerator BanishPoti()
+    {
+        Color color = poti.color;
+        color.a = 0.1f;
+        poti.color = color;
+        float startColor = 1.0f;
+        float finalColor = 0.0f;
+
+        Color textColor = potiText.color;
+        textColor.a = 0.01f;
+        potiText.color = textColor;
+
+        //alfa del texto es 0%
+        while (finalColor < 12f)
+        {
+            finalColor += Time.deltaTime;
+            color.a = Mathf.Lerp(0.1f, startColor, finalColor / 12f);
+            poti.color = color;
+            yield return null; 
+        }
+
+        color.a = startColor;
+        poti.color = color;
+        //alfa del texto es 100%
+
+        textColor.a = 1.0f;
+        potiText.color = textColor;
     }
 
     public override void Flip()
