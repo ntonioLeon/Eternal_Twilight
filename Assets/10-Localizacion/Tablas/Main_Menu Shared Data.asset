@@ -59,6 +59,38 @@ MonoBehaviour:
     m_Key: main.RRanking
     m_Metadata:
       m_Items: []
+  - m_Id: 19392684685049856
+    m_Key: main.controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19393278304894976
+    m_Key: main.CControls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397405088989184
+    m_Key: main.jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397549196886016
+    m_Key: main.dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397640389443584
+    m_Key: main.move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397691950022656
+    m_Key: main.swap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397794123268096
+    m_Key: main.block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397874578407424
+    m_Key: main.heal
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

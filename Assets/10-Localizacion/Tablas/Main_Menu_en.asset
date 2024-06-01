@@ -62,6 +62,38 @@ MonoBehaviour:
     m_Localized: R
     m_Metadata:
       m_Items: []
+  - m_Id: 19392684685049856
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19393278304894976
+    m_Localized: ontrols
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397405088989184
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397549196886016
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397640389443584
+    m_Localized: Move
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397691950022656
+    m_Localized: Swap Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397794123268096
+    m_Localized: Block
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397874578407424
+    m_Localized: Heal
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -62,6 +62,38 @@ MonoBehaviour:
     m_Localized: R
     m_Metadata:
       m_Items: []
+  - m_Id: 19392684685049856
+    m_Localized: Controles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19393278304894976
+    m_Localized: ontroles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397405088989184
+    m_Localized: Saltar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397549196886016
+    m_Localized: "Proyecci\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397640389443584
+    m_Localized: Moverse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397691950022656
+    m_Localized: Cambiar Arma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397794123268096
+    m_Localized: Bloqueo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19397874578407424
+    m_Localized: "Curaci\xF3n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

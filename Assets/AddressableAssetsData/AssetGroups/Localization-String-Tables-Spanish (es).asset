@@ -22,6 +22,7 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-es
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7dba27c90b07cfe4bbecd4934d18de54
     m_Address: Pause_es

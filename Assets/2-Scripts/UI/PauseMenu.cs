@@ -146,7 +146,14 @@ public class PauseMenu : MonoBehaviour
         Shop.instance.SetValues();
         SwitchPage(altIndex);
     }
-
+    public void ToControls()
+    {
+        altIndex = indexMenu;
+        indexMenu = 6;
+        //buutonsList[1].SetActive(false);
+        Shop.instance.SetValues();
+        SwitchPage(altIndex);
+    }
 
     public void SwitchPage(int altIndex)
     {
