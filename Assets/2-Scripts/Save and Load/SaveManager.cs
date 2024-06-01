@@ -8,7 +8,7 @@ public class SaveManager : MonoBehaviour
 
     [SerializeField] private string fileName;
     [SerializeField] private bool encryptData;
-    private GameData gameData;
+    public GameData gameData;
     public List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
     [SerializeField] PlayFabManager playFabManager;

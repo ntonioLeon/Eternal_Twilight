@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public static PlayerManager instance;
 
     public Player player;
-    public bool CinematicaVista = false;
+    public bool CinematicaVista;
     public int currency;
     public Text total;
     public bool bossKilled = false;
@@ -23,6 +24,11 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         {
             instance = this; //64 Importante
         }        
+    }
+
+    private void Start()
+    {
+        CinematicaVista = SaveManager.instance.gameData.cinematica;
     }
 
     private void Update()
@@ -42,5 +48,10 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     {
         data.currency = this.currency;
         data.cinematica = this.CinematicaVista;
+    }
+
+    public void SetCinematicaToTrue()
+    {
+        CinematicaVista = true;
     }
 }

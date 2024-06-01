@@ -31,9 +31,9 @@ public class EstadoManager : MonoBehaviour
 
     void Start()
     {
-        holder = GetComponent<Image>();
+        //holder = GetComponent<Image>();
 
-        CheckDamaged();
+        
     }
 
     private void CheckDamaged()
@@ -46,24 +46,29 @@ public class EstadoManager : MonoBehaviour
 
     void Update()
     {
-        
+        CheckDamaged();
     }
+
     public void OnPoisoned()
     {
         holder.sprite = poisoned;
     }
+
     public void OnBurned()
     {
         holder.sprite = burned;
     }
+
     public void OnShoked()
     {
         holder.sprite = shocked;
     }
+
     public void OnHealing()
     {
         holder.sprite = healing;
     }
+
     public void OnSave()
     {
         holder.sprite = save;

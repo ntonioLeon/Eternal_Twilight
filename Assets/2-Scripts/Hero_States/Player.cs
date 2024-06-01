@@ -110,7 +110,6 @@ public class Player : Entity
         skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
 
-
         defaultJumpSpeed = jumpForce;
         defaultDashSpeed = dashSpeed;
         capsuleSize = capsule.size;
@@ -125,7 +124,7 @@ public class Player : Entity
 
         this.currentStamina = maxStamina.GetValue();
         //UpdateStaminaUI();
-        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo
+        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo        
     }
 
     protected override void Update()
@@ -385,5 +384,10 @@ public class Player : Entity
 
             PlayFabManager.instance.SendLeaderBoard(score);
         }
+    }
+
+    public void StartMal()
+    {
+        Start();
     }
 }

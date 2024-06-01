@@ -1,6 +1,7 @@
 using Fungus;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,10 +13,9 @@ public class GameManager : MonoBehaviour , ISaveManager
     public static GameManager instance;
 
     public GameObject player;
-
     [SerializeField] private CheckPoint[] checkPoints;
-
     public Vector3 spawnPoint;
+    public GameObject porton;
 
     private void Awake()
     {
@@ -33,7 +33,13 @@ public class GameManager : MonoBehaviour , ISaveManager
     {
         checkPoints = FindObjectsOfType<CheckPoint>();
 
-        spawnPoint = player.transform.position;
+        spawnPoint = new Vector3(SaveManager.instance.gameData.x, SaveManager.instance.gameData.y, SaveManager.instance.gameData.z);
+
+        SpawnPlayer();
+
+        porton.transform.rotation = Quaternion.Euler(0, 0, SaveManager.instance.gameData.portonRotation);
+
+        
     }
 
     public void RestartScene()
@@ -63,6 +69,10 @@ public class GameManager : MonoBehaviour , ISaveManager
                 }
             }
         }
+
+        spawnPoint = new Vector3(data.x, data.y, data.z);
+
+        porton.transform.rotation = Quaternion.Euler(0, 0, data.portonRotation);
     }
 
     public void SaveData(ref GameData data)
@@ -73,6 +83,12 @@ public class GameManager : MonoBehaviour , ISaveManager
         {
             data.checkPoints.Add(checkPoint.checkPointId, checkPoint.activated);
         }
+
+        data.x = spawnPoint.x;
+        data.y = spawnPoint.y;
+        data.z = spawnPoint.z;
+
+        data.portonRotation = porton.transform.eulerAngles.z;
     }
 
     public void SetSpawnPoint(Vector3 newSpawnPoint)
@@ -93,5 +109,13 @@ public class GameManager : MonoBehaviour , ISaveManager
 
         player.transform.position = spawnPoint;
         player.GetComponent<CharacterStats>().currentHealth = player.GetComponent<CharacterStats>().maxHealth.GetValue();
+
+        PlayerManager.instance.GetComponent<CharacterStats>().isDead = false;
+        player.GetComponent<Player>().StartMal();
+    }
+
+    private void SpawnPlayer()
+    {
+        player.transform.position = spawnPoint;
     }
 }
