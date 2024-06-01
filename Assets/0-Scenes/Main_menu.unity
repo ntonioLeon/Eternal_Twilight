@@ -1498,6 +1498,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2677587347770055989, guid: 80c3e373d6345334f920f5624d844fe1, type: 3}
+      propertyPath: encryptData
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677587347770055989, guid: 80c3e373d6345334f920f5624d844fe1, type: 3}
       propertyPath: playFabManager
       value: 
       objectReference: {fileID: 93620180}

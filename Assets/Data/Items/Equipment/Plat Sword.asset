@@ -16,8 +16,9 @@ MonoBehaviour:
   itemName: Plat Sword
   itemIcon: {fileID: 1116484463, guid: 4953d14bef0c74d409ec961a9256a951, type: 3}
   itemId: a1474cd36ee620444a8ae3dcaf79868e
-  dropChance: 100
+  dropChance: 15
   equipmentType: 0
+  itemCooldown: 0
   itemEffects: []
   strength: 0
   agility: 0
