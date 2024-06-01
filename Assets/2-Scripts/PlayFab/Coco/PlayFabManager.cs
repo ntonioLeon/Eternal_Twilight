@@ -17,6 +17,7 @@ public class PlayFabManager : MonoBehaviour
     public InputField passwordInput;
     public InputField emailInput;
     private StringBuilder sb;
+    public Text textoPuntuacion;
 
     [SerializeField] private MainMenu mainMenu;
 
@@ -221,6 +222,19 @@ public class PlayFabManager : MonoBehaviour
         };
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess, OnGetLeaderboardArroundPlayerFailure);
     }
+
+    public void GetArroundU2()
+    {
+        var request = new GetLeaderboardAroundPlayerRequest
+        {
+            PlayFabId = PlayerPrefs.GetString("PlayerID"),
+            MaxResultsCount = 3, //11
+            StatisticName = "LeaderboardTest"
+        };
+        PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardArroundPlayerSuccess2, OnGetLeaderboardArroundPlayerFailure);
+    }
+
+
     public void GetUrBest()
     {
         var request = new GetLeaderboardAroundPlayerRequest
@@ -285,6 +299,27 @@ public class PlayFabManager : MonoBehaviour
 
         display.text = sb.ToString();
     }
+
+    public void OnGetLeaderboardArroundPlayerSuccess2(GetLeaderboardAroundPlayerResult result)
+    {
+        sb.Clear();
+        if (result.Leaderboard.Count != 1)
+        {
+            sb.Append("Unsername\t-\tPoints\n\n");
+            foreach (var item in result.Leaderboard)
+            {
+                sb.Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
+                //sb.Append((item.Position + 1) + " - " + item.PlayFabId + " - " + item.StatValue + " - " + item.DisplayName+"/n");
+            }
+        }
+        else
+        {
+            sb.Append(result.Leaderboard[0].DisplayName).Append(" - ").Append(result.Leaderboard[0].StatValue).Append("\n");
+        }
+
+        textoPuntuacion.text = sb.ToString();
+    }
+
     private void OnGetLeaderboardArroundPlayerFailure(PlayFabError error)
     {
         //Debug.LogError($"Debug informa: {error.GenerateErrorReport()}");

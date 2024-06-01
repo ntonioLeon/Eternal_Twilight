@@ -9,6 +9,7 @@ public class UI_FadeScreen : MonoBehaviour
 {
     private Animator anim;
     [SerializeField] private GameObject textoFin;
+    [SerializeField] private GameObject textoPuntuacion;
 
     void Start()
     {
@@ -38,5 +39,15 @@ public class UI_FadeScreen : MonoBehaviour
 
         if (textoFin != null)
             textoFin.SetActive(true);
+
+        Debug.Log(textoPuntuacion != null);
+        if (textoPuntuacion != null)
+        {
+            textoPuntuacion.SetActive(true);
+
+            yield return new WaitForSeconds(.5f);
+            if (!PlayerPrefs.GetString("Logged").Equals("N")) 
+                PlayFabManager.instance.GetArroundU2();
+        }
     }
 }
