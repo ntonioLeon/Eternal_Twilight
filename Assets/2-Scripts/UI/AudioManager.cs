@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
         effectsSldr.value = effectsVol;
         effectsSldr.minValue = -80;
         effectsSldr.maxValue = 10;
+        
     }
 
     // Update is called once per frame
@@ -104,10 +105,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(int soundToPlay)
     {
         soundEffects[soundToPlay].Stop();
-       // if (soundToPlay<6)
-       // {
         soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
-       // }
         currentSound = soundToPlay;
         soundEffects[soundToPlay].Play();
     }

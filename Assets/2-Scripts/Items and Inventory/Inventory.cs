@@ -1,7 +1,9 @@
 using Fungus;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class Inventory : MonoBehaviour, ISaveManager
 {
@@ -338,6 +340,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public List<ItemData> GetItemDataBase()
     {
+#if UNITY_EDITOR
         List<ItemData> itemDataBase = new List<ItemData>();
         string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });
 
@@ -349,6 +352,9 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
 
         return itemDataBase;
+#else
+        return new List<ItemData>();
+#endif
     }
 
     public ItemData_Equipment GetEquipment(EquipmentType equip)

@@ -29,9 +29,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-        AudioManager.instance.PlayMain();
         instance = this;
-        indexMenu = 0;
     }
 
     void Start()
@@ -41,6 +39,8 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("ShopCatalog", "");
         PlayerPrefs.SetString("PlayerID", "");
 
+        indexMenu = 0;
+        AudioManager.instance.PlayMain();
         //Debug.Log(PlayerPrefs.GetString("Logged"));
         //if (!SaveManager.instance.HasSavedData())
         //{
