@@ -3101,9 +3101,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7794527491991359653, guid: ef6228eee9160094e971b219f9770a85, type: 3}
+      propertyPath: musicVol
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7794527491991359653, guid: ef6228eee9160094e971b219f9770a85, type: 3}
       propertyPath: musicSldr
       value: 
       objectReference: {fileID: 1340713191}
+    - target: {fileID: 7794527491991359653, guid: ef6228eee9160094e971b219f9770a85, type: 3}
+      propertyPath: effectsVol
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7794527491991359653, guid: ef6228eee9160094e971b219f9770a85, type: 3}
       propertyPath: effectsSldr
       value: 
