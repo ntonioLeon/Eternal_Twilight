@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.U2D;
 
-public class EnemyMovement : MonoBehaviour{
+public class EnemyMovement : MonoBehaviour
+{
 
     #region Public Variables
     [HideInInspector] public bool isRanged;
@@ -21,7 +17,7 @@ public class EnemyMovement : MonoBehaviour{
     public Transform paredes;
     public Transform suelo;
     public Transform backPrecipicio;
-    public Transform backParedes;    
+    public Transform backParedes;
     public LayerMask queEsSuelo;
 
     [Header("Medidas de accion y cadencia")]
@@ -30,10 +26,10 @@ public class EnemyMovement : MonoBehaviour{
     public float attackDistance;
     public float meleeZone;
     public float radioDeteccion;
-    public float timer;    
+    public float timer;
     [HideInInspector] public bool attackMode;
     [HideInInspector] public Transform target;
-    [HideInInspector] public bool inRange; 
+    [HideInInspector] public bool inRange;
     [HideInInspector] public bool chase = false;
     #endregion
 
@@ -86,17 +82,17 @@ public class EnemyMovement : MonoBehaviour{
             if (chase)
             {
                 FlyerLogic();
-            }                
+            }
             else
             {
-                ReturnEnemyToStartingPosition();                
-            }             
+                ReturnEnemyToStartingPosition();
+            }
             Flip();
         }
         else if (TerrenoTransitable())
         {
             ResetPatroll();
-        } 
+        }
         else if (ObstaculoALaEspalda() && !contraLaPared)
         {
             StopMoving();
@@ -125,7 +121,7 @@ public class EnemyMovement : MonoBehaviour{
                 }
             }
         }
-    }    
+    }
 
     #region Ranged
     void RangedLogic()
@@ -137,23 +133,23 @@ public class EnemyMovement : MonoBehaviour{
             StopAttack();
         }
         else if (attackDistance >= distance && !cooling)
-        {           
+        {
             if (!shooted)
             {
                 Shoot();
-            }            
+            }
         }
         else if (attackDistance >= distance && cooling)
         {
             if (!contraLaPared)
             {
                 RunFromTarget();
-            } 
+            }
             else
             {
                 anim.SetBool("Moverse", false);
                 anim.SetBool("Atacar", false);
-            }            
+            }
         }
         else if (attackDistance < distance && attackMode && !cooling)
         {
@@ -177,7 +173,7 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     void Shoot()
-    {        
+    {
         timer = intTimer; //Reset Timer when Player enter Attack Range
         attackMode = true; //To check if Enemy can still attack or not
 
@@ -186,7 +182,7 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     public void Disparo()
-    {        
+    {
         Instantiate(proyectil, proyectilPos.position, Quaternion.identity);
         shooted = true;
     }
@@ -248,7 +244,7 @@ public class EnemyMovement : MonoBehaviour{
                 anim.SetBool("Guardia", true);
             }
         }
-        
+
         if (cooling)
         {
             Cooldown();
@@ -316,7 +312,7 @@ public class EnemyMovement : MonoBehaviour{
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, startPoint.position, moveSpeed * Time.deltaTime);            
+            transform.position = Vector2.MoveTowards(transform.position, startPoint.position, moveSpeed * Time.deltaTime);
             anim.SetBool("Moverse", true);
         }
     }
@@ -342,7 +338,7 @@ public class EnemyMovement : MonoBehaviour{
         {
             contraLaPared = false;
         }
-    }    
+    }
 
     void Cooldown()
     {
@@ -356,7 +352,7 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     void StopAttack()
-    {   
+    {
         anim.SetBool("Atacar", false);
     }
 
@@ -399,7 +395,7 @@ public class EnemyMovement : MonoBehaviour{
             rotation.y = 0;
         }
         else
-        {            
+        {
             rotation.y = 180;
         }
 
@@ -415,7 +411,7 @@ public class EnemyMovement : MonoBehaviour{
         paredDetectada = Physics2D.OverlapCircle(paredes.position, radioDeteccion, queEsSuelo);
         sueloDetectado = Physics2D.OverlapCircle(suelo.position, radioDeteccion, queEsSuelo);
 
-        return ((precipicioDetectado || paredDetectada) && sueloDetectado);        
+        return ((precipicioDetectado || paredDetectada) && sueloDetectado);
     }
 
     private void ResetPatroll()
@@ -424,7 +420,7 @@ public class EnemyMovement : MonoBehaviour{
     }
 
     IEnumerator ResetPatrollCoroutine()
-    {       
+    {
         GetComponentInChildren<HotZoneCheck>().OnTriggerExit2D(target.GetComponentInChildren<Collider2D>());
         hotBox.SetActive(false);
 
