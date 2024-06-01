@@ -1048,6 +1048,7 @@ MonoBehaviour:
   usernameInput: {fileID: 167351236}
   passwordInput: {fileID: 1948501657}
   emailInput: {fileID: 1581101645}
+  textoPuntuacion: {fileID: 0}
   mainMenu: {fileID: 1181924652}
 --- !u!1 &102381456
 GameObject:
