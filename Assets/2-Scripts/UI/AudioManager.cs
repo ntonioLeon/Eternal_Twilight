@@ -63,12 +63,12 @@ public class AudioManager : MonoBehaviour
 
     public void MusicVolume()
     {
-        generalMixer.SetFloat("Music", musicSldr.value);
+        generalMixer.SetFloat("Music", musicSldr.value -25f);
     }
 
     public void EffectVolume()
     {
-        generalMixer.SetFloat("Effects", effectsSldr.value);
+        generalMixer.SetFloat("Effects", effectsSldr.value -15f);
     }
     public void StopMain()
     {
