@@ -17,8 +17,6 @@ public class PlayerDeadState : PlayerState
     {
         base.Enter();
         AudioManager.instance.PlaySFX(17);
-        AudioManager.instance.StopGameMusic();
-        AudioManager.instance.PlayEndMusic();
         player.MandarDatos();
         GameObject.Find("LevelManager").GetComponent<PauseMenu>().SwichOnEndScreen();
 

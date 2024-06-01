@@ -20,7 +20,8 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
-
+        AudioManager.instance.StopGameMusic();
+        AudioManager.instance.PlayBattle();
         player.Die();
         GetComponent<PlayerItemDrop>().GenerateDrop();
     }

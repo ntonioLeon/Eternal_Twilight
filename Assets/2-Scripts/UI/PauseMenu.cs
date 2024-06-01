@@ -25,7 +25,7 @@ public class PauseMenu : MonoBehaviour
     [Header("End Screen")]
     [SerializeField] private UI_FadeScreen fadeSceen;
     [SerializeField] private GameObject youDied;
-    [SerializeField] private GameObject tryAgainButton;
+    //[SerializeField] private GameObject tryAgainButton;
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject quitButton;
 
@@ -202,7 +202,7 @@ public class PauseMenu : MonoBehaviour
         yield return new WaitForSeconds(1);
         youDied.SetActive(true);
         yield return new WaitForSeconds(1.5f);
-        tryAgainButton.SetActive(true);
+        //tryAgainButton.SetActive(true);
         restartButton.SetActive(true);
         quitButton.SetActive(true);
     }
@@ -218,7 +218,7 @@ public class PauseMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         youDied.SetActive(false);        
-        tryAgainButton.SetActive(false);
+        //tryAgainButton.SetActive(false);
         restartButton.SetActive(false);
         quitButton.SetActive(false);
     }
