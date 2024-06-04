@@ -1,6 +1,7 @@
 using System.Text;
-using UnityEditor;
 using UnityEngine;
+
+using UnityEditor;
 
 public enum ItemType
 {

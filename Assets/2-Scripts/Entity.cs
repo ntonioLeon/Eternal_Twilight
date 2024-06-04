@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Accessibility;
-using UnityEngine.Rendering;
 
 public class Entity : MonoBehaviour
 {
@@ -10,7 +7,7 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
-    public SpriteRenderer sr { get; private set; }  
+    public SpriteRenderer sr { get; private set; }
     public CharacterStats stats { get; private set; }
     public CapsuleCollider2D capsule { get; private set; }
     #endregion    
@@ -38,7 +35,7 @@ public class Entity : MonoBehaviour
     public int facingDir { get; private set; } = 1;
 
     public bool bossSpawning = false;
-    public bool isPaused=false;
+    public bool isPaused = false;
     private Vector2 realVel;
     protected bool facingRight = true;
 
@@ -58,7 +55,7 @@ public class Entity : MonoBehaviour
         realVel = rb.velocity;
         stats = GetComponent<CharacterStats>();
         capsule = GetComponent<CapsuleCollider2D>();
-        if(rb == null)
+        if (rb == null)
         {
             Debug.Log("No existo");
         }
@@ -67,20 +64,20 @@ public class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+
     }
 
     public virtual void SlowEntityBy(float slowPercentage, float slowDuration)
     {
 
-    }    
+    }
 
     protected virtual void ReturnDefaultSpeed()
     {
         anim.speed = 1;
     }
 
-    public virtual void DamageImpact ()
+    public virtual void DamageImpact()
     {
         StartCoroutine(HitKnockback());
     }
@@ -137,7 +134,7 @@ public class Entity : MonoBehaviour
             return;
         }
         FlipController(xVelocity);
-        rb.velocity = new Vector2(xVelocity, yVelocity);  
+        rb.velocity = new Vector2(xVelocity, yVelocity);
     }
 
     public void Retroceder(float xVelocity, float yVelocity)
@@ -174,7 +171,7 @@ public class Entity : MonoBehaviour
     #region Flip
     public virtual void Flip()
     {
-        facingDir *=- 1;
+        facingDir *= -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
 

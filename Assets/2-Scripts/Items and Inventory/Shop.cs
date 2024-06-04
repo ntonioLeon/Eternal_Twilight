@@ -214,7 +214,7 @@ public class Shop : MonoBehaviour
 
         foreach (KeyValuePair<string, int> pair in compra)
         {
-            foreach (var item in Inventory.instance.GetItemDataBase())
+            foreach (var item in Inventory.instance.itemDataBase)
             {
                 if (item != null && item.itemId == pair.Key)
                 {
