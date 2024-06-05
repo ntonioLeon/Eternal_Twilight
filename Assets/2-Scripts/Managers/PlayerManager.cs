@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +20,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
         else
         {
             instance = this; //64 Importante
-        }        
+        }
     }
 
     private void Start()

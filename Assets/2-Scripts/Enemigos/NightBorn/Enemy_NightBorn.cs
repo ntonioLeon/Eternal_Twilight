@@ -29,8 +29,9 @@ public class Enemy_NightBorn : Enemigo
     [SerializeField] private Vector2 surroundingCheckSize;
     public float chanceToTeleport;
     public float defaulChanceToTeleport = 15;
-    public UnityEngine.UI.Image healthBar;
 
+    public GameObject healthBar;
+    private Color originColor;
 
     protected override void Awake()
     {
@@ -49,6 +50,11 @@ public class Enemy_NightBorn : Enemigo
     protected override void Start()
     {
         base.Start();
+        /*
+        originColor = healthBar.color;        
+        */
+        //healthBar.color.a
+
         AudioManager.instance.PlaySFX(22);
         stateMachine.Initioalize(idleState);
     }
@@ -151,10 +157,28 @@ public class Enemy_NightBorn : Enemigo
 
     private void UpdateHealthUI()
     {
+        if (player.GetComponent<PlayerStats>().isDead)
+        {
+            healthBar.SetActive(false);
+            StartCoroutine(DespawnBoss());
+            return;
+        }
+        else
+        {
+            healthBar.SetActive(true);
+        }
+
         float currentHealth = GetComponent<CharacterStats>().currentHealth;
         float maxHealth = GetComponent<CharacterStats>().maxHealth.GetValue();
 
-        healthBar.fillAmount = currentHealth / maxHealth;
+        healthBar.GetComponentInChildren<UnityEngine.UI.Image>().fillAmount = currentHealth / maxHealth;
+    }
+
+    IEnumerator DespawnBoss()
+    {
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("Boss Panel").SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void StartBattle()

@@ -1,30 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 public class CambioIdioma : MonoBehaviour
 {
-    public string[] idioma = { "Español", "English" };
+    public static CambioIdioma instance;
+
+    public string[] idioma = { "English", "Español" };
     public Text idiomaText;
-    private int indiceIdioma;
+    public int indiceIdioma;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
+
+    private void Start()
+    {
+        indiceIdioma = PlayerPrefs.GetInt("Idioma", 0);
+        CambiarIdioma();
+    }
 
     public void CambiarIdioma()
     {
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[indiceIdioma];
+        PlayerPrefs.SetInt("Idioma", indiceIdioma);
     }
 
-    public void CambiarDerecha() 
+    public void CambiarDerecha()
     {
-        
-        if (!idiomaText.text.Equals(idioma[idioma.Length-1]))
+
+        if (indiceIdioma != idioma.Length - 1)
         {
             indiceIdioma += 1;
-            idiomaText.text = idioma[indiceIdioma];            
+            idiomaText.text = idioma[indiceIdioma];
             CambiarIdioma();
-        } 
+        }
         else
         {
             indiceIdioma = 0;
@@ -35,7 +53,7 @@ public class CambioIdioma : MonoBehaviour
 
     public void CambiarIzquierda()
     {
-        if (!idiomaText.text.Equals(idioma[0]))
+        if (indiceIdioma != 0)
         {
             indiceIdioma -= 1;
             idiomaText.text = idioma[indiceIdioma];
@@ -43,7 +61,7 @@ public class CambioIdioma : MonoBehaviour
         }
         else
         {
-            indiceIdioma = idioma.Length-1;
+            indiceIdioma = idioma.Length - 1;
             idiomaText.text = idioma[indiceIdioma];
             CambiarIdioma();
         }

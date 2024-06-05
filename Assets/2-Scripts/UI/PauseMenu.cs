@@ -29,6 +29,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject restartButton;
     [SerializeField] private GameObject quitButton;
 
+    [Header("Dialog Intro")]
+    [SerializeField] private GameObject colliderEs;
+    [SerializeField] private GameObject colliderEn;
+
     private void Awake()
     {
         instance = this;
@@ -233,5 +237,17 @@ public class PauseMenu : MonoBehaviour
     {
         PlayerManager.instance.player.GetComponent<PlayerStats>().isDead = false;
         GameManager.instance.RespawnPlayer();
+    }
+
+    public void ActivarDialog()
+    {
+        if (CambioIdioma.instance.indiceIdioma == 1)
+        {
+            colliderEs.SetActive(true);
+        }
+        else
+        {
+            colliderEn.SetActive(true);
+        }
     }
 }

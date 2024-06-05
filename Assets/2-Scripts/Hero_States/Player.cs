@@ -356,8 +356,7 @@ public class Player : Entity
 
     public void CutSceneVisible()
     {
-        fx.MakeTransprent(false);
-        StopSpeak();
+        fx.MakeTransprent(false);        
     }
 
     public void BossSpawning()
