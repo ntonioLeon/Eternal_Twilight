@@ -23,8 +23,6 @@ public class ArcherBattleState : EnemyState
             stateMachine.ChangeState(enemy.moveState);
 
         }
-
-
     }
 
     public override void Update()

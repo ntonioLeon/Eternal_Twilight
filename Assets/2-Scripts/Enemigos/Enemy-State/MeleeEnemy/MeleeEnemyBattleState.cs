@@ -6,6 +6,7 @@ public class MeleeEnemyBattleState : EnemyState
 {
     private MeleeEnemy enemy;
     private int movingDirection;
+    private Transform player;
 
     public MeleeEnemyBattleState(Enemigo enemyBase, EnemyStateMachine stateMachine, string animBoolName, MeleeEnemy enemy) : base(enemyBase, stateMachine, animBoolName)
     {
@@ -49,6 +50,14 @@ public class MeleeEnemyBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        player = PlayerManager.instance.player.transform;
+
+        if (player.GetComponent<PlayerStats>().isDead)
+        {
+            stateMachine.ChangeState(enemy.moveState);
+
+        }
     }
 
     public override void Exit()

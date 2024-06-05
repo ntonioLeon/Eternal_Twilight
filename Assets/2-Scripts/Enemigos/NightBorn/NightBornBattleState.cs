@@ -53,6 +53,12 @@ public class NightBornBattleState : EnemyState
         base.Enter();
 
         player = PlayerManager.instance.player.transform;
+
+        if (player.GetComponent<PlayerStats>().isDead)
+        {
+            stateMachine.ChangeState(enemy.idleState);
+
+        }
     }
 
     public override void Exit()

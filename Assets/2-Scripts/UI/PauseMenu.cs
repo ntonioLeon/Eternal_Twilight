@@ -225,11 +225,13 @@ public class PauseMenu : MonoBehaviour
 
     public void RestartGameButton()
     {
+        PlayerManager.instance.player.GetComponent<PlayerStats>().isDead = false;
         GameManager.instance.RestartScene();
     }
 
     public void Respawn()
     {
+        PlayerManager.instance.player.GetComponent<PlayerStats>().isDead = false;
         GameManager.instance.RespawnPlayer();
     }
 }

@@ -37,9 +37,10 @@ public class Inventory : MonoBehaviour, ISaveManager
     private float armorCooldown;
 
     [Header("Data base")]
-    public List<ItemData> itemDataBase;
-    public List<InventoryItem> loadedItems;
-    public List<ItemData_Equipment> loadedEquipment;
+    [SerializeField] public List<ItemData> itemDataBase;
+    [SerializeField] public List<InventoryItem> loadedItems;
+    [SerializeField] public List<ItemData_Equipment> loadedEquipment;
+
     private void Awake()
     {
         if (instance == null)
@@ -63,6 +64,8 @@ public class Inventory : MonoBehaviour, ISaveManager
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equpmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+
+        LoadData(SaveManager.instance.gameData);
 
         AddStartingItems();
     }
@@ -360,7 +363,6 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
-
     }
 
     public void SaveData(ref GameData _data)
