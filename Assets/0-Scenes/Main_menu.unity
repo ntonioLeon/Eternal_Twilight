@@ -7264,6 +7264,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038888330}
   m_CullTransparentMesh: 1
+--- !u!114 &1043238620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1256400984625832102, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+  m_PrefabInstance: {fileID: 2165974125235520857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1045951755
 GameObject:
   m_ObjectHideFlags: 0
@@ -8170,6 +8181,7 @@ MonoBehaviour:
   - "Espa\xF1ol"
   - English
   idiomaText: {fileID: 1842844940}
+  indiceIdioma: 0
 --- !u!1 &1200758346
 GameObject:
   m_ObjectHideFlags: 0
@@ -14839,6 +14851,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7885776685986085205, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+      propertyPath: txtMeme
+      value: 
+      objectReference: {fileID: 1043238620}
     - target: {fileID: 9153054770109108069, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

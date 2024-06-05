@@ -9,20 +9,38 @@ using UnityEngine.UI;
 public class UI_FadeScreen : MonoBehaviour
 {
     private Animator anim;
+    [SerializeField] private Text txtMeme;
     [SerializeField] private GameObject textoFin;
     [SerializeField] private GameObject textoPuntuacion;
-    private String mssg;
+    private string mssg="";
 
 
     void Start()
     {
         anim = GameObject.Find("DarkScreen").GetComponent<Animator>();
+        Sing4TheMemes();
+        if (txtMeme != null)
+        {
+            txtMeme.text = mssg;
+        }
     }
     private void OnEnable()
     {
         Sing4TheMemes();
-        Debug.Log(mssg);
+        if (txtMeme != null)
+        {
+            txtMeme.text = mssg;
+        }
     }
+    private void OnDisable()
+    {
+        if (txtMeme != null)
+        {
+            txtMeme.text = "";
+        }
+        Sing4TheMemes();
+    }
+
 
     public void FadeOut()
     {
