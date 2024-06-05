@@ -258,6 +258,46 @@ MonoBehaviour:
     m_Localized: Restart
     m_Metadata:
       m_Items: []
+  - m_Id: 21059908130881536
+    m_Localized: Max Health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060037302861824
+    m_Localized: Magic Resist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060222993088512
+    m_Localized: Fire Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060338621661184
+    m_Localized: Ice Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060428102942720
+    m_Localized: Light Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060548143923200
+    m_Localized: Critic Power
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060722698272768
+    m_Localized: Critic Chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060850624544768
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21061085664952320
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21061315340845056
+    m_Localized: Evasion
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

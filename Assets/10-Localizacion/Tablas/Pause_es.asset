@@ -258,6 +258,46 @@ MonoBehaviour:
     m_Localized: Reiniciar
     m_Metadata:
       m_Items: []
+  - m_Id: 21059908130881536
+    m_Localized: "Vida M\xE1xima"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060037302861824
+    m_Localized: "Resistencia M\xE1gica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060222993088512
+    m_Localized: "Da\xF1o \xCDgneo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060338621661184
+    m_Localized: "Da\xF1o Escarcha"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060428102942720
+    m_Localized: "Da\xF1o Div\xEDno"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060548143923200
+    m_Localized: "Da\xF1o Cr\xEDtico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060722698272768
+    m_Localized: "Prov. Cr\xEDtico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21060850624544768
+    m_Localized: "Da\xF1o F\xEDsico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21061085664952320
+    m_Localized: Armadura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21061315340845056
+    m_Localized: "Evasi\xF3n"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
