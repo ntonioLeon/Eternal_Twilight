@@ -8,14 +8,15 @@ using UnityEngine.UI;
 public class EstadoManager : MonoBehaviour
 {
     public static EstadoManager instance;
-    [SerializeField] private Image holder;
-    [SerializeField] private Sprite poisoned;
-    [SerializeField] private Sprite burned;
-    [SerializeField] private Sprite shocked;
-    [SerializeField] private Sprite healing;
-    [SerializeField] private Sprite save;
+    public Image holder;
+    public Sprite poisoned;
+    public Sprite burned;
+    public Sprite shocked;
+    public Sprite freeze;
+    public Sprite healing;
+    public Sprite save;
 
-    private bool damaged = false;
+    public bool damaged = false;
 
     private void Awake()
     {
@@ -31,22 +32,19 @@ public class EstadoManager : MonoBehaviour
 
     void Start()
     {
-        //holder = GetComponent<Image>();
-
-        
-    }
-
-    private void CheckDamaged()
-    {
-        if (!damaged)
-        {
-            OnSave();
-        }
+        CheckDamaged();
     }
 
     void Update()
     {
-        CheckDamaged();
+       
+    }
+    private void CheckDamaged()
+    {
+        if (!damaged)
+        {
+            OnGucci();
+        }
     }
 
     public void OnPoisoned()
@@ -56,6 +54,7 @@ public class EstadoManager : MonoBehaviour
 
     public void OnBurned()
     {
+        Debug.Log("Pum");
         holder.sprite = burned;
     }
 
@@ -63,13 +62,17 @@ public class EstadoManager : MonoBehaviour
     {
         holder.sprite = shocked;
     }
+    public void OnFreeze()
+    {
+        holder.sprite = freeze;
+    }
 
     public void OnHealing()
     {
         holder.sprite = healing;
     }
 
-    public void OnSave()
+    public void OnGucci()
     {
         holder.sprite = save;
     }

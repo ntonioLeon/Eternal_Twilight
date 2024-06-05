@@ -245,7 +245,7 @@ public class CharacterStats : MonoBehaviour
             isIgnited = ignite;
             igniteTimer = ailmentsDuration;
 
-            fx.IgniteFxFor(ailmentsDuration);
+            fx.IgniteFxFor(ailmentsDuration);        
         }
 
         if (chill && canApplyChill)

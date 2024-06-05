@@ -317,6 +317,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             flaskCooldown = currentFlask.itemCooldown;
             currentFlask.Effect(null);
             lastTimeUsedFlask = Time.time;
+            StartCoroutine(PlayerManager.instance.player.GetComponent<Player>().TakePoti());
         }
         else
             Debug.Log("Flask on cooldown;");

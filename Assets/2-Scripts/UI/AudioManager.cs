@@ -70,33 +70,25 @@ public class AudioManager : MonoBehaviour
     {
         generalMixer.SetFloat("Effects", effectsSldr.value -15f);
     }
-    public void StopMain()
+
+    public void StopMusic()
     {
-        soundMusic[0].Stop();
+        for (int i = 0; i < soundMusic.Length; i++)
+        {
+            soundEffects[i].Stop();
+        }
     }
     public void PlayMain()
     {
         soundMusic[0].Play();
     }
-    public void StopGameMusic()
-    {
-        soundMusic[1].Stop();
-    }
     public void PlayGameMusic()
     {
         soundMusic[1].Play();
     }
-    public void StopBattle()
-    {
-        soundMusic[2].Stop();
-    }
     public void PlayBattle()
     {
         soundMusic[2].Play();
-    }
-    public void StopEndMusic()
-    {
-        soundMusic[3].Stop();
     }
     public void PlayEndMusic()
     {

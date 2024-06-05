@@ -94,7 +94,7 @@ public class MainMenu : MonoBehaviour
     #region Buttons
     public void OnLaunchGame()
     {
-        AudioManager.instance.StopMain();
+        AudioManager.instance.StopMusic();
         SaveManager.instance.DeleteSavedData();
         StartCoroutine(LoadScreenWithFadeEffect(1.5f));
         ToPlay();
@@ -102,7 +102,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnContinueGame()
     {
-        AudioManager.instance.StopMain();
+        AudioManager.instance.StopMusic();
         StartCoroutine(LoadScreenWithFadeEffect(1.3f));
         if (PlayerPrefs.GetString("Logged").Equals("S"))
         {
@@ -134,7 +134,7 @@ public class MainMenu : MonoBehaviour
     }
     public void OnExitGame()
     {
-        AudioManager.instance.StopMain();
+        AudioManager.instance.StopMusic();
         ToPlay();
         Application.Quit();
     }

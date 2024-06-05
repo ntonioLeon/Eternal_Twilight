@@ -44,6 +44,7 @@ public class Player : Entity
     public float staminaRegen = 5;
     [SerializeField] private Image poti;
     [SerializeField] private Text potiText;
+    public bool isHealing;
 
     #region Angularidad
     public float anguloMax;
@@ -144,6 +145,7 @@ public class Player : Entity
         {
             Inventory.instance.UseFlask();
             StartCoroutine(BanishPoti());
+            
         }
 
         CheckWatered();
@@ -177,6 +179,12 @@ public class Player : Entity
 
         textColor.a = 1.0f;
         potiText.color = textColor;
+    }
+    public IEnumerator TakePoti()
+    {
+        isHealing = true;
+        yield return new WaitForSeconds(1f);
+        isHealing = false;
     }
 
     public override void Flip()

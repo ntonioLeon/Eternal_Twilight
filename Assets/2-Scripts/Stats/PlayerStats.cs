@@ -28,6 +28,30 @@ public class PlayerStats : CharacterStats
     {
         base.Update();
         RefreshStats();
+        if (PlayerManager.instance.player.GetComponent<Player>().isHealing)
+        {
+            EstadoManager.instance.OnHealing();
+        }
+        else if (isIgnited)
+        {
+            EstadoManager.instance.OnBurned();
+        }
+        else if (isShocked)
+        {
+            EstadoManager.instance.OnShoked();
+        }
+        else if (isChilled)
+        {
+            EstadoManager.instance.OnFreeze();
+        }
+        else if (PlayerManager.instance.player.GetComponent<Player>().isWatered)
+        {
+            EstadoManager.instance.OnPoisoned();
+        }
+        else
+        {
+            EstadoManager.instance.OnGucci();
+        }
     }
 
     public override void TakeDamage(float dmg)
@@ -38,12 +62,11 @@ public class PlayerStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        AudioManager.instance.StopGameMusic();
+        AudioManager.instance.StopMusic();
         AudioManager.instance.PlayBattle();
         player.Die();
         GetComponent<PlayerItemDrop>().GenerateDrop();
     }
-
     public void RefreshStats()
     {
         maxHealthT.text = maxHealth.GetValue().ToString();
