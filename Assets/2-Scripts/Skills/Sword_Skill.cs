@@ -99,6 +99,7 @@ public class Sword_Skill : Skill
 
     public void CreateSword()
     {
+        player.currentMana -= 50f;
         Physics2D.IgnoreLayerCollision(10, 3, true);
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, player.transform.rotation);
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();

@@ -46,7 +46,15 @@ public class Player : Entity
     [SerializeField] private Text potiText;
     public bool isHealing;
 
+    [Header("Mana info")]
+    public Stat maxMana;
+    public float currentMana;
+    public UnityEngine.UI.Image manaBar;
+    public float manaRegen = 10;
+
+
     #region Angularidad
+    [Header("Angularidad")]
     public float anguloMax;
     [HideInInspector] public Vector2 capsuleSize;
     [HideInInspector] public Vector2 posPies;
@@ -125,7 +133,10 @@ public class Player : Entity
 
         this.currentStamina = maxStamina.GetValue();
         //UpdateStaminaUI();
-        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo        
+        InvokeRepeating("RegenerateStamina", 1f, 1f);// esto no me gusta del todo
+                                                     
+        this.currentMana = maxMana.GetValue();
+        InvokeRepeating("RegenMana", 1f, 1f);
     }
 
     protected override void Update()
@@ -331,6 +342,14 @@ public class Player : Entity
         staminaBar.fillAmount = currentStamina / maxStamina;
     }
 
+    public void UpdateManaUI()
+    {
+        float currentMana = this.currentMana;
+        float maxMana = this.maxMana.GetValue();
+
+        manaBar.fillAmount = currentMana / maxMana;
+    }
+
     public void Speak()
     {
         rb.velocity = new Vector2(0, 0);
@@ -353,6 +372,16 @@ public class Player : Entity
         this.currentStamina += staminaRegen;
         this.currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina.GetValue());
         UpdateStaminasUI();
+    }
+
+    void RegenMana()
+    {
+        if (!sword) 
+        {
+            this.currentMana += manaRegen;   
+        }
+        this.currentMana = Mathf.Clamp(currentMana, 0f, maxMana.GetValue());
+        UpdateManaUI();
     }
 
     public void CutSceneTransparente()
