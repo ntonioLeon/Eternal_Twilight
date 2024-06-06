@@ -69,7 +69,7 @@ public class CambioIdioma : MonoBehaviour
 
     public void lanzarFraseDeFin()
     {
-        if (indiceIdioma == 0)
+        if (indiceIdioma == 1)
         {
             AudioManager.instance.PlaySFX(14);
         }
