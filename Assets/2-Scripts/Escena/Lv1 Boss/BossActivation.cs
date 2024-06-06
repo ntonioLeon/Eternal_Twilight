@@ -24,6 +24,7 @@ public class BossActivation : MonoBehaviour
 
     IEnumerator Spawn()
     {
+        AudioManager.instance.StopMusic();
         PlayerManager.instance.player.GetComponent<Player>().Speak();
         PlayerManager.instance.player.bossSpawning = true;
         PlayerManager.instance.player.stateMachine.ChangeState(PlayerManager.instance.player.idleState);        

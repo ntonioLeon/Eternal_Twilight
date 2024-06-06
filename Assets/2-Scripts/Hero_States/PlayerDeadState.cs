@@ -16,10 +16,10 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        PlayerManager.instance.player.GetComponent<PlayerStats>().isDead = true;
         AudioManager.instance.PlaySFX(17);
         player.MandarDatos();
         GameObject.Find("LevelManager").GetComponent<PauseMenu>().SwichOnEndScreen();
-
     }
 
     public override void Exit()

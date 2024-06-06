@@ -2260,7 +2260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.34812692, b: 0.0052064694, a: 1}
+  m_Color: {r: 0.20754719, g: 0.13865507, b: 0.04209684, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7269,7 +7269,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1256400984625832102, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
   m_PrefabInstance: {fileID: 2165974125235520857}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1522673126}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
@@ -10357,6 +10357,11 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &1522673126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8450733407599429143, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+  m_PrefabInstance: {fileID: 2165974125235520857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1538491998
 GameObject:
   m_ObjectHideFlags: 0
@@ -14855,6 +14860,14 @@ PrefabInstance:
       propertyPath: txtMeme
       value: 
       objectReference: {fileID: 1043238620}
+    - target: {fileID: 7885776685986085205, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+      propertyPath: txtMssg
+      value: 
+      objectReference: {fileID: 1522673126}
+    - target: {fileID: 7885776685986085205, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
+      propertyPath: objetoTexto
+      value: 
+      objectReference: {fileID: 1522673126}
     - target: {fileID: 9153054770109108069, guid: 04b7821fe6ef9544f93e62f688c7cde7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

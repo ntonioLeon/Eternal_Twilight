@@ -9,7 +9,8 @@ using UnityEngine.UI;
 public class UI_FadeScreen : MonoBehaviour
 {
     private Animator anim;
-    [SerializeField] private Text txtMeme;
+    private Text txtMeme;
+    public GameObject objetoTexto;
     [SerializeField] private GameObject textoFin;
     [SerializeField] private GameObject textoPuntuacion;
     private string mssg="";
@@ -19,37 +20,39 @@ public class UI_FadeScreen : MonoBehaviour
     {
         anim = GameObject.Find("DarkScreen").GetComponent<Animator>();
         Sing4TheMemes();
-        if (txtMeme != null)
+        if (objetoTexto != null)
         {
-            txtMeme.text = mssg;
+            txtMeme = objetoTexto.GetComponentInChildren<Text>();
+            objetoTexto.SetActive(false);
         }
-    }
-    private void OnEnable()
-    {
-        Sing4TheMemes();
-        if (txtMeme != null)
+        else
         {
-            txtMeme.text = mssg;
+            Debug.Log("No existo");
         }
+        
     }
-    private void OnDisable()
-    {
-        if (txtMeme != null)
-        {
-            txtMeme.text = "";
-        }
-        Sing4TheMemes();
-    }
-
 
     public void FadeOut()
     {
+        StartCoroutine(SingMemes());
         anim.SetTrigger("fadeOut");
+    }
+
+    IEnumerator SingMemes()
+    {
+        yield return new WaitForSeconds(.5f);
+        if (objetoTexto != null)
+        {
+            objetoTexto.SetActive(true);
+            txtMeme.text = mssg;
+        }
     }
 
     public void FadeIn()
     {
+        objetoTexto.SetActive(false);
         anim.SetTrigger("fadeIn");
+        
     }
 
     public void ActivarTextFin()

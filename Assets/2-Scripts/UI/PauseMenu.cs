@@ -64,8 +64,9 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && !GameObject.Find("Player").GetComponent<Player>().isSpeaking)
+        if (Input.GetKeyDown(KeyCode.Escape) && !isPaused && !GameObject.Find("Player").GetComponent<Player>().isSpeaking && !PlayerManager.instance.player.GetComponent<PlayerStats>().isDead)
         {
+            AudioManager.instance.SoundsMute();
             if (PlayerPrefs.GetString("Logged").Equals("S"))
             {
                 PlayFabManager.instance.GetObjectsPrices();
@@ -73,7 +74,6 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             openBook.SetActive(true);
             Instantiate(openBook, canvas.transform);
-            AudioManager.instance.StopSFX();
             StartCoroutine(OpenCourutine());
             openBook.SetActive(true);
         }
@@ -85,6 +85,7 @@ public class PauseMenu : MonoBehaviour
             closeBook.SetActive(false);
             isPaused = false;
             indexMenu = 0;
+            AudioManager.instance.SoundsUnmute();
         }
 
     }

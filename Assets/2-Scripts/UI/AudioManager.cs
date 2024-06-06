@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     public Slider generalSldr, musicSldr, effectsSldr;
 
     private int currentSound;
+    private float currentVol;
+    public bool muted=false;
 
     private void Awake()
     {
@@ -53,7 +55,11 @@ public class AudioManager : MonoBehaviour
     {
         GeneralVolume();
         MusicVolume();
-        EffectVolume();
+        if (!muted) 
+        {
+            EffectVolume();
+        }
+        
     }
 
     public void GeneralVolume()
@@ -75,7 +81,7 @@ public class AudioManager : MonoBehaviour
     {
         for (int i = 0; i < soundMusic.Length; i++)
         {
-            soundEffects[i].Stop();
+            soundMusic[i].Stop(); 
         }
     }
     public void PlayMain()
@@ -108,5 +114,19 @@ public class AudioManager : MonoBehaviour
     public void StopSFX()
     {
         soundEffects[6].Stop();
+    }
+    public void SoundsMute()
+    {
+        StopSFX();
+        muted = true;
+        generalMixer.GetFloat("Effects", out currentVol);
+        generalMixer.SetFloat("Effects", - 1500f);
+        float num = 0f;
+        generalMixer.GetFloat("Effects", out num);
+    }
+    public void SoundsUnmute()
+    {
+        generalMixer.SetFloat("Effects", currentVol);
+        muted = false;
     }
 }
