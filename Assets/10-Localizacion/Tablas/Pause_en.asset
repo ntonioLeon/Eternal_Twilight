@@ -298,6 +298,18 @@ MonoBehaviour:
     m_Localized: Evasion
     m_Metadata:
       m_Items: []
+  - m_Id: 22016128572506112
+    m_Localized: nventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502554042548224
+    m_Localized: omponents
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22017064401420288
+    m_Localized: quipment
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

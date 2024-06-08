@@ -298,6 +298,18 @@ MonoBehaviour:
     m_Localized: "Evasi\xF3n"
     m_Metadata:
       m_Items: []
+  - m_Id: 22016128572506112
+    m_Localized: nventario
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18502554042548224
+    m_Localized: omponentes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22017064401420288
+    m_Localized: quipamiento
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

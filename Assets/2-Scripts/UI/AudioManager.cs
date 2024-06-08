@@ -26,7 +26,10 @@ public class AudioManager : MonoBehaviour
     public Slider generalSldr, musicSldr, effectsSldr;
 
     private int currentSound;
-    private float currentVol;
+    private float currentVolSFX;
+    private float savedVolSFX;
+    private float savedVolMUS;
+    private float savedVolGEN;
     public bool muted=false;
 
     private void Awake()
@@ -36,18 +39,20 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        generalSldr.value = generalVol;
         generalSldr.minValue = -80;
         generalSldr.maxValue = 10;
         
-        musicSldr.value = musicVol;
         musicSldr.minValue = -80;
         musicSldr.maxValue = 10;
 
-        effectsSldr.value = effectsVol;
         effectsSldr.minValue = -80;
         effectsSldr.maxValue = 10;
-        
+
+        LoadVolume();
+
+        effectsSldr.value = effectsVol;
+        musicSldr.value = musicVol;
+        generalSldr.value = generalVol;
     }
 
     // Update is called once per frame
@@ -119,14 +124,40 @@ public class AudioManager : MonoBehaviour
     {
         StopSFX();
         muted = true;
-        generalMixer.GetFloat("Effects", out currentVol);
+        generalMixer.GetFloat("Effects", out currentVolSFX);
         generalMixer.SetFloat("Effects", - 1500f);
         float num = 0f;
         generalMixer.GetFloat("Effects", out num);
     }
     public void SoundsUnmute()
     {
-        generalMixer.SetFloat("Effects", currentVol);
+        generalMixer.SetFloat("Effects", currentVolSFX);
         muted = false;
+    }
+    
+    public void SaveVolume()
+    {
+        generalMixer.GetFloat("Effects", out savedVolSFX);
+        PlayerPrefs.SetFloat("VolEffects", savedVolSFX);
+
+        generalMixer.GetFloat("Music", out savedVolMUS);//
+        PlayerPrefs.SetFloat("VolMusic", savedVolMUS);
+
+        generalMixer.GetFloat("General", out savedVolGEN);//
+        PlayerPrefs.SetFloat("VolGeneral", savedVolGEN);
+    }
+    public void LoadVolume()
+    {
+        if (PlayerPrefs.HasKey("VolEffects"))
+        {
+            savedVolSFX = PlayerPrefs.GetFloat("VolEffects");
+            generalMixer.SetFloat("Effects", savedVolSFX);
+
+            savedVolMUS = PlayerPrefs.GetFloat("VolMusic");//
+            generalMixer.SetFloat("Music", savedVolMUS);
+
+            savedVolGEN = PlayerPrefs.GetFloat("VolGeneral");//
+            generalMixer.SetFloat("General", savedVolGEN);
+        }
     }
 }

@@ -212,7 +212,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 18502554042548224
-    m_Key: New Entry
+    m_Key: fix.compo
     m_Metadata:
       m_Items: []
   - m_Id: 18502574191984640
@@ -297,6 +297,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 21061315340845056
     m_Key: stat.eva
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22016128572506112
+    m_Key: fix.invent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 22017064401420288
+    m_Key: fix.equip
     m_Metadata:
       m_Items: []
   m_Metadata:

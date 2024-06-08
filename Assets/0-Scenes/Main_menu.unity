@@ -768,7 +768,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 93620180}
         m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
         m_MethodName: GetLeaderBoard
         m_Mode: 1
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageText: {fileID: 1308651809}
-  display: {fileID: 0}
+  display: {fileID: 420610035}
   usernameInput: {fileID: 167351236}
   passwordInput: {fileID: 1948501657}
   emailInput: {fileID: 1581101645}
@@ -1287,7 +1287,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 117151111}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1181924652}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: OnRanking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &117151111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,7 +3587,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Back
 --- !u!222 &448891296
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9837,7 +9849,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 93620180}
         m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
         m_MethodName: GetArroundU
         m_Mode: 1
@@ -10644,7 +10656,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 93620180}
         m_TargetAssemblyTypeName: PlayFabManager, Assembly-CSharp
         m_MethodName: GetUrBest
         m_Mode: 1
