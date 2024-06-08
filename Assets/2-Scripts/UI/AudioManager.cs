@@ -145,6 +145,8 @@ public class AudioManager : MonoBehaviour
 
         generalMixer.GetFloat("General", out savedVolGEN);//
         PlayerPrefs.SetFloat("VolGeneral", savedVolGEN);
+
+        Debug.Log("Saved :" + savedVolSFX + "FX, " + savedVolMUS + "M, " +savedVolGEN+"G");
     }
     public void LoadVolume()
     {
@@ -158,6 +160,7 @@ public class AudioManager : MonoBehaviour
 
             savedVolGEN = PlayerPrefs.GetFloat("VolGeneral");//
             generalMixer.SetFloat("General", savedVolGEN);
+            Debug.Log("Loaded :" + savedVolSFX + "FX, " + savedVolMUS + "M, " + savedVolGEN+"G");
         }
     }
 }
