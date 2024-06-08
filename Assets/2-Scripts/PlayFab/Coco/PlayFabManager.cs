@@ -342,8 +342,8 @@ public class PlayFabManager : MonoBehaviour
     }
     void OnDataSend(UpdateUserDataResult result)
     {
-        Debug.Log("Data saved");
-        Debug.Log(result.ToString());
+        //Debug.Log("Data saved");
+        //Debug.Log(result.ToString());
     }
 
     public void DownloadInventory()

@@ -129,7 +129,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ToMain()
     {
-        PlayerPrefs.SetString("Logged", "N");
+        
         altIndex = indexMenu;
         indexMenu = 0;
         //buutonsList[0].SetActive(false);
@@ -190,6 +190,7 @@ public class PauseMenu : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        PlayerPrefs.SetString("Logged", "N");
         fadeSceen.FadeOut();
         StartCoroutine(CloseCourutine());
         SceneManager.LoadScene(0);

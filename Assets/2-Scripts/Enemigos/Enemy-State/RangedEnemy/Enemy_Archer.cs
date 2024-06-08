@@ -17,7 +17,7 @@ public class Enemy_Archer : Enemigo
     [Header("Additional collision check")]
     [SerializeField] private Transform groundBehindCheck;
     [SerializeField] private Vector2 groundBehindCheckSize;
-
+    public GameObject deathPrefab;
 
     #region States
     public ArcherIdleState idleState { get; private set; }
@@ -75,6 +75,16 @@ public class Enemy_Archer : Enemigo
         AudioManager.instance.PlaySFX(7);
         stateMachine.ChangeState(deadState);
 
+    }
+
+    public void Morir()
+    {
+        Instantiate(deathPrefab, transform.position, Quaternion.identity);
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 
     public override void AnimationSpecialAttackTrigger()

@@ -48,11 +48,11 @@ public class AudioManager : MonoBehaviour
         effectsSldr.minValue = -80;
         effectsSldr.maxValue = 10;
 
-        LoadVolume();
-
         effectsSldr.value = effectsVol;
         musicSldr.value = musicVol;
         generalSldr.value = generalVol;
+
+        LoadVolume();
     }
 
     // Update is called once per frame
@@ -146,7 +146,7 @@ public class AudioManager : MonoBehaviour
         generalMixer.GetFloat("General", out savedVolGEN);//
         PlayerPrefs.SetFloat("VolGeneral", savedVolGEN);
 
-        Debug.Log("Saved :" + savedVolSFX + "FX, " + savedVolMUS + "M, " +savedVolGEN+"G");
+        //Debug.Log("Saved :" + savedVolSFX + "FX, " + savedVolMUS + "M, " +savedVolGEN+"G");
     }
     public void LoadVolume()
     {
@@ -160,7 +160,11 @@ public class AudioManager : MonoBehaviour
 
             savedVolGEN = PlayerPrefs.GetFloat("VolGeneral");//
             generalMixer.SetFloat("General", savedVolGEN);
-            Debug.Log("Loaded :" + savedVolSFX + "FX, " + savedVolMUS + "M, " + savedVolGEN+"G");
+            //Debug.Log("Loaded :" + savedVolSFX + "FX, " + savedVolMUS + "M, " + savedVolGEN+"G");
+
+            effectsSldr.value = savedVolSFX;
+            musicSldr.value = savedVolMUS;
+            generalSldr.value = savedVolGEN;
         }
     }
 }

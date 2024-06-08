@@ -15,6 +15,8 @@ public class MeleeEnemy : Enemigo
     public MeleeEnemyDeadState deadState { get; private set; }
     #endregion
 
+    [SerializeField] private GameObject deathPrefab;
+
     protected override void Awake()
     {
         base.Awake();                
@@ -60,5 +62,15 @@ public class MeleeEnemy : Enemigo
         base.Die();
         AudioManager.instance.PlaySFX(7);
         stateMachine.ChangeState(deadState);
+    }
+
+    public void SelfDestroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public void Morir()
+    {
+        Instantiate(deathPrefab, transform.position, Quaternion.identity);
     }
 }

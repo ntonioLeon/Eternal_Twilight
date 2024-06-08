@@ -12,7 +12,7 @@ public class HealEffect : ItemEffect
 
         float healAmount = Mathf.RoundToInt(playerStats.GetMaxHealthValue() * healPercent);
 
-        Debug.Log(healAmount);
+        //Debug.Log(healAmount);
 
         playerStats.IncreaseHealthBy(healAmount);
 

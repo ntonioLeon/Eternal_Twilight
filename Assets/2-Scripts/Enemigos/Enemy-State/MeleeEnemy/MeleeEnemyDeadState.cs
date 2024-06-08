@@ -14,9 +14,9 @@ public class MeleeEnemyDeadState : EnemyState
     {
         base.Enter();
 
-        enemy.anim.SetBool(enemy.lastAnimBoolName, true);
-        enemy.anim.speed = 0;
-        enemy.capsule.enabled = false;
+        //enemy.anim.SetBool(enemy.lastAnimBoolName, true);
+        //enemy.anim.speed = 0;
+        //enemy.capsule.enabled = false;
 
         stateTimer = .1f;
     }
@@ -25,9 +25,7 @@ public class MeleeEnemyDeadState : EnemyState
     {
         base.Update();
 
-        if (stateTimer > 0)
-        {
-            rb.velocity = new Vector2(0, 10);
-        }
+        enemy.Morir();
+        enemy.SelfDestroy();
     }
 }

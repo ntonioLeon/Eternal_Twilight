@@ -27,7 +27,7 @@ public class UI_FadeScreen : MonoBehaviour
         }
         else
         {
-            Debug.Log("No existo");
+            //Debug.Log("No existo");
         }
         
     }
@@ -69,7 +69,7 @@ public class UI_FadeScreen : MonoBehaviour
         if (textoFin != null)
             textoFin.SetActive(true);
 
-        Debug.Log(textoPuntuacion != null);
+        //Debug.Log(textoPuntuacion != null);
         if (textoPuntuacion != null)
         {
             textoPuntuacion.SetActive(true);

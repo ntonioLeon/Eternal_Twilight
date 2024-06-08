@@ -54,7 +54,7 @@ public class EstadoManager : MonoBehaviour
 
     public void OnBurned()
     {
-        Debug.Log("Pum");
+        //Debug.Log("Pum");
         holder.sprite = burned;
     }
 

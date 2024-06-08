@@ -13,6 +13,7 @@ public class Enemy_NightBorn : Enemigo
     public NightBornTeleportState teleportState { get; private set; }
     public NightBornSpellCastState spellCastState { get; private set; }
     #endregion
+
     public bool bossFightBegun;
     [SerializeField] private GameObject deathPrefab;
 
