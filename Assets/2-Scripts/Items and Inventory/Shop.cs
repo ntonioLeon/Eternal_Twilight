@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
-using static UnityEditor.Progress;
 
 public class Shop : MonoBehaviour
 {
@@ -259,7 +258,7 @@ public class Shop : MonoBehaviour
                     InventoryItem itemToLoad = new InventoryItem(item);
                     itemToLoad.stackSize = 1;
 
-                    Inventory.instance.AddItem(itemToLoad.data);
+                    Inventory.instance.AddItem(itemToLoad.data); ;
                 }
             }
         }
