@@ -177,8 +177,6 @@ public class Inventory : MonoBehaviour, ISaveManager
         else if (_item.itemType == ItemType.Material)
             AddToStash(_item);
 
-
-
         UpdateSlotUI();
     }
 

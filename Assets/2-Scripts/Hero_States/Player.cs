@@ -411,12 +411,16 @@ public class Player : Entity
         if (PlayerPrefs.GetString("Logged").Equals("S"))
         {
             int score = 0;
-            if (PlayerManager.instance.bossKilled)
-                score += 1000;
+
+            /*if (PlayerManager.instance.bossKilled)
+                score += 1000;*/
 
             score += PlayerManager.instance.currency;
 
-            score += (int)GetComponent<PlayerStats>().maxHealth.GetValue() / (int)GetComponent<PlayerStats>().currentHealth * 1000;
+            if (GetComponent<PlayerStats>().currentHealth > 0)
+                score += (int)GetComponent<PlayerStats>().maxHealth.GetValue() / (int)GetComponent<PlayerStats>().currentHealth * 1000;
+            else
+                score += 0;
 
             PlayFabManager.instance.SendLeaderBoard(score);
         }

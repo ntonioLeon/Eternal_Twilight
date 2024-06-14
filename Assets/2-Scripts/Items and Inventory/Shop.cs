@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using static UnityEditor.Progress;
 
 public class Shop : MonoBehaviour
 {
@@ -196,28 +197,80 @@ public class Shop : MonoBehaviour
     private void GiveItems()
     {
         Dictionary<string, int> compra = new Dictionary<string, int>();
+        List<string> lista = new List<string>();
 
         if (primerCantidad > 0)
+        {
             compra.Add(primerIdSlot, primerCantidad);
 
+            for (int i = 0; i < primerCantidad; i++)
+            {
+                lista.Add(primerIdSlot);
+            }
+        }
+
         if (segundoCantidad > 0)
+        {
             compra.Add(segundoIdSlot, segundoCantidad);
 
+            for (int i = 0; i < segundoCantidad; i++)
+            {
+                lista.Add(segundoIdSlot);
+            }
+        }
+
         if (tercerCantidad > 0)
+        {
             compra.Add(tercerIdSlot, tercerCantidad);
 
+            for (int i = 0; i < tercerCantidad; i++)
+            {
+                lista.Add(tercerIdSlot);
+            }
+        }
+
         if (cuatroCantidad > 0)
+        {
             compra.Add(cuartoIdSlot, cuatroCantidad);
 
+            for (int i = 0; i < cuatroCantidad; i++)
+            {
+                lista.Add(cuartoIdSlot);
+            }
+        }
+
         if (quintoCantidad > 0)
+        {
             compra.Add(quintoIdSlot, quintoCantidad);
 
+            for (int i = 0; i < quintoCantidad; i++)
+            {
+                lista.Add(quintoIdSlot);
+            }
+        }
+
+
+        foreach (string pair in lista)
+        {
+            foreach (var item in Inventory.instance.itemDataBase)
+            {
+                if (item != null && item.itemId == pair)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = 1;
+
+                    Inventory.instance.AddItem(itemToLoad.data);
+                }
+            }
+        }
+        /*
         foreach (KeyValuePair<string, int> pair in compra)
         {
             foreach (var item in Inventory.instance.itemDataBase)
             {
                 if (item != null && item.itemId == pair.Key)
                 {
+                    
                     InventoryItem itemToLoad = new InventoryItem(item);
                     itemToLoad.stackSize = pair.Value;
                     
@@ -225,6 +278,7 @@ public class Shop : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     public void ResetPage()
