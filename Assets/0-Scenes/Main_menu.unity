@@ -2542,7 +2542,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: https://www.youtube.com/
+          m_StringArgument: https://www.youtube.com/@EternalTwilightDev
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &303722672
@@ -10287,7 +10287,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: https://es.linkedin.com/
+          m_StringArgument: "https://www.linkedin.com/in/antonio-le\xF3n-almod\xF3var-5ab55829a/"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1502620329
@@ -14741,7 +14741,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: https://discord.com/
+          m_StringArgument: https://discord.gg/AKqbaYxvRQ
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2071347195

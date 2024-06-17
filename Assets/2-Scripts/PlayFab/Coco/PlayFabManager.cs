@@ -249,7 +249,7 @@ public class PlayFabManager : MonoBehaviour
     {
 
         sb.Clear();
-        sb.Append("Rank\t-\tUnsername\t-\tPoints\n\n");
+        sb.Append("Rank\t-\tUsername\t-\tPoints\n\n");
         foreach (var item in result.Leaderboard)
         {
             sb.Append(item.Position + 1).Append(" - ").Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
@@ -285,7 +285,7 @@ public class PlayFabManager : MonoBehaviour
         sb.Clear();
         if (result.Leaderboard.Count != 1)
         {
-            sb.Append("Unsername\t-\tPoints\n\n");
+            sb.Append("Username\t-\tPoints\n\n");
             foreach (var item in result.Leaderboard)
             {
                 sb.Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
@@ -305,7 +305,7 @@ public class PlayFabManager : MonoBehaviour
         sb.Clear();
         if (result.Leaderboard.Count != 1)
         {
-            sb.Append("Unsername\t-\tPoints\n\n");
+            sb.Append("Username\t-\tPoints\n\n");
             foreach (var item in result.Leaderboard)
             {
                 sb.Append(item.DisplayName).Append(" - ").Append(item.StatValue).Append("\n");
